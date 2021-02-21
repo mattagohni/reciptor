@@ -2,18 +2,18 @@ language: node_js
 node_js:
   - 15
 
-  addons:
-    apt:
-      sources:
-        - google-chrome
-      packages:
-        - google-chrome-stable
-  cache:
-    directories:
-      - ./node_modules
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+cache:
+  directories:
+    - ./node_modules
 
-  install:
-    - npm install
+install:
+  - npm install
 
-  script:
-    - nx test
+script:
+  - nx test

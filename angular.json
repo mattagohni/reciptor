@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "reciptor",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "reciptor": {
+      "projectType": "application",
+      "root": "apps/reciptor",
+      "sourceRoot": "apps/reciptor/src",
+      "prefix": "reciptor",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/reciptor",
+            "index": "apps/reciptor/src/index.html",
+            "main": "apps/reciptor/src/main.ts",
+            "polyfills": "apps/reciptor/src/polyfills.ts",
+            "tsConfig": "apps/reciptor/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/reciptor/src/favicon.ico",
+              "apps/reciptor/src/assets"
+            ],
+            "styles": ["apps/reciptor/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/reciptor/src/environments/environment.ts",
+                  "with": "apps/reciptor/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "reciptor:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "reciptor:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "reciptor:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/reciptor/src/**/*.ts",
+              "apps/reciptor/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/reciptor"],
+          "options": {
+            "jestConfig": "apps/reciptor/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "reciptor-e2e": {
+      "root": "apps/reciptor-e2e",
+      "sourceRoot": "apps/reciptor-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/reciptor-e2e/cypress.json",
+            "tsConfig": "apps/reciptor-e2e/tsconfig.e2e.json",
+            "devServerTarget": "reciptor:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "reciptor:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/reciptor-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}

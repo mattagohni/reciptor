@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>de.mattagohni</groupId>
-	<artifactId>reciptor</artifactId>
+	<artifactId>reciptor-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>reciptor-server</name>
 	<description>Recipes</description>

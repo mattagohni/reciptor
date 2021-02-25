@@ -1,6 +1,7 @@
-language: node_js
-node_js:
-  - 15
+language: java
+jdk:
+  - openjdk11
+env: NODE_VERSION="15"
 
 addons:
   apt:
@@ -11,9 +12,12 @@ addons:
 cache:
   directories:
     - ./node_modules
+before_install:
+  - nvm install $NODE_VERSION
+  - npm install -g @nrwl/cli
 
 install:
   - npm install
 
 script:
-  - nx test
+  - nx run-many --target test --all --no-cache

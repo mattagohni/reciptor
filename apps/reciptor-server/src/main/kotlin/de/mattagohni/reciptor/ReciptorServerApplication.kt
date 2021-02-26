@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class ReciptorServerApplication
 
 fun main(args: Array<String>) {
-	runApplication<ReciptorServerApplication>(*args)
+  runApplication<ReciptorServerApplication>(*args)
 }

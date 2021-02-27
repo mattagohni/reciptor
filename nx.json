@@ -19,6 +19,7 @@
     "reciptor": { "tags": [] },
     "reciptor-e2e": { "tags": [], "implicitDependencies": ["reciptor"] },
     "reciptor-server": { "tags": [] },
-    "shared-material": { "tags": ["type:style", "scope:reciptor"] }
+    "shared-material": { "tags": ["type:style", "scope:reciptor"] },
+    "shared-ui-header": { "tags": ["type:ui", "scope:shared"] }
   }
 }

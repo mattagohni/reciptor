@@ -1,10 +1,12 @@
 import {TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
+import {SharedMaterialModule} from '@reciptor/shared/material';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
+      imports: [SharedMaterialModule]
     }).compileComponents();
   });
 
@@ -24,8 +26,8 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
-      'Welcome to reciptor!'
+    expect(compiled.querySelector('mat-card-header').textContent).toContain(
+      'Yeah'
     );
   });
 });

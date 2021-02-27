@@ -51,9 +51,7 @@
               "apps/reciptor/src/favicon.ico",
               "apps/reciptor/src/assets"
             ],
-            "styles": [
-              "apps/reciptor/src/styles.scss"
-            ],
+            "styles": ["apps/reciptor/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -114,9 +112,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/reciptor"
-          ],
+          "outputs": ["coverage/apps/reciptor"],
           "options": {
             "jestConfig": "apps/reciptor/jest.config.js",
             "passWithNoTests": true
@@ -145,9 +141,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/reciptor-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/reciptor-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -203,6 +197,31 @@
           "builder": "@nxrocks/nx-spring-boot:buildInfo",
           "options": {
             "root": "apps/reciptor-server"
+          }
+        }
+      }
+    },
+    "shared-material": {
+      "projectType": "library",
+      "root": "libs/shared/material",
+      "sourceRoot": "libs/shared/material/src",
+      "prefix": "reciptor",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/material/src/**/*.ts",
+              "libs/shared/material/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/material"],
+          "options": {
+            "jestConfig": "libs/shared/material/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

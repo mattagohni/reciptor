@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedMaterialModule} from '@reciptor/shared/material';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import {SharedUiHeaderModule} from '@reciptor/shared/ui-header';
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,7 +12,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     BrowserModule,
     BrowserAnimationsModule,
     SharedMaterialModule,
-    MatDatepickerModule
+    SharedUiHeaderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

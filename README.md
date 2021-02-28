@@ -48,13 +48,14 @@ add folder `./libs/path/to/your/lib/src/assets` with files for every language to
 ```
 
 ### Add translations to the MultiHttpLoader
+
 add the `output`-path defined in `angluar.json` to the MultiHttpLoader in `app.module.ts` of the app.
 
 ```ts
 export function HttpLoaderFactory(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
-    {prefix: './assets/i18n/', suffix: '.json'}, // the translations of the app
-    {prefix: './assets/i18n/name-of-your-lib/', suffix: '.json'}
+    { prefix: './assets/i18n/', suffix: '.json' }, // the translations of the app
+    { prefix: './assets/i18n/name-of-your-lib/', suffix: '.json' },
   ]);
 }
 ```

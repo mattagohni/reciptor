@@ -60,6 +60,33 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 ```
 
+### Enforce Module Boundaries
+add tags to the definition of the lib in `nx.json`
+You should add a tag for the type and the scope of the lib. Possible values for `type` are:
+- type:feature
+- type:ui
+- type:data-access
+- type:util
+
+Possible values for `scope` are:
+- scope:reciptor
+- scope:shared
+
+for example here is the entry for the lib `shared-ui-header`
+
+```json
+{
+  "projects": {
+    "shared-ui-header": {
+      "tags": [
+        "type:ui",
+        "scope:shared"
+      ]
+    }
+  }
+}
+```
+
 ## Nx
 
 see [Nx-Readme](docs/nx.md)

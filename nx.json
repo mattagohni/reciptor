@@ -16,10 +16,10 @@
     }
   },
   "projects": {
-    "reciptor": { "tags": [] },
+    "reciptor": { "tags": ["scope:reciptor"] },
     "reciptor-e2e": { "tags": [], "implicitDependencies": ["reciptor"] },
-    "reciptor-server": { "tags": [] },
-    "shared-material": { "tags": ["type:style", "scope:reciptor"] },
+    "reciptor-server": { "tags": ["scope:reciptor-server"] },
+    "shared-material": { "tags": ["type:ui", "scope:shared"] },
     "shared-ui-header": { "tags": ["type:ui", "scope:shared"] }
   }
 }

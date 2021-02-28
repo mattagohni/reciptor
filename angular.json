@@ -49,7 +49,12 @@
             "aot": true,
             "assets": [
               "apps/reciptor/src/favicon.ico",
-              "apps/reciptor/src/assets"
+              "apps/reciptor/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./libs/shared/ui-header/src/assets/i18n",
+                "output": "./assets/i18n/ui-header/"
+              }
             ],
             "styles": ["apps/reciptor/src/styles.scss"],
             "scripts": []

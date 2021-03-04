@@ -1,4 +1,4 @@
-package de.mattagohni.reciptor
+package de.mattagohni.reciptorserver
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

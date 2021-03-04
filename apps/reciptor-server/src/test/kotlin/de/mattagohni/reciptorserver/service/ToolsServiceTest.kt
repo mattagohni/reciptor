@@ -1,21 +1,21 @@
-package de.mattagohni.reciptor.service
+package de.mattagohni.reciptorserver.service
 
 import de.mattagohni.reciptor.model.Tool
-import de.mattagohni.reciptor.repository.ReactiveToolsRepository
+import de.mattagohni.reciptorserver.repository.ReactiveToolsRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.mockito.BDDMockito.*
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
-import org.springframework.context.annotation.Import
 import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
 
-@DataMongoTest
-@Import(ToolsService::class)
+@SpringBootTest
 class ToolsServiceTest {
 
   @Autowired

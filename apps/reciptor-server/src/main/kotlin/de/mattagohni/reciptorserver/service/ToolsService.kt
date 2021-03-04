@@ -1,7 +1,7 @@
-package de.mattagohni.reciptor.service
+package de.mattagohni.reciptorserver.service
 
 import de.mattagohni.reciptor.model.Tool
-import de.mattagohni.reciptor.repository.ReactiveToolsRepository
+import de.mattagohni.reciptorserver.repository.ReactiveToolsRepository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 

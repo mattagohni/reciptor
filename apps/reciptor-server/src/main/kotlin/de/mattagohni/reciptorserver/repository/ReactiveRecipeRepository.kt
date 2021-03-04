@@ -1,4 +1,4 @@
-package de.mattagohni.reciptor.repository
+package de.mattagohni.reciptorserver.repository
 
 import de.mattagohni.reciptor.model.Recipe
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository

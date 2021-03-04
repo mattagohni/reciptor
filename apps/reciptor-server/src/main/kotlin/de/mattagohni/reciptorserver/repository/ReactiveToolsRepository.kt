@@ -1,9 +1,11 @@
 package de.mattagohni.reciptorserver.repository
 
-import de.mattagohni.reciptor.model.Tool
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository
+import de.mattagohni.reciptorserver.model.Tool
+import org.springframework.data.repository.reactive.ReactiveCrudRepository
+import org.springframework.stereotype.Repository
 import reactor.core.publisher.Mono
 
-interface ReactiveToolsRepository : ReactiveMongoRepository<Tool, String> {
+@Repository
+interface ReactiveToolsRepository : ReactiveCrudRepository<Tool, Int> {
   fun findByName(name: String): Mono<Tool>
 }

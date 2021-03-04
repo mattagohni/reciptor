@@ -1,7 +1,7 @@
 package de.mattagohni.reciptorserver.service
 
 import com.ninjasquad.springmockk.MockkBean
-import de.mattagohni.reciptor.model.Tool
+import de.mattagohni.reciptorserver.model.Tool
 import de.mattagohni.reciptorserver.repository.ReactiveToolsRepository
 import io.mockk.every
 import io.mockk.verify
@@ -14,6 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest
 import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
 
+// suppressed because mockk produces a false-positive when returning a mono
+@Suppress("ReactiveStreamsUnusedPublisher")
 @SpringBootTest
 class ToolsServiceTest {
 
@@ -27,8 +29,9 @@ class ToolsServiceTest {
   @DisplayName("it can save a Tool")
   fun canSaveATool() {
     // arrange
-    val tool = Tool(id = "SomeId", name = "theMasterTool")
-    every { toolsRepository.save(tool) } returns Mono.just(tool)
+    val tool = Tool(id = null, name = "theMasterTool")
+    val toolAfterSave = tool.copy(id = 1)
+    every { toolsRepository.save(tool) } returns Mono.just(toolAfterSave)
 
     // act
     val result = toolsService.saveTool(tool)
@@ -36,7 +39,13 @@ class ToolsServiceTest {
     // assert
     verify { toolsRepository.save(tool) }
     StepVerifier.create(result)
-      .assertNext { resultingTool -> assertThat(resultingTool.name).isEqualTo("theMasterTool") }
+      .assertNext {
+          resultingTool ->
+        run {
+          assertThat(resultingTool.name).isEqualTo("theMasterTool")
+          assertThat(resultingTool.id).isNotNull()
+        }
+      }
       .verifyComplete()
   }
 
@@ -44,7 +53,7 @@ class ToolsServiceTest {
   @DisplayName("it propagates exception when tool can not be saved by repository")
   fun throwWhenSaveNotPossible() {
     // arrange
-    val tool = Tool(id = "SomeId", name = "theMasterTool")
+    val tool = Tool(id = null, name = "theMasterTool")
     every { toolsRepository.save(tool) }.throws(RuntimeException("something went wrong"))
 
     // act
@@ -59,7 +68,7 @@ class ToolsServiceTest {
   @DisplayName("it can find a tool by name")
   fun returnExisting() {
     // arrange
-    val tool = Tool(id = "SomeId", name = "theMasterTool")
+    val tool = Tool(id = 1, name = "theMasterTool")
     every { toolsRepository.findByName(any<String>()) }.returns(Mono.just(tool))
 
     // act

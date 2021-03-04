@@ -1,6 +1,6 @@
 package de.mattagohni.reciptorserver.service
 
-import de.mattagohni.reciptor.model.Tool
+import de.mattagohni.reciptorserver.model.Tool
 import de.mattagohni.reciptorserver.repository.ReactiveToolsRepository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
@@ -16,7 +16,7 @@ class ToolsService(private val toolsRepository: ReactiveToolsRepository) {
     return toolsRepository.findByName(name).switchIfEmpty(Mono.empty())
   }
 
-  fun findToolById(id: String): Mono<Tool> {
+  fun findToolById(id: Int): Mono<Tool> {
     return toolsRepository.findById(id).switchIfEmpty(Mono.empty())
   }
 }

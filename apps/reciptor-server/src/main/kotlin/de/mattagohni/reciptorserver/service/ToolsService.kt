@@ -11,4 +11,12 @@ class ToolsService(private val toolsRepository: ReactiveToolsRepository) {
     return toolsRepository.save(tool)
       .onErrorStop()
   }
+
+  fun findToolByName(name: String): Mono<Tool> {
+    return toolsRepository.findByName(name).switchIfEmpty(Mono.empty())
+  }
+
+  fun findToolById(id: String): Mono<Tool> {
+    return toolsRepository.findById(id).switchIfEmpty(Mono.empty())
+  }
 }

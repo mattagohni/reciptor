@@ -55,4 +55,21 @@ class ToolsServiceTest {
     verify(toolsRepository, times(1)).save(tool)
     assertThat(exception.message).isEqualTo("something went wrong")
   }
+
+  @Test
+  @DisplayName("it can find a tool by name")
+  fun returnExisting() {
+    // arrange
+    val tool = Tool(id = "SomeId", name = "theMasterTool")
+    `when`(toolsRepository.findByName("theMasterTool")).thenReturn(Mono.just(tool))
+
+    // act
+    val resultingToolMono = toolsService.findToolByName("theMasterTool")
+
+    // assert
+    StepVerifier.create(resultingToolMono)
+      .assertNext { resultingTool -> assertThat(resultingTool).isEqualTo(tool) }
+      .verifyComplete()
+    verify(toolsRepository, times(1)).findByName("theMasterTool")
+  }
 }

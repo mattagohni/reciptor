@@ -17,7 +17,7 @@ class SecurityConfiguration {
       .csrf().disable()
       .cors().disable()
       .authorizeExchange()
-      .anyExchange().authenticated()
+      .anyExchange().permitAll()
       .and().build()
   }
 }

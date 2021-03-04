@@ -1,6 +1,6 @@
 package de.mattagohni.reciptorserver.controller
 
-import de.mattagohni.reciptor.model.Tool
+import de.mattagohni.reciptorserver.model.Tool
 import de.mattagohni.reciptorserver.service.ToolsService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono
 @RestController
 class ToolsController(private val toolsService: ToolsService) {
   @GetMapping("/api/v1/tools/{id}")
-  fun getTool(@PathVariable id: String): Mono<ResponseEntity<Tool>> {
+  fun getTool(@PathVariable id: Int): Mono<ResponseEntity<Tool>> {
     return toolsService.findToolById(id)
       .map { tool -> ResponseEntity.ok(tool) }
       .defaultIfEmpty(ResponseEntity.notFound().build())

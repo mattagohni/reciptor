@@ -6,10 +6,10 @@ echo "Start/Stop your postgres container"
 
 case "$1" in
      start)
-        docker-compose -f ${DIR}/mongodb.yml up -d
+        docker-compose -f ${DIR}/postgres.yml up -d
         ;;
      stop)
-        docker-compose -f ${DIR}/mongodb.yml down
+        docker-compose -f ${DIR}/postgres.yml down
         ;;
      *)
         echo "usage: start/stop"

@@ -1,8 +1,9 @@
 package de.mattagohni.reciptorserver.controller
 
 import com.ninjasquad.springmockk.MockkBean
-import de.mattagohni.reciptor.model.Tool
+import de.mattagohni.reciptorserver.configuration.DatabaseConfiguration
 import de.mattagohni.reciptorserver.configuration.SecurityConfiguration
+import de.mattagohni.reciptorserver.model.Tool
 import de.mattagohni.reciptorserver.service.ToolsService
 import io.mockk.every
 import io.mockk.verify
@@ -17,10 +18,12 @@ import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.web.reactive.function.BodyInserters
 import reactor.core.publisher.Mono
 
+// suppressed because mockk produces a false-positive when returning a mono
+@Suppress("ReactiveStreamsUnusedPublisher")
 @WebFluxTest(controllers = [ToolsController::class])
-@Import(SecurityConfiguration::class)
+@Import(SecurityConfiguration::class, DatabaseConfiguration::class)
 @AutoConfigureWebTestClient
-class ToolsControllerTest() {
+class ToolsControllerTest {
   @Autowired
   private lateinit var webTestClient: WebTestClient
 
@@ -32,15 +35,15 @@ class ToolsControllerTest() {
   @WithMockUser
   fun getTool() {
     // arrange
-    val tool = Tool(id = "1", name = "knife")
-    every { toolsService.findToolById(any<String>()) } returns Mono.just(tool)
+    val tool = Tool(id = 1, name = "knife")
+    every { toolsService.findToolById(any<Int>()) } returns Mono.just(tool)
 
     webTestClient.get().uri("/api/v1/tools/1")
       .exchange()
       .expectStatus().isOk
       .expectBody().jsonPath("$.name").isEqualTo("knife")
 
-    verify { toolsService.findToolById("1") }
+    verify { toolsService.findToolById(1) }
   }
 
   @Test
@@ -48,13 +51,13 @@ class ToolsControllerTest() {
   @WithMockUser
   fun getTool_notFound() {
     // arrange
-    every { toolsService.findToolById("1") } returns Mono.empty()
+    every { toolsService.findToolById(1) } returns Mono.empty()
 
     webTestClient.get().uri("/api/v1/tools/1")
       .exchange()
       .expectStatus().isNotFound
 
-    verify { toolsService.findToolById("1") }
+    verify { toolsService.findToolById(1) }
   }
 
   @Test
@@ -63,7 +66,7 @@ class ToolsControllerTest() {
   fun createTool_OK() {
     // arrange
     val toolBeforeSave = Tool(id = null, name = "knife")
-    val toolAfterSave = Tool(id = "1", name = "knife")
+    val toolAfterSave = Tool(id = 1, name = "knife")
 
     every { toolsService.saveTool(any<Tool>()) }.returns(Mono.just(toolAfterSave))
 

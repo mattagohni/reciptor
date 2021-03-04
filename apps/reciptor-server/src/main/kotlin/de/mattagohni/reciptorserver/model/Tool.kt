@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document
 @Document(collection = "Tools")
 data class Tool(
   @Id
-  val id: String,
+  val id: String?,
   val name: String
 )

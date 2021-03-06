@@ -3,6 +3,7 @@ package de.mattagohni.reciptorserver.controller
 import com.ninjasquad.springmockk.MockkBean
 import de.mattagohni.reciptorserver.configuration.DatabaseConfiguration
 import de.mattagohni.reciptorserver.configuration.SecurityConfiguration
+import de.mattagohni.reciptorserver.exception.ToolAlreadyExistsException
 import de.mattagohni.reciptorserver.model.Tool
 import de.mattagohni.reciptorserver.service.ToolsService
 import io.mockk.every
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest
 import org.springframework.context.annotation.Import
+import org.springframework.http.HttpStatus
 import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.web.reactive.function.BodyInserters
@@ -77,5 +79,26 @@ class ToolsControllerTest {
       .expectStatus().isCreated
 
     // assert
+    verify(exactly = 1) { toolsService.saveTool(toolBeforeSave) }
+  }
+
+  // At some point tools should be unique on a user level. e.g. Every user should be able to add a custom knife, this should not
+  // fail if user A names his knife exactly like user B. As long as there are no Users in the application, this is of course not possible
+  @Test
+  @DisplayName("it dont save the same tool twice")
+  @WithMockUser
+  fun createTool_Conflict() {
+    // arrange
+    val toolToSave = Tool(id = null, name = "knife")
+
+    every { toolsService.saveTool(any<Tool>()) }.throws(ToolAlreadyExistsException(HttpStatus.CONFLICT))
+
+    // act
+    webTestClient.post().uri("/api/v1/tools")
+      .body(BodyInserters.fromValue(toolToSave))
+      .exchange()
+      .expectStatus().isEqualTo(HttpStatus.CONFLICT)
+
+    verify(exactly = 1) { toolsService.saveTool(any<Tool>()) }
   }
 }

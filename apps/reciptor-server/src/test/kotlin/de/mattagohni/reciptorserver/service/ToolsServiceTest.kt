@@ -8,9 +8,10 @@ import io.mockk.verify
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.http.HttpStatus
+import org.springframework.web.server.ResponseStatusException
 import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
 
@@ -31,22 +32,45 @@ class ToolsServiceTest {
     // arrange
     val tool = Tool(id = null, name = "theMasterTool")
     val toolAfterSave = tool.copy(id = 1)
-    every { toolsRepository.save(tool) } returns Mono.just(toolAfterSave)
+    every { toolsRepository.findByName(tool.name) } returns Mono.empty()
+    every { toolsRepository.save(any<Tool>()) } returns Mono.just(toolAfterSave)
 
     // act
     val result = toolsService.saveTool(tool)
 
     // assert
-    verify { toolsRepository.save(tool) }
     StepVerifier.create(result)
-      .assertNext {
-          resultingTool ->
+      .assertNext { resultingTool ->
         run {
           assertThat(resultingTool.name).isEqualTo("theMasterTool")
           assertThat(resultingTool.id).isNotNull()
         }
       }
       .verifyComplete()
+    verify { toolsRepository.save(tool) }
+  }
+
+  @Test
+  @DisplayName("it does not save a tool twice")
+  fun dontSaveToolTwice() {
+    val toolToSave = Tool(id = null, name = "theMasterTool")
+    val toolInDatabase = Tool(id = 1, name = "theMasterTool")
+
+    every { toolsRepository.findByName("theMasterTool") } returns Mono.just(toolInDatabase)
+
+    // act
+    val result = toolsService.saveTool(toolToSave)
+
+    // assert
+    StepVerifier.create(result)
+      .expectErrorMatches { throwable ->
+        run {
+          val exception = throwable as ResponseStatusException
+          exception.status == HttpStatus.CONFLICT
+        }
+      }
+      .verify()
+    verify(exactly = 0) { toolsRepository.save(toolToSave) }
   }
 
   @Test
@@ -54,14 +78,16 @@ class ToolsServiceTest {
   fun throwWhenSaveNotPossible() {
     // arrange
     val tool = Tool(id = null, name = "theMasterTool")
+    every { toolsRepository.findByName(any<String>()) } returns Mono.empty()
     every { toolsRepository.save(tool) }.throws(RuntimeException("something went wrong"))
 
     // act
-    val exception = assertThrows<RuntimeException> { toolsService.saveTool(tool) }
-
+    val result = toolsService.saveTool(tool)
     // assert
+    StepVerifier.create(result)
+      .expectError()
+      .verify()
     verify { toolsRepository.save(tool) }
-    assertThat(exception.message).isEqualTo("something went wrong")
   }
 
   @Test

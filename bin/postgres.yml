@@ -1,0 +1,11 @@
+version: '2'
+services:
+  reciptor-postgresql:
+    image: postgres:12.1
+    # volumes:
+    #     - ~/volumes/cardHive/GameService/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=reciptor
+      - POSTGRES_PASSWORD=reciptor
+    ports:
+      - 5432:5432

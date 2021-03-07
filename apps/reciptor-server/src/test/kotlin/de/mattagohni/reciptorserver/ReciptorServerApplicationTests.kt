@@ -1,4 +1,4 @@
-package de.mattagohni.reciptor
+package de.mattagohni.reciptorserver
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

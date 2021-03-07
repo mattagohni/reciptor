@@ -1,0 +1,10 @@
+spring:
+  flyway:
+    user: reciptor
+    password: reciptor
+    locations: classpath:migrations
+  r2dbc:
+    url: 'r2dbc:postgresql://localhost/postgres'
+    username: reciptor
+    password: reciptor
+

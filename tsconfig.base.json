@@ -17,7 +17,8 @@
     "paths": {
       "@reciptor/shared/material": ["libs/shared/material/src/index.ts"],
       "@reciptor/shared/ui-header": ["libs/shared/ui-header/src/index.ts"],
-      "@reciptor/tools/data-access": ["libs/tools/data-access/src/index.ts"]
+      "@reciptor/tools/data-access": ["libs/tools/data-access/src/index.ts"],
+      "@reciptor/tools/ui": ["libs/tools/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

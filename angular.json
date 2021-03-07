@@ -255,6 +255,31 @@
           }
         }
       }
+    },
+    "tools-data-access": {
+      "projectType": "library",
+      "root": "libs/tools/data-access",
+      "sourceRoot": "libs/tools/data-access/src",
+      "prefix": "reciptor",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/tools/data-access/src/**/*.ts",
+              "libs/tools/data-access/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/tools/data-access"],
+          "options": {
+            "jestConfig": "libs/tools/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

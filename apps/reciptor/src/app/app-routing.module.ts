@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
+  {path: 'tools', loadChildren: () => import('@reciptor/tools/ui').then(module => module.ToolsUiModule)}
 ]
 
 @NgModule({

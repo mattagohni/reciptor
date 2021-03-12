@@ -7,4 +7,7 @@ spring:
     url: 'r2dbc:postgresql://localhost/postgres'
     username: reciptor
     password: reciptor
+cors:
+  allowedOrigins: http://localhost:4200
+  allowedMethods: POST, PUT, GET, OPTIONS, DELETE, HEAD
 

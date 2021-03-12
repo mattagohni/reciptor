@@ -3,4 +3,5 @@
  */
 export interface ToolsEntity {
   id: string | number; // Primary ID
+  name: string
 }

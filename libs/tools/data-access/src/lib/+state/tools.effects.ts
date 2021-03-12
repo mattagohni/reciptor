@@ -4,6 +4,8 @@ import { fetch } from '@nrwl/angular';
 
 import * as ToolsFeature from './tools.reducer';
 import * as ToolsActions from './tools.actions';
+import {ToolsService} from '../tools.service';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class ToolsEffects {
@@ -13,7 +15,10 @@ export class ToolsEffects {
       fetch({
         run: (action) => {
           // Your custom service 'load' logic goes here. For now just return a success action...
-          return ToolsActions.loadToolsSuccess({ tools: [] });
+          return this.toolsService.getAll()
+            .pipe(
+              map(tools => ToolsActions.loadToolsSuccess({tools}))
+            );
         },
 
         onError: (action, error) => {
@@ -24,5 +29,5 @@ export class ToolsEffects {
     )
   );
 
-  constructor(private actions$: Actions) {}
+  constructor(private actions$: Actions, private  toolsService: ToolsService) {}
 }

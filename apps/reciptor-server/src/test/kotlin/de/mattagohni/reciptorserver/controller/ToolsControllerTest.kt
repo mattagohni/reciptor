@@ -1,6 +1,8 @@
 package de.mattagohni.reciptorserver.controller
 
 import com.ninjasquad.springmockk.MockkBean
+import de.mattagohni.reciptorserver.configuration.CorsConfiguration
+import de.mattagohni.reciptorserver.configuration.CustomWebfluxConfigurer
 import de.mattagohni.reciptorserver.configuration.DatabaseConfiguration
 import de.mattagohni.reciptorserver.configuration.SecurityConfiguration
 import de.mattagohni.reciptorserver.exception.ToolAlreadyExistsException
@@ -24,7 +26,7 @@ import reactor.core.publisher.Mono
 // suppressed because mockk produces a false-positive when returning a mono
 @Suppress("ReactiveStreamsUnusedPublisher")
 @WebFluxTest(controllers = [ToolsController::class])
-@Import(SecurityConfiguration::class, DatabaseConfiguration::class)
+@Import(SecurityConfiguration::class, DatabaseConfiguration::class, CorsConfiguration::class, CustomWebfluxConfigurer::class)
 @AutoConfigureWebTestClient
 class ToolsControllerTest {
   @Autowired

@@ -1,24 +1,20 @@
-import { NgModule } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { readFirst } from '@nrwl/angular/testing';
+import {NgModule} from '@angular/core';
+import {TestBed} from '@angular/core/testing';
+import {readFirst} from '@nrwl/angular/testing';
 
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule, Store } from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {Store, StoreModule} from '@ngrx/store';
 
-import { NxModule } from '@nrwl/angular';
+import {NxModule} from '@nrwl/angular';
 
-import { ToolsEntity } from './tools.models';
-import { ToolsEffects } from './tools.effects';
-import { ToolsFacade } from './tools.facade';
-
-import * as ToolsSelectors from './tools.selectors';
+import {ToolsEntity} from './tools.models';
+import {ToolsEffects} from './tools.effects';
+import {ToolsFacade} from './tools.facade';
 import * as ToolsActions from './tools.actions';
-import {
-  TOOLS_FEATURE_KEY,
-  State,
-  initialState,
-  reducer,
-} from './tools.reducer';
+import {reducer, State, TOOLS_FEATURE_KEY,} from './tools.reducer';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ToolsService} from '../tools.service';
+import {of} from 'rxjs';
 
 interface TestSchema {
   tools: State;
@@ -27,24 +23,31 @@ interface TestSchema {
 describe('ToolsFacade', () => {
   let facade: ToolsFacade;
   let store: Store<TestSchema>;
+  const toolsServiceMock = {
+    getAll: jest.fn()
+  }
+
   const createToolsEntity = (id: string, name = '') =>
     ({
       id,
       name: name || `name-${id}`,
     } as ToolsEntity);
 
-  beforeEach(() => {});
-
   describe('used in NgModule', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    })
     beforeEach(() => {
       @NgModule({
         imports: [
           StoreModule.forFeature(TOOLS_FEATURE_KEY, reducer),
           EffectsModule.forFeature([ToolsEffects]),
+          HttpClientTestingModule
         ],
         providers: [ToolsFacade],
       })
-      class CustomFeatureModule {}
+      class CustomFeatureModule {
+      }
 
       @NgModule({
         imports: [
@@ -53,19 +56,22 @@ describe('ToolsFacade', () => {
           EffectsModule.forRoot([]),
           CustomFeatureModule,
         ],
+        providers: [
+          {provide: ToolsService, useValue: toolsServiceMock}
+        ]
       })
-      class RootModule {}
-      TestBed.configureTestingModule({ imports: [RootModule] });
+      class RootModule {
+      }
+
+      TestBed.configureTestingModule({imports: [RootModule]});
 
       store = TestBed.inject(Store);
       facade = TestBed.inject(ToolsFacade);
     });
 
-    /**
-     * The initially generated facade::loadAll() returns empty array
-     */
-    it('loadAll() should return empty list with loaded == true', async (done) => {
+    it('loadAll() should return list of tools with loaded == true', async (done) => {
       try {
+        toolsServiceMock.getAll.mockReturnValue(of([createToolsEntity('AAA', 'knife'), createToolsEntity('BBB', 'spoon')]));
         let list = await readFirst(facade.allTools$);
         let isLoaded = await readFirst(facade.loaded$);
 
@@ -77,7 +83,7 @@ describe('ToolsFacade', () => {
         list = await readFirst(facade.allTools$);
         isLoaded = await readFirst(facade.loaded$);
 
-        expect(list.length).toBe(0);
+        expect(list.length).toBe(2);
         expect(isLoaded).toBe(true);
 
         done();
@@ -99,7 +105,7 @@ describe('ToolsFacade', () => {
 
         store.dispatch(
           ToolsActions.loadToolsSuccess({
-            tools: [createToolsEntity('AAA'), createToolsEntity('BBB')],
+            tools: [createToolsEntity('AAA', 'knife'), createToolsEntity('BBB', 'spoon')],
           })
         );
 

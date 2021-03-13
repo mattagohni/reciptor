@@ -13,6 +13,13 @@ import reactor.core.publisher.Mono
 
 @RestController
 class ToolsController(private val toolsService: ToolsService) {
+  @GetMapping("/api/v1/tools")
+  fun getTools(): Mono<ResponseEntity<List<Tool>>> {
+    return toolsService.getAll()
+      .collectList()
+      .map { toolsList -> ResponseEntity.ok(toolsList) }
+  }
+
   @GetMapping("/api/v1/tools/{id}")
   fun getTool(@PathVariable id: Int): Mono<ResponseEntity<Tool>> {
     return toolsService.findToolById(id)
@@ -22,7 +29,6 @@ class ToolsController(private val toolsService: ToolsService) {
 
   @PostMapping("/api/v1/tools")
   fun createTool(@RequestBody toolToSave: Tool): Mono<ResponseEntity<Void>> {
-
     return toolsService.saveTool(toolToSave)
       .map { ResponseEntity.status(HttpStatus.CREATED).build() }
   }

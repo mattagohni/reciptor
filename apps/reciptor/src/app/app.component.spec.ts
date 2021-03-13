@@ -1,8 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import { SharedMaterialModule } from '@reciptor/shared/material';
-import { SharedUiHeaderModule } from '@reciptor/shared/ui-header';
-import { TranslateModule } from '@ngx-translate/core';
+import {TestBed} from '@angular/core/testing';
+import {AppComponent} from './app.component';
+import {SharedMaterialModule} from '@reciptor/shared/material';
+import {SharedUiHeaderModule} from '@reciptor/shared/ui-header';
+import {TranslateModule} from '@ngx-translate/core';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -12,7 +14,11 @@ describe('AppComponent', () => {
         SharedMaterialModule,
         SharedUiHeaderModule,
         TranslateModule.forRoot(),
+        RouterTestingModule
       ],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ]
     }).compileComponents();
   });
 

@@ -1,6 +1,8 @@
 package de.mattagohni.reciptorserver.controller
 
 import com.ninjasquad.springmockk.MockkBean
+import de.mattagohni.reciptorserver.configuration.CorsConfiguration
+import de.mattagohni.reciptorserver.configuration.CustomWebfluxConfigurer
 import de.mattagohni.reciptorserver.configuration.DatabaseConfiguration
 import de.mattagohni.reciptorserver.configuration.SecurityConfiguration
 import de.mattagohni.reciptorserver.exception.ToolAlreadyExistsException
@@ -18,12 +20,13 @@ import org.springframework.http.HttpStatus
 import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.web.reactive.function.BodyInserters
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 // suppressed because mockk produces a false-positive when returning a mono
 @Suppress("ReactiveStreamsUnusedPublisher")
 @WebFluxTest(controllers = [ToolsController::class])
-@Import(SecurityConfiguration::class, DatabaseConfiguration::class)
+@Import(SecurityConfiguration::class, DatabaseConfiguration::class, CorsConfiguration::class, CustomWebfluxConfigurer::class)
 @AutoConfigureWebTestClient
 class ToolsControllerTest {
   @Autowired
@@ -33,19 +36,56 @@ class ToolsControllerTest {
   private lateinit var toolsService: ToolsService
 
   @Test
+  @DisplayName("it returns a list of all tools with status OK")
+  @WithMockUser
+  fun getTools() {
+    val toolsFlux = Flux.just(
+      Tool(id = 1, name = "knife"),
+      Tool(id = 2, name = "spoon")
+    )
+
+    every { toolsService.getAll() } returns toolsFlux
+
+    webTestClient.get().uri("/api/v1/tools")
+      .exchange()
+      .expectStatus().isOk
+      .expectBody()
+      .jsonPath("$.[0].name").isEqualTo("knife")
+      .jsonPath("$.[1].name").isEqualTo("spoon")
+
+    verify(exactly = 1) { toolsService.getAll() }
+  }
+
+  @Test
+  @DisplayName("it returns empty list with status OK when no tools exist")
+  @WithMockUser
+  fun getTools_emptyList() {
+    val toolsFlux = Flux.empty<Tool>()
+
+    every { toolsService.getAll() } returns toolsFlux
+
+    webTestClient.get().uri("/api/v1/tools")
+      .exchange()
+      .expectStatus().isOk
+      .expectBody().json("[]")
+
+    verify(exactly = 1) { toolsService.getAll() }
+  }
+
+  @Test
   @DisplayName("it returns a responseEntity containing a tool")
   @WithMockUser
   fun getTool() {
     // arrange
     val tool = Tool(id = 1, name = "knife")
-    every { toolsService.findToolById(any<Int>()) } returns Mono.just(tool)
+    every { toolsService.findToolById(any()) } returns Mono.just(tool)
 
     webTestClient.get().uri("/api/v1/tools/1")
       .exchange()
       .expectStatus().isOk
       .expectBody().jsonPath("$.name").isEqualTo("knife")
 
-    verify { toolsService.findToolById(1) }
+    verify(exactly = 1) { toolsService.findToolById(1) }
   }
 
   @Test
@@ -59,7 +99,7 @@ class ToolsControllerTest {
       .exchange()
       .expectStatus().isNotFound
 
-    verify { toolsService.findToolById(1) }
+    verify(exactly = 1) { toolsService.findToolById(1) }
   }
 
   @Test
@@ -70,7 +110,7 @@ class ToolsControllerTest {
     val toolBeforeSave = Tool(id = null, name = "knife")
     val toolAfterSave = Tool(id = 1, name = "knife")
 
-    every { toolsService.saveTool(any<Tool>()) }.returns(Mono.just(toolAfterSave))
+    every { toolsService.saveTool(any()) }.returns(Mono.just(toolAfterSave))
 
     // act
     webTestClient.post().uri("/api/v1/tools")
@@ -91,7 +131,7 @@ class ToolsControllerTest {
     // arrange
     val toolToSave = Tool(id = null, name = "knife")
 
-    every { toolsService.saveTool(any<Tool>()) }.throws(ToolAlreadyExistsException(HttpStatus.CONFLICT))
+    every { toolsService.saveTool(any()) }.throws(ToolAlreadyExistsException(HttpStatus.CONFLICT))
 
     // act
     webTestClient.post().uri("/api/v1/tools")
@@ -99,6 +139,6 @@ class ToolsControllerTest {
       .exchange()
       .expectStatus().isEqualTo(HttpStatus.CONFLICT)
 
-    verify(exactly = 1) { toolsService.saveTool(any<Tool>()) }
+    verify(exactly = 1) { toolsService.saveTool(any()) }
   }
 }

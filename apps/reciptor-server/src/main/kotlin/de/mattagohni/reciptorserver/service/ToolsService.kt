@@ -5,6 +5,7 @@ import de.mattagohni.reciptorserver.model.Tool
 import de.mattagohni.reciptorserver.repository.ReactiveToolsRepository
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Service
@@ -21,5 +22,9 @@ class ToolsService(private val toolsRepository: ReactiveToolsRepository) {
 
   fun findToolById(id: Int): Mono<Tool> {
     return toolsRepository.findById(id).switchIfEmpty(Mono.empty())
+  }
+
+  fun getAll(): Flux<Tool> {
+    return toolsRepository.findAll()
   }
 }

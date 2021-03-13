@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.HttpStatus
 import org.springframework.web.server.ResponseStatusException
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
 
@@ -25,6 +26,33 @@ class ToolsServiceTest {
 
   @MockkBean
   private lateinit var toolsRepository: ReactiveToolsRepository
+
+  @Test
+  @DisplayName("it can return a list of all tools")
+  fun getAllTools() {
+    // arrange
+    val toolsFlux = Flux.just(Tool(id = 1, name = "knife"), Tool(id = 2, name = "spoon"))
+    every { toolsRepository.findAll() } returns toolsFlux
+
+    // act
+    val result: Flux<Tool> = toolsService.getAll()
+
+    // assert
+    StepVerifier.create(result)
+      .assertNext { tool ->
+        run {
+          assertThat(tool.id).isEqualTo(1)
+          assertThat(tool.name).isEqualTo("knife")
+        }
+      }
+      .assertNext { tool ->
+        run {
+          assertThat(tool.id).isEqualTo(2)
+          assertThat(tool.name).isEqualTo("spoon")
+        }
+      }
+      .verifyComplete()
+  }
 
   @Test
   @DisplayName("it can save a Tool")

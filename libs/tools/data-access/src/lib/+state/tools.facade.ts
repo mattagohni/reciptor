@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-import { select, Store, Action } from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 
 import * as ToolsActions from './tools.actions';
-import * as ToolsFeature from './tools.reducer';
 import * as ToolsSelectors from './tools.selectors';
 
+// @todo remove this suppression when the variable `selectedTools$` is used
+// noinspection JSUnusedGlobalSymbols
 @Injectable()
 export class ToolsFacade {
   /**
@@ -16,7 +17,8 @@ export class ToolsFacade {
   allTools$ = this.store.pipe(select(ToolsSelectors.getAllTools));
   selectedTools$ = this.store.pipe(select(ToolsSelectors.getSelected));
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) {
+  }
 
   /**
    * Use the initialization action to perform one

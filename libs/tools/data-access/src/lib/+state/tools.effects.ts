@@ -1,8 +1,6 @@
-import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
-
-import * as ToolsFeature from './tools.reducer';
+import {Injectable} from '@angular/core';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {fetch} from '@nrwl/angular';
 import * as ToolsActions from './tools.actions';
 import {ToolsService} from '../tools.service';
 import {map} from 'rxjs/operators';
@@ -13,8 +11,9 @@ export class ToolsEffects {
     this.actions$.pipe(
       ofType(ToolsActions.init),
       fetch({
+        // @todo remove this suppression when the variable is used
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         run: (action) => {
-          // Your custom service 'load' logic goes here. For now just return a success action...
           return this.toolsService.getAll()
             .pipe(
               map(tools => ToolsActions.loadToolsSuccess({tools}))
@@ -23,11 +22,12 @@ export class ToolsEffects {
 
         onError: (action, error) => {
           console.error('Error', error);
-          return ToolsActions.loadToolsFailure({ error });
+          return ToolsActions.loadToolsFailure({error});
         },
       })
     )
   );
 
-  constructor(private actions$: Actions, private  toolsService: ToolsService) {}
+  constructor(private actions$: Actions, private  toolsService: ToolsService) {
+  }
 }

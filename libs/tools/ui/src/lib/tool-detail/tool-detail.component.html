@@ -1,4 +1,4 @@
 
-<mat-card>
+<mat-card *ngIf="tool$ | async; let tool">
   <p>{{tool.name}}</p>
 </mat-card>

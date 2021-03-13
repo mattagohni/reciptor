@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ToolsEntity } from './tools.models';
+import { Tool } from './tools.models';
 import * as ToolsActions from './tools.actions';
 import { State, initialState, reducer } from './tools.reducer';
 
@@ -8,7 +8,7 @@ describe('Tools Reducer', () => {
     ({
       id,
       name: name || `name-${id}`,
-    } as ToolsEntity);
+    } as Tool);
 
   describe('valid Tools actions', () => {
     it('loadToolsSuccess should return set the list of known Tools', () => {

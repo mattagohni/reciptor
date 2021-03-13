@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {createAction, props} from '@ngrx/store';
-import {ToolsEntity} from './tools.models';
+import {Tool} from './tools.models';
 
 export const init = createAction('[Tools Page] Init');
 
 export const loadToolsSuccess = createAction(
   '[Tools/API] Load Tools Success',
-  props<{ tools: ToolsEntity[] }>()
+  props<{ tools: Tool[] }>()
 );
 
 export const loadToolsFailure = createAction(

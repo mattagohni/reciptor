@@ -7,7 +7,7 @@ import {Store, StoreModule} from '@ngrx/store';
 
 import {NxModule} from '@nrwl/angular';
 
-import {ToolsEntity} from './tools.models';
+import {Tool} from './tools.models';
 import {ToolsEffects} from './tools.effects';
 import {ToolsFacade} from './tools.facade';
 import * as ToolsActions from './tools.actions';
@@ -31,7 +31,7 @@ describe('ToolsFacade', () => {
     ({
       id,
       name: name || `name-${id}`,
-    } as ToolsEntity);
+    } as Tool);
 
   describe('used in NgModule', () => {
     afterEach(() => {

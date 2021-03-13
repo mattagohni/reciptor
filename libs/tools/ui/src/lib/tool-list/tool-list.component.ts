@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ToolsEntity, ToolsFacade} from '@reciptor/tools/data-access';
+import {Tool, ToolsFacade} from '@reciptor/tools/data-access';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
   styleUrls: ['./tool-list.component.scss']
 })
 export class ToolListComponent implements OnInit {
-  tools$: Observable<ToolsEntity[]>
+  tools$: Observable<Tool[]>
   constructor(private toolsFacade: ToolsFacade) {}
 
   ngOnInit(): void {

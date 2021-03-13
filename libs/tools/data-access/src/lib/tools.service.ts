@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {ToolsEntity} from '@reciptor/tools/data-access';
+import {Tool} from '@reciptor/tools/data-access';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,11 @@ export class ToolsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getTool(id: number): Observable<ToolsEntity> {
-    return this.httpClient.get<ToolsEntity>(`${this.API_URL}/tools/${id}`)
+  getTool(id: number): Observable<Tool> {
+    return this.httpClient.get<Tool>(`${this.API_URL}/tools/${id}`)
   }
 
-  getAll(): Observable<ToolsEntity[]> {
-    return this.httpClient.get<ToolsEntity[]>(`${this.API_URL}/tools`)
+  getAll(): Observable<Tool[]> {
+    return this.httpClient.get<Tool[]>(`${this.API_URL}/tools`)
   }
 }

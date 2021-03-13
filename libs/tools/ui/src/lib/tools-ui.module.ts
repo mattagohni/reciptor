@@ -4,6 +4,7 @@ import { ToolListComponent } from './tool-list/tool-list.component';
 import {RouterModule} from '@angular/router';
 import {ToolsDataAccessModule} from '@reciptor/tools/data-access';
 import {SharedMaterialModule} from '@reciptor/shared/material';
+import { ToolDetailComponent } from './tool-detail/tool-detail.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import {SharedMaterialModule} from '@reciptor/shared/material';
     ToolsDataAccessModule,
     SharedMaterialModule
   ],
-  declarations: [ToolListComponent],
+  declarations: [ToolListComponent, ToolDetailComponent],
 })
 export class ToolsUiModule {}

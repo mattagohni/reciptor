@@ -18,6 +18,12 @@ before_install:
 
 install:
   - npm install
-
-script:
-  - nx run-many --target test --all --no-cache
+stages:
+  - lint
+  - test
+jobs:
+  include:
+    - stage: lint
+      script: nx run-many --target lint --all
+    - stage: test
+      script: nx run-many --target test --all

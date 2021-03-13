@@ -1,5 +1,5 @@
-import { ToolsEntity } from './tools.models';
-import { State, toolsAdapter, initialState } from './tools.reducer';
+import {ToolsEntity} from './tools.models';
+import {initialState, toolsAdapter} from './tools.reducer';
 import * as ToolsSelectors from './tools.selectors';
 
 describe('Tools Selectors', () => {
@@ -47,13 +47,13 @@ describe('Tools Selectors', () => {
       expect(selId).toBe('PRODUCT-BBB');
     });
 
-    it("getToolsLoaded() should return the current 'loaded' status", () => {
+    it('getToolsLoaded() should return the current \'loaded\' status', () => {
       const result = ToolsSelectors.getToolsLoaded(state);
 
       expect(result).toBe(true);
     });
 
-    it("getToolsError() should return the current 'error' state", () => {
+    it('getToolsError() should return the current \'error\' state', () => {
       const result = ToolsSelectors.getToolsError(state);
 
       expect(result).toBe(ERROR_MSG);

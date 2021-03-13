@@ -1,5 +1,6 @@
-import { createAction, props } from '@ngrx/store';
-import { ToolsEntity } from './tools.models';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {createAction, props} from '@ngrx/store';
+import {ToolsEntity} from './tools.models';
 
 export const init = createAction('[Tools Page] Init');
 

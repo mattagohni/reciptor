@@ -100,6 +100,23 @@
             }
           }
         },
+        "serve-reciptor": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "./bin/database.sh start"
+              },
+              {
+                "command": "nx serve reciptor-server"
+              },
+              {
+                "command": "nx serve reciptor"
+              }
+            ],
+            "parallel": true
+          }
+        },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {

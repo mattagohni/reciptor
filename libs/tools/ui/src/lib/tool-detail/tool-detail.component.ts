@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {Tool} from '@reciptor/tools/data-access';
 
 @Component({
   selector: 'reciptor-tool',
@@ -7,4 +8,6 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToolDetailComponent {
+  @Input()
+  tool: Tool
 }

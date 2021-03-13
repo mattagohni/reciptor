@@ -24,6 +24,6 @@ stages:
 jobs:
   include:
     - stage: lint
-      script: nx run-many --target lint --all --noCache
+      script: nx run-many --target lint --all
     - stage: test
-      script: nx run-many --target test --all --noCache
+      script: nx run-many --target test --all

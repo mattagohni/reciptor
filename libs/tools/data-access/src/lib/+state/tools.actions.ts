@@ -1,15 +1,30 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {createAction, props} from '@ngrx/store';
-import {ToolsEntity} from './tools.models';
+import {Tool} from './tools.models';
 
 export const init = createAction('[Tools Page] Init');
 
 export const loadToolsSuccess = createAction(
   '[Tools/API] Load Tools Success',
-  props<{ tools: ToolsEntity[] }>()
+  props<{ tools: Tool[] }>()
 );
 
 export const loadToolsFailure = createAction(
   '[Tools/API] Load Tools Failure',
   props<{ error: any }>()
 );
+
+export const loadToolById = createAction(
+  '[Tools/API] Load Tool by ID',
+  props<{ id: number|string }>()
+)
+
+export const loadToolSuccess = createAction(
+  '[Tools/API] Load Tool Success',
+  props<{ tool: Tool }>()
+)
+
+export const loadToolFailure = createAction(
+  '[Tools/API] Load Tool Failure',
+  props<{ error: any }>()
+)

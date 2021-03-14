@@ -15,7 +15,7 @@ export class ToolsFacade {
    */
   loaded$ = this.store.pipe(select(ToolsSelectors.getToolsLoaded));
   allTools$ = this.store.pipe(select(ToolsSelectors.getAllTools));
-  selectedTools$ = this.store.pipe(select(ToolsSelectors.getSelected));
+  selectedTool$ = this.store.pipe(select(ToolsSelectors.getSelected));
 
   constructor(private store: Store) {
   }
@@ -26,5 +26,9 @@ export class ToolsFacade {
    */
   init() {
     this.store.dispatch(ToolsActions.init());
+  }
+
+  loadTool(id: number|string) {
+    this.store.dispatch(ToolsActions.loadToolById({id: id}));
   }
 }

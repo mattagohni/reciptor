@@ -1,4 +1,4 @@
-import {ToolsEntity} from './tools.models';
+import {Tool} from './tools.models';
 import {initialState, toolsAdapter} from './tools.reducer';
 import * as ToolsSelectors from './tools.selectors';
 
@@ -9,7 +9,7 @@ describe('Tools Selectors', () => {
     ({
       id,
       name: name || `name-${id}`,
-    } as ToolsEntity);
+    } as Tool);
 
   let state;
 

@@ -5,3 +5,4 @@ export { ToolsActions, ToolsFeature, ToolsSelectors };
 export * from './lib/+state/tools.models';
 export * from './lib/+state/tools.facade';
 export * from './lib/tools-data-access.module';
+export * from './lib/tools.service'

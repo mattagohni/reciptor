@@ -1,8 +1,10 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ToolListComponent} from './tool-list.component';
+import {ToolListComponent} from '@reciptor/tools/ui';
 import {ToolsFacade} from '@reciptor/tools/data-access';
 import {of} from 'rxjs';
+import {SharedMaterialModule} from '@reciptor/shared/material';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('ToolListComponent', () => {
   let component: ToolListComponent;
@@ -14,6 +16,7 @@ describe('ToolListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [SharedMaterialModule, RouterTestingModule],
       providers: [
         {provide: ToolsFacade, useValue: toolsFacadeMock}
       ],

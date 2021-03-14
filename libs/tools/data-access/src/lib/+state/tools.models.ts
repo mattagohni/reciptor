@@ -1,7 +1,7 @@
 /**
  * Interface for the 'Tools' data
  */
-export interface ToolsEntity {
+export interface Tool {
   id: string | number; // Primary ID
   name: string
 }

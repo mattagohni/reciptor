@@ -7,7 +7,7 @@ import {Store, StoreModule} from '@ngrx/store';
 
 import {NxModule} from '@nrwl/angular';
 
-import {ToolsEntity} from './tools.models';
+import {Tool} from './tools.models';
 import {ToolsEffects} from './tools.effects';
 import {ToolsFacade} from './tools.facade';
 import * as ToolsActions from './tools.actions';
@@ -24,14 +24,15 @@ describe('ToolsFacade', () => {
   let facade: ToolsFacade;
   let store: Store<TestSchema>;
   const toolsServiceMock = {
-    getAll: jest.fn()
+    getAll: jest.fn(),
+    getTool: jest.fn()
   }
 
   const createToolsEntity = (id: string, name = '') =>
     ({
       id,
       name: name || `name-${id}`,
-    } as ToolsEntity);
+    } as Tool);
 
   describe('used in NgModule', () => {
     afterEach(() => {
@@ -69,56 +70,85 @@ describe('ToolsFacade', () => {
       facade = TestBed.inject(ToolsFacade);
     });
 
-    it('loadAll() should return list of tools with loaded == true', async (done) => {
-      try {
-        toolsServiceMock.getAll.mockReturnValue(of([createToolsEntity('AAA', 'knife'), createToolsEntity('BBB', 'spoon')]));
-        let list = await readFirst(facade.allTools$);
-        let isLoaded = await readFirst(facade.loaded$);
+    describe('init store', () => {
+      it('loadAll() should return list of tools with loaded == true', async (done) => {
+        try {
+          toolsServiceMock.getAll.mockReturnValue(of([createToolsEntity('AAA', 'knife'), createToolsEntity('BBB', 'spoon')]));
+          let list = await readFirst(facade.allTools$);
+          let isLoaded = await readFirst(facade.loaded$);
 
-        expect(list.length).toBe(0);
-        expect(isLoaded).toBe(false);
+          expect(list.length).toBe(0);
+          expect(isLoaded).toBe(false);
 
-        facade.init();
+          facade.init();
 
-        list = await readFirst(facade.allTools$);
-        isLoaded = await readFirst(facade.loaded$);
+          list = await readFirst(facade.allTools$);
+          isLoaded = await readFirst(facade.loaded$);
 
-        expect(list.length).toBe(2);
-        expect(isLoaded).toBe(true);
+          expect(list.length).toBe(2);
+          expect(isLoaded).toBe(true);
 
-        done();
-      } catch (err) {
-        done.fail(err);
-      }
-    });
+          done();
+        } catch (err) {
+          done.fail(err);
+        }
+      });
+    })
 
-    /**
-     * Use `loadToolsSuccess` to manually update list
-     */
-    it('allTools$ should return the loaded list; and loaded flag == true', async (done) => {
-      try {
-        let list = await readFirst(facade.allTools$);
-        let isLoaded = await readFirst(facade.loaded$);
+    describe('fetching data', () => {
+      /**
+       * Use `loadToolsSuccess` to manually update list
+       */
+      it('allTools$ should return the loaded list; and loaded flag == true', async (done) => {
+        try {
+          let list = await readFirst(facade.allTools$);
+          let isLoaded = await readFirst(facade.loaded$);
 
-        expect(list.length).toBe(0);
-        expect(isLoaded).toBe(false);
+          expect(list.length).toBe(0);
+          expect(isLoaded).toBe(false);
 
-        store.dispatch(
-          ToolsActions.loadToolsSuccess({
-            tools: [createToolsEntity('AAA', 'knife'), createToolsEntity('BBB', 'spoon')],
-          })
-        );
+          store.dispatch(
+            ToolsActions.loadToolsSuccess({
+              tools: [createToolsEntity('AAA', 'knife'), createToolsEntity('BBB', 'spoon')],
+            })
+          );
 
-        list = await readFirst(facade.allTools$);
-        isLoaded = await readFirst(facade.loaded$);
+          list = await readFirst(facade.allTools$);
+          isLoaded = await readFirst(facade.loaded$);
 
-        expect(list.length).toBe(2);
-        expect(isLoaded).toBe(true);
+          expect(list.length).toBe(2);
+          expect(isLoaded).toBe(true);
 
-        done();
-      } catch (err) {
-        done.fail(err);
-      }
-    });
+          done();
+        } catch (err) {
+          done.fail(err);
+        }
+      });
+
+      it('selectedTool$ should return the tool for the given id; and loaded flag == true', async (done) => {
+        try {
+          toolsServiceMock.getTool.mockReturnValue(of(createToolsEntity('PRODUCT-CCC', 'egg slicer')));
+          let selected = await readFirst(facade.selectedTool$);
+          let isLoaded = await readFirst(facade.loaded$);
+          expect(selected).toBeUndefined();
+          expect(isLoaded).toBe(false);
+
+          store.dispatch(
+            ToolsActions.loadToolById({
+              id: 'PRODUCT-CCC'
+            })
+          )
+
+          selected = await readFirst(facade.selectedTool$);
+          isLoaded = await readFirst(facade.loaded$);
+
+          expect(selected.name).toEqual('egg slicer');
+          expect(isLoaded).toBe(true);
+          done();
+        } catch (err) {
+          done.fail(err);
+        }
+      })
+    })
   });
 });

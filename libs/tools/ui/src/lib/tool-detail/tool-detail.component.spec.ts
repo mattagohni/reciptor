@@ -5,14 +5,15 @@ import {SharedMaterialModule} from '@reciptor/shared/material';
 import {ActivatedRoute} from '@angular/router';
 import {of} from 'rxjs';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {ToolsService} from '@reciptor/tools/data-access';
+import {ToolsFacade} from '@reciptor/tools/data-access';
 
 
 describe('ToolDetailComponent', () => {
   let component: ToolDetailComponent;
   let fixture: ComponentFixture<ToolDetailComponent>;
-  const toolsServiceMock = {
-    getTool: jest.fn()
+
+  const toolsFacadeMock = {
+    loadTool: jest.fn()
   }
 
   beforeEach(async () => {
@@ -27,8 +28,8 @@ describe('ToolDetailComponent', () => {
           }
         },
         {
-          provide: ToolsService,
-          useValue: toolsServiceMock
+          provide: ToolsFacade,
+          useValue: toolsFacadeMock
         }
       ]
     })
@@ -47,7 +48,7 @@ describe('ToolDetailComponent', () => {
     });
 
     it('should be correct initialized', () => {
-      expect(toolsServiceMock.getTool).toBeCalledWith(123)
+      expect(toolsFacadeMock.loadTool).toBeCalledWith(123)
     })
   });
 });

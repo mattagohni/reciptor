@@ -13,3 +13,18 @@ export const loadToolsFailure = createAction(
   '[Tools/API] Load Tools Failure',
   props<{ error: any }>()
 );
+
+export const loadToolById = createAction(
+  '[Tools/API] Load Tool by ID',
+  props<{ id: number|string }>()
+)
+
+export const loadToolSuccess = createAction(
+  '[Tools/API] Load Tool Success',
+  props<{ tool: Tool }>()
+)
+
+export const loadToolFailure = createAction(
+  '[Tools/API] Load Tool Failure',
+  props<{ error: any }>()
+)

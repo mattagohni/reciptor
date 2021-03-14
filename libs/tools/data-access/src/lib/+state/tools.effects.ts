@@ -28,6 +28,23 @@ export class ToolsEffects {
     )
   );
 
-  constructor(private actions$: Actions, private  toolsService: ToolsService) {
+  tool$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ToolsActions.loadToolById),
+      fetch({
+        run: (action) => {
+          return this.toolsService.getTool(action.id).pipe(
+            map(tool => ToolsActions.loadToolSuccess({tool}))
+          )
+        },
+        onError: (action, error) => {
+          console.error('Error', error);
+          return ToolsActions.loadToolFailure({error});
+        }
+      })
+    ))
+
+
+  constructor(private actions$: Actions, private toolsService: ToolsService) {
   }
 }

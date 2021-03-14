@@ -17,7 +17,8 @@ describe('ToolsEffects', () => {
   let actions: Observable<any>;
   let effects: ToolsEffects;
   const toolsService = {
-    getAll: jest.fn()
+    getAll: jest.fn(),
+    getTool: jest.fn()
   }
 
   beforeEach(() => {
@@ -48,4 +49,18 @@ describe('ToolsEffects', () => {
       expect(toolsService.getAll).toHaveBeenCalledTimes(1)
     });
   });
+
+  describe('tool$', () => {
+    it('it loads a given tool by id', () => {
+      toolsService.getTool.mockReturnValue(of({id: 1, name: 'knife'}));
+      actions = hot('-a-|', {a: ToolsActions.loadToolById({id: 1})});
+
+      const expected = hot('-a-|', {
+        a: ToolsActions.loadToolSuccess({tool: {id:1, name: 'knife'}})
+      });
+
+      expect(effects.tool$).toBeObservable(expected);
+      expect(toolsService.getTool).toHaveBeenNthCalledWith(1, 1)
+    });
+  })
 });

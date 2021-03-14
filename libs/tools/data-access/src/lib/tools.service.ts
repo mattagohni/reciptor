@@ -11,7 +11,7 @@ export class ToolsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getTool(id: number): Observable<Tool> {
+  getTool(id: number|string): Observable<Tool> {
     return this.httpClient.get<Tool>(`${this.API_URL}/tools/${id}`)
   }
 

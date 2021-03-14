@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {Tool} from '@reciptor/tools/data-access';
+import {Tool, ToolsFacade} from '@reciptor/tools/data-access';
 import {ActivatedRoute} from '@angular/router';
-import {ToolsService} from '@reciptor/tools/data-access';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -11,17 +10,16 @@ import {Observable} from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToolDetailComponent implements OnInit{
+  tool$: Observable<Tool> = this.toolsFacade.selectedTool$
+
   @Input()
-  tool$: Observable<Tool>
   private toolId: number;
 
-  constructor(private route: ActivatedRoute, private toolsService: ToolsService) {}
+  constructor(private route: ActivatedRoute, private toolsFacade: ToolsFacade) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.toolId = params['id'];
-      // @todo the tool should be fetched from store via the facade
-      this.tool$ = this.toolsService.getTool(this.toolId)
+      this.toolsFacade.loadTool(params['id'])
     })
   }
 }

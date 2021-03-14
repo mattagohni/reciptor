@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 })
 export class ToolListComponent implements OnInit {
   tools$: Observable<Tool[]>
-  displayedColumns: string[] = ['id', 'name'];
+  displayedColumns: string[] = ['id', 'name', 'link'];
   constructor(private toolsFacade: ToolsFacade) {}
 
   ngOnInit(): void {

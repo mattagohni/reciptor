@@ -3,7 +3,7 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {fetch} from '@nrwl/angular';
 import * as ToolsActions from './tools.actions';
 import {ToolsService} from '../tools.service';
-import {map, tap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class ToolsEffects {
@@ -16,7 +16,6 @@ export class ToolsEffects {
         run: (action) => {
           return this.toolsService.getAll()
             .pipe(
-              tap(x => console.debug(x)),
               map(tools => ToolsActions.loadToolsSuccess({tools}))
             );
         },

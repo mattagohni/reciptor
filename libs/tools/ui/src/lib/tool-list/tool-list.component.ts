@@ -8,13 +8,12 @@ import {Observable} from 'rxjs';
   styleUrls: ['./tool-list.component.scss']
 })
 export class ToolListComponent implements OnInit {
-  tools$: Observable<Tool[]>
+  tools$: Observable<Tool[]> = this.toolsFacade.allTools$
   displayedColumns: string[] = ['id', 'name', 'link'];
   constructor(private toolsFacade: ToolsFacade) {}
 
   ngOnInit(): void {
     this.toolsFacade.init()
-    this.tools$ = this.toolsFacade.allTools$
   }
 }
 

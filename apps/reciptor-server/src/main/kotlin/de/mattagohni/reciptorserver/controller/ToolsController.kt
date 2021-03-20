@@ -4,6 +4,7 @@ import de.mattagohni.reciptorserver.model.Tool
 import de.mattagohni.reciptorserver.service.ToolsService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -31,5 +32,13 @@ class ToolsController(private val toolsService: ToolsService) {
   fun createTool(@RequestBody toolToSave: Tool): Mono<ResponseEntity<Void>> {
     return toolsService.saveTool(toolToSave)
       .map { ResponseEntity.status(HttpStatus.CREATED).build() }
+  }
+
+  @DeleteMapping("/api/v1/tools/{id}")
+  fun deleteTool(@PathVariable id: Int): Mono<ResponseEntity<Void>> {
+    return toolsService.findToolById(id)
+      .doOnNext { toolsService.delete(id) }
+      .map { ResponseEntity.ok().build<Void>() }
+      .defaultIfEmpty(ResponseEntity.notFound().build())
   }
 }

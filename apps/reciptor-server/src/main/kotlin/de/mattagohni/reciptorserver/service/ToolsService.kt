@@ -27,4 +27,8 @@ class ToolsService(private val toolsRepository: ReactiveToolsRepository) {
   fun getAll(): Flux<Tool> {
     return toolsRepository.findAll()
   }
+
+  fun delete(id: Int): Mono<Void> {
+    return toolsRepository.deleteById(id)
+  }
 }

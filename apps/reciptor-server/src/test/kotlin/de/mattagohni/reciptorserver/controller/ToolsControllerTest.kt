@@ -141,4 +141,23 @@ class ToolsControllerTest {
 
     verify(exactly = 1) { toolsService.saveTool(any()) }
   }
+
+  @Test
+  @DisplayName("it deletes an existing tool")
+  @WithMockUser
+  fun deleteTool_OK() {
+    // arrange
+    val toolToDelete = Tool(id = 4711, name = "knife")
+
+    every { toolsService.findToolById(4711) }.returns(Mono.just(toolToDelete))
+    every { toolsService.delete(4711) }.returns(Mono.empty())
+
+    // act
+    webTestClient.delete().uri("/api/v1/tools/4711")
+      .exchange()
+      .expectStatus().isEqualTo(HttpStatus.OK)
+
+    verify(exactly = 1) { toolsService.findToolById(4711) }
+    verify(exactly = 1) { toolsService.delete(4711) }
+  }
 }

@@ -38,7 +38,6 @@ export class ToolsEffects {
           )
         },
         onError: (action, error) => {
-          console.error('Error', error);
           return ToolsActions.loadToolFailure({error});
         }
       })

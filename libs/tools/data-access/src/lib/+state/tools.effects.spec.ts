@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {TestBed} from '@angular/core/testing';
 
-import {Observable, of} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 
 import {provideMockActions} from '@ngrx/effects/testing';
 import {provideMockStore} from '@ngrx/store/testing';
@@ -56,7 +56,19 @@ describe('ToolsEffects', () => {
       actions = hot('-a-|', {a: ToolsActions.loadToolById({id: 1})});
 
       const expected = hot('-a-|', {
-        a: ToolsActions.loadToolSuccess({tool: {id:1, name: 'knife'}})
+        a: ToolsActions.loadToolSuccess({tool: {id: 1, name: 'knife'}})
+      });
+
+      expect(effects.tool$).toBeObservable(expected);
+      expect(toolsService.getTool).toHaveBeenNthCalledWith(1, 1)
+    });
+
+    it('should receive an error, when loading fails', function () {
+      toolsService.getTool.mockReturnValue(throwError({status: 404}));
+      actions = hot('-a-|', {a: ToolsActions.loadToolById({id: 1})});
+
+      const expected = hot('-a-|', {
+        a: ToolsActions.loadToolFailure({error: {status: 404}})
       });
 
       expect(effects.tool$).toBeObservable(expected);

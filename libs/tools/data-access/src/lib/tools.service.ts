@@ -18,4 +18,8 @@ export class ToolsService {
   getAll(): Observable<Tool[]> {
     return this.httpClient.get<Tool[]>(`${this.API_URL}/tools`)
   }
+
+  deleteTool(id: number) {
+    return this.httpClient.delete(`${this.API_URL}/tools/${id}`)
+  }
 }

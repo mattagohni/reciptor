@@ -160,4 +160,21 @@ class ToolsControllerTest {
     verify(exactly = 1) { toolsService.findToolById(4711) }
     verify(exactly = 1) { toolsService.delete(4711) }
   }
+
+  @Test
+  @DisplayName("it returns NOT_FOUND for not existing tool")
+  @WithMockUser
+  fun deleteTool_NOT_FOUND() {
+    // arrange
+
+    every { toolsService.findToolById(4711) }.returns(Mono.empty())
+
+    // act
+    webTestClient.delete().uri("/api/v1/tools/4711")
+      .exchange()
+      .expectStatus().isEqualTo(HttpStatus.NOT_FOUND)
+
+    verify(exactly = 1) { toolsService.findToolById(4711) }
+    verify(exactly = 0) { toolsService.delete(4711) }
+  }
 }

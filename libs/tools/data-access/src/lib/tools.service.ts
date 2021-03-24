@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Tool} from '@reciptor/tools/data-access';
@@ -9,9 +9,10 @@ import {Tool} from '@reciptor/tools/data-access';
 export class ToolsService {
   readonly API_URL = 'http://localhost:8080/api/v1';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
-  getTool(id: number|string): Observable<Tool> {
+  getTool(id: number | string): Observable<Tool> {
     return this.httpClient.get<Tool>(`${this.API_URL}/tools/${id}`)
   }
 
@@ -19,7 +20,7 @@ export class ToolsService {
     return this.httpClient.get<Tool[]>(`${this.API_URL}/tools`)
   }
 
-  deleteTool(id: number) {
+  deleteTool(id: number | string) {
     return this.httpClient.delete(`${this.API_URL}/tools/${id}`)
   }
 }

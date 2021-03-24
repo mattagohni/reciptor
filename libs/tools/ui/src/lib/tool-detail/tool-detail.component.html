@@ -1,4 +1,5 @@
 
 <mat-card *ngIf="tool$ | async; let tool">
   <p>{{tool.name}}</p>
+  <button (click)="delete(tool)">deleteMe</button>
 </mat-card>

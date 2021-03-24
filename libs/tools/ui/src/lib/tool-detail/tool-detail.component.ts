@@ -22,4 +22,8 @@ export class ToolDetailComponent implements OnInit{
       this.toolsFacade.loadTool(params['id'])
     })
   }
+
+  delete(tool: Tool) {
+    this.toolsFacade.deleteTool(tool.id);
+  }
 }

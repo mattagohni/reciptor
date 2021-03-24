@@ -28,7 +28,7 @@ export class ToolsEffects {
     )
   );
 
-  tool$ = createEffect(() =>
+  loadTool$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ToolsActions.loadToolById),
       fetch({
@@ -41,8 +41,24 @@ export class ToolsEffects {
           return ToolsActions.loadToolFailure({error});
         }
       })
-    ))
+    )
+  );
 
+  deleteTool$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ToolsActions.deleteToolById),
+      fetch({
+        run: (action) => {
+          return this.toolsService.deleteTool(action.id).pipe(
+            map(() => ToolsActions.deleteToolByIdSuccess({id: action.id}))
+          )
+        },
+        onError: (action, error) => {
+          return ToolsActions.deleteToolByIdFailure({error})
+        }
+      })
+    )
+  );
 
   constructor(private actions$: Actions, private toolsService: ToolsService) {
   }

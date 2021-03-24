@@ -18,7 +18,8 @@ describe('ToolsEffects', () => {
   let effects: ToolsEffects;
   const toolsService = {
     getAll: jest.fn(),
-    getTool: jest.fn()
+    getTool: jest.fn(),
+    deleteTool: jest.fn()
   }
 
   beforeEach(() => {
@@ -50,7 +51,7 @@ describe('ToolsEffects', () => {
     });
   });
 
-  describe('tool$', () => {
+  describe('loading tool$', () => {
     it('it loads a given tool by id', () => {
       toolsService.getTool.mockReturnValue(of({id: 1, name: 'knife'}));
       actions = hot('-a-|', {a: ToolsActions.loadToolById({id: 1})});
@@ -59,7 +60,7 @@ describe('ToolsEffects', () => {
         a: ToolsActions.loadToolSuccess({tool: {id: 1, name: 'knife'}})
       });
 
-      expect(effects.tool$).toBeObservable(expected);
+      expect(effects.loadTool$).toBeObservable(expected);
       expect(toolsService.getTool).toHaveBeenNthCalledWith(1, 1)
     });
 
@@ -71,8 +72,34 @@ describe('ToolsEffects', () => {
         a: ToolsActions.loadToolFailure({error: {status: 404}})
       });
 
-      expect(effects.tool$).toBeObservable(expected);
+      expect(effects.loadTool$).toBeObservable(expected);
       expect(toolsService.getTool).toHaveBeenNthCalledWith(1, 1)
     });
   })
+
+  describe('deleting tool$', () => {
+    it('it deletes a given tool by id', () => {
+      toolsService.deleteTool.mockReturnValue(of({status: 200}));
+      actions = hot('-a-|', {a: ToolsActions.deleteToolById({id: 1})});
+
+      const expected = hot('-a-|', {
+        a: ToolsActions.deleteToolByIdSuccess({id: 1})
+      });
+
+      expect(effects.deleteTool$).toBeObservable(expected);
+      expect(toolsService.deleteTool).toHaveBeenNthCalledWith(1, 1)
+    });
+
+    it('it fires failure action if tool cannot be deleted', () => {
+      toolsService.deleteTool.mockReturnValue(throwError({status: 404}));
+      actions = hot('-a-|', {a: ToolsActions.deleteToolById({id: 1})});
+
+      const expected = hot('-a-|', {
+        a: ToolsActions.deleteToolByIdFailure({error: {status: 404}})
+      });
+
+      expect(effects.deleteTool$).toBeObservable(expected);
+      expect(toolsService.deleteTool).toHaveBeenNthCalledWith(1, 1)
+    });
+  });
 });

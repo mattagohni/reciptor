@@ -38,7 +38,14 @@ const toolsReducer = createReducer(
     selectedId: tool.id,
     loaded: true
   })),
-  on(ToolsActions.loadToolFailure, (state, {error}) => ({...state, error}))
+  on(ToolsActions.loadToolFailure, (state, {error}) => ({...state, error})),
+
+  // deleting a specific tool
+  on(ToolsActions.deleteToolById, (state) => ({...state, loaded: false, error: null })),
+  on(ToolsActions.deleteToolByIdSuccess, (state, {id}) => (toolsAdapter.removeOne(id.toString(), {
+    ...state,
+    loaded: true,
+  })))
 );
 
 export function reducer(state: State | undefined, action: Action) {

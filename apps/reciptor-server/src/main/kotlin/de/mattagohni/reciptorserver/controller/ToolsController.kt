@@ -35,10 +35,10 @@ class ToolsController(private val toolsService: ToolsService) {
   }
 
   @DeleteMapping("/api/v1/tools/{id}")
-  fun deleteTool(@PathVariable id: Int): Mono<ResponseEntity<Void>> {
+  fun deleteTool(@PathVariable id: Int): Mono<ResponseEntity<Int>> {
     return toolsService.findToolById(id)
-      .doOnNext { toolsService.delete(id) }
-      .map { ResponseEntity.ok().build<Void>() }
+      .flatMap { toolsService.delete(id) }
+      .flatMap { idOfDeletedItem -> Mono.just(ResponseEntity.ok(idOfDeletedItem)) }
       .defaultIfEmpty(ResponseEntity.notFound().build())
   }
 }

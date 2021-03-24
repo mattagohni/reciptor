@@ -28,7 +28,7 @@ class ToolsService(private val toolsRepository: ReactiveToolsRepository) {
     return toolsRepository.findAll()
   }
 
-  fun delete(id: Int): Mono<Void> {
-    return toolsRepository.deleteById(id)
+  fun delete(id: Int): Mono<Int> {
+    return toolsRepository.deleteById(id).then(Mono.just(id))
   }
 }

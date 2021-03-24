@@ -147,6 +147,7 @@ class ToolsServiceTest {
 
     // assert
     StepVerifier.create(resultingToolMono)
+      .assertNext { returnedId -> assertThat(returnedId).isEqualTo(1) }
       .verifyComplete()
     verify(exactly = 1) { toolsRepository.deleteById(any<Int>()) }
   }

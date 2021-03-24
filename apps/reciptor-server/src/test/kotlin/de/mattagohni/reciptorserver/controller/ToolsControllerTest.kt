@@ -150,7 +150,7 @@ class ToolsControllerTest {
     val toolToDelete = Tool(id = 4711, name = "knife")
 
     every { toolsService.findToolById(4711) }.returns(Mono.just(toolToDelete))
-    every { toolsService.delete(4711) }.returns(Mono.empty())
+    every { toolsService.delete(4711) }.returns(Mono.just(4711))
 
     // act
     webTestClient.delete().uri("/api/v1/tools/4711")

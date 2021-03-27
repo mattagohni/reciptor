@@ -25,7 +25,8 @@ describe('ToolsFacade', () => {
   let store: Store<TestSchema>;
   const toolsServiceMock = {
     getAll: jest.fn(),
-    getTool: jest.fn()
+    getTool: jest.fn(),
+    deleteTool: jest.fn()
   }
 
   const createToolsEntity = (id: string, name = '') =>
@@ -144,11 +145,33 @@ describe('ToolsFacade', () => {
 
           expect(selected.name).toEqual('egg slicer');
           expect(isLoaded).toBe(true);
+          expect(toolsServiceMock.getTool).toHaveBeenNthCalledWith(1, 'PRODUCT-CCC')
           done();
         } catch (err) {
           done.fail(err);
         }
       })
     })
+    describe('delete data', () => {
+      it('it should delete given tool', async (done) => {
+        try {
+          toolsServiceMock.deleteTool.mockReturnValue(of('PRODUCT-CCC'));
+
+          store.dispatch(
+            ToolsActions.deleteToolById({
+              id: 'PRODUCT-CCC'
+            })
+          )
+
+          const isLoaded = await readFirst(facade.loaded$);
+
+          expect(isLoaded).toBe(true);
+          expect(toolsServiceMock.deleteTool).toHaveBeenNthCalledWith(1, 'PRODUCT-CCC')
+          done();
+        } catch (err) {
+          done.fail(err);
+        }
+      });
+    });
   });
 });

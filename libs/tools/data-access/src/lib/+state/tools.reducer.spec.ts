@@ -52,6 +52,17 @@ describe('Tools Reducer', () => {
       expect(result.loaded).toBeTruthy();
 //      expect(result.selectedId).not.toBe(tool.id);
     });
+
+    it('deleteToolFailure should propagate error', () => {
+      const givenState: State = {
+        ...initialState,
+        error: null
+      }
+
+      const action = ToolsActions.deleteToolByIdFailure({error: {status: 500}})
+      const result: State = reducer(givenState, action)
+      expect(result.error).toEqual({status: 500})
+    });
   });
 
   describe('unknown action', () => {

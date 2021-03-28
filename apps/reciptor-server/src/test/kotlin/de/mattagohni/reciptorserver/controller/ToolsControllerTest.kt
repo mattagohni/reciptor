@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Import
 import org.springframework.http.HttpStatus
 import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.test.web.reactive.server.WebTestClient
+import org.springframework.test.web.reactive.server.expectBody
 import org.springframework.web.reactive.function.BodyInserters
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -156,6 +157,7 @@ class ToolsControllerTest {
     webTestClient.delete().uri("/api/v1/tools/4711")
       .exchange()
       .expectStatus().isEqualTo(HttpStatus.OK)
+      .expectBody<String>().isEqualTo("4711")
 
     verify(exactly = 1) { toolsService.findToolById(4711) }
     verify(exactly = 1) { toolsService.delete(4711) }

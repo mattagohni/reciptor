@@ -53,6 +53,15 @@ describe('ToolsService', () => {
     })
   });
 
+  describe('#deleteTool', () => {
+    it('it should delete a given tool', () => {
+      service.deleteTool(1).subscribe();
+
+      const request = httpMock.expectOne(`${service.API_URL}/tools/1`);
+      expect(request.request.method).toBe('DELETE');
+    });
+  });
+
   afterEach(() => {
     httpMock.verify();
   });

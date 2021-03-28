@@ -34,6 +34,35 @@ describe('Tools Reducer', () => {
       expect(result.loaded).toBe(true);
       expect(result.selectedId).toEqual('PRODUCT-AAA')
     });
+
+    it('deleteToolSuccess should remove tool from store', () => {
+      const tool = createToolsEntity('PRODUCT-AAA', 'Knife');
+      const givenState: State = {
+        ...initialState,
+        loaded: false,
+        selectedId: tool.id,
+        ids: [tool.id] as string[]
+      }
+
+
+      const action = ToolsActions.deleteToolByIdSuccess({id: tool.id});
+      const result: State = reducer(givenState, action);
+
+      // @todo check how to write correct tests for reducer
+      expect(result.loaded).toBeTruthy();
+//      expect(result.selectedId).not.toBe(tool.id);
+    });
+
+    it('deleteToolFailure should propagate error', () => {
+      const givenState: State = {
+        ...initialState,
+        error: null
+      }
+
+      const action = ToolsActions.deleteToolByIdFailure({error: {status: 500}})
+      const result: State = reducer(givenState, action)
+      expect(result.error).toEqual({status: 500})
+    });
   });
 
   describe('unknown action', () => {

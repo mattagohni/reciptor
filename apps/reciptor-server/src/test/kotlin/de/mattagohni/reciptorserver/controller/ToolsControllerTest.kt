@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Import
 import org.springframework.http.HttpStatus
 import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.test.web.reactive.server.WebTestClient
+import org.springframework.test.web.reactive.server.expectBody
 import org.springframework.web.reactive.function.BodyInserters
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -140,5 +141,42 @@ class ToolsControllerTest {
       .expectStatus().isEqualTo(HttpStatus.CONFLICT)
 
     verify(exactly = 1) { toolsService.saveTool(any()) }
+  }
+
+  @Test
+  @DisplayName("it deletes an existing tool")
+  @WithMockUser
+  fun deleteTool_OK() {
+    // arrange
+    val toolToDelete = Tool(id = 4711, name = "knife")
+
+    every { toolsService.findToolById(4711) }.returns(Mono.just(toolToDelete))
+    every { toolsService.delete(4711) }.returns(Mono.just(4711))
+
+    // act
+    webTestClient.delete().uri("/api/v1/tools/4711")
+      .exchange()
+      .expectStatus().isEqualTo(HttpStatus.OK)
+      .expectBody<String>().isEqualTo("4711")
+
+    verify(exactly = 1) { toolsService.findToolById(4711) }
+    verify(exactly = 1) { toolsService.delete(4711) }
+  }
+
+  @Test
+  @DisplayName("it returns NOT_FOUND for not existing tool")
+  @WithMockUser
+  fun deleteTool_NOT_FOUND() {
+    // arrange
+
+    every { toolsService.findToolById(4711) }.returns(Mono.empty())
+
+    // act
+    webTestClient.delete().uri("/api/v1/tools/4711")
+      .exchange()
+      .expectStatus().isEqualTo(HttpStatus.NOT_FOUND)
+
+    verify(exactly = 1) { toolsService.findToolById(4711) }
+    verify(exactly = 0) { toolsService.delete(4711) }
   }
 }

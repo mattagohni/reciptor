@@ -134,4 +134,21 @@ class ToolsServiceTest {
       .verifyComplete()
     verify { toolsRepository.findByName("theMasterTool") }
   }
+
+  @Test
+  @DisplayName("it can delete an existing tool")
+  fun deleteExisting() {
+    // arrange
+    val tool = Tool(id = 1, name = "theMasterTool")
+    every { toolsRepository.deleteById(any<Int>()) }.returns(Mono.empty())
+
+    // act
+    val resultingToolMono = toolsService.delete(id = 1)
+
+    // assert
+    StepVerifier.create(resultingToolMono)
+      .assertNext { returnedId -> assertThat(returnedId).isEqualTo(1) }
+      .verifyComplete()
+    verify(exactly = 1) { toolsRepository.deleteById(any<Int>()) }
+  }
 }

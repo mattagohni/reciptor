@@ -28,7 +28,12 @@ export class ToolsFacade {
     this.store.dispatch(ToolsActions.init());
   }
 
-  loadTool(id: number|string) {
+  loadTool(id: number | string) {
     this.store.dispatch(ToolsActions.loadToolById({id: id}));
   }
+
+  deleteTool(id: number | string) {
+    this.store.dispatch(ToolsActions.deleteToolById({id: id}));
+  }
+
 }

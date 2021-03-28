@@ -16,7 +16,7 @@ export const loadToolsFailure = createAction(
 
 export const loadToolById = createAction(
   '[Tools/API] Load Tool by ID',
-  props<{ id: number|string }>()
+  props<{ id: number | string }>()
 )
 
 export const loadToolSuccess = createAction(
@@ -26,5 +26,20 @@ export const loadToolSuccess = createAction(
 
 export const loadToolFailure = createAction(
   '[Tools/API] Load Tool Failure',
+  props<{ error: any }>()
+)
+
+export const deleteToolById = createAction(
+  '[Tools/API] Delete Tool by ID',
+  props<{ id: number | string }>()
+)
+
+export const deleteToolByIdSuccess = createAction(
+  '[Tools/API] Delete Tool Success',
+  props<{ id: number | string}>()
+)
+
+export const deleteToolByIdFailure = createAction(
+  '[Tools/API] Delete Tool Failure',
   props<{ error: any }>()
 )

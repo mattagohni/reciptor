@@ -5,7 +5,9 @@ import {SharedMaterialModule} from '@reciptor/shared/material';
 import {ActivatedRoute} from '@angular/router';
 import {of} from 'rxjs';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {ToolsFacade} from '@reciptor/tools/data-access';
+import {Tool, ToolsFacade} from '@reciptor/tools/data-access';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 describe('ToolDetailComponent', () => {
@@ -13,12 +15,19 @@ describe('ToolDetailComponent', () => {
   let fixture: ComponentFixture<ToolDetailComponent>;
 
   const toolsFacadeMock = {
-    loadTool: jest.fn()
+    loadTool: jest.fn(),
+    selectedTool$: of({id: 123, name: 'knife'})
   }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SharedMaterialModule, HttpClientTestingModule],
+      imports: [
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SharedMaterialModule,
+        HttpClientTestingModule
+      ],
       declarations: [ToolDetailComponent],
       providers: [
         {
@@ -48,6 +57,9 @@ describe('ToolDetailComponent', () => {
     });
 
     it('should be correct initialized', () => {
+      toolsFacadeMock.loadTool.mockReturnValue(of({id: 123, name: 'knife'} as Tool))
+
+      expect(component.toolForm.get('name').value).toEqual('knife')
       expect(toolsFacadeMock.loadTool).toBeCalledWith(123)
     })
   });

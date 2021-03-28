@@ -1,7 +1,9 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Tool, ToolsFacade} from '@reciptor/tools/data-access';
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'reciptor-tool',
@@ -10,17 +12,23 @@ import {Observable} from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToolDetailComponent implements OnInit{
-  tool$: Observable<Tool> = this.toolsFacade.selectedTool$
+  tool$: Observable<Tool> = this.toolsFacade.selectedTool$.pipe(
+    tap(tool => this.toolForm.patchValue(tool))
+  );
+  toolForm: FormGroup;
 
-  @Input()
-  private toolId: number;
-
-  constructor(private route: ActivatedRoute, private toolsFacade: ToolsFacade) {}
+  constructor(private route: ActivatedRoute, private toolsFacade: ToolsFacade, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
+    this.toolForm = this.formBuilder.group(
+      {
+        name: ['', Validators.required]
+      }
+    );
+
     this.route.params.subscribe(params => {
-      this.toolsFacade.loadTool(params['id'])
-    })
+      this.toolsFacade.loadTool(params['id']);
+    });
   }
 
   delete(tool: Tool) {

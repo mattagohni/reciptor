@@ -63,6 +63,28 @@ describe('Tools Reducer', () => {
       const result: State = reducer(givenState, action)
       expect(result.error).toEqual({status: 500})
     });
+
+    it('updateToolSuccess should return the updated tool', () => {
+      const tool = createToolsEntity('PRODUCT-AAA', 'Knife');
+
+      const action = ToolsActions.updateToolSuccess({tool})
+
+      const result: State = reducer(initialState, action);
+
+      expect(result.loaded).toBe(true);
+      expect(result.selectedId).toEqual('PRODUCT-AAA')
+    });
+
+    it('updateToolFailure should propagate error', () => {
+      const givenState: State = {
+        ...initialState,
+        error: null
+      }
+
+      const action = ToolsActions.updateToolFailure({error: {status: 500}})
+      const result: State = reducer(givenState, action)
+      expect(result.error).toEqual({status: 500})
+    });
   });
 
   describe('unknown action', () => {

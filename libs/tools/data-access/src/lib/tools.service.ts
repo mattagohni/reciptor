@@ -23,4 +23,8 @@ export class ToolsService {
   deleteTool(id: number | string) {
     return this.httpClient.delete(`${this.API_URL}/tools/${id}`)
   }
+
+  updateTool(tool: Tool) {
+    return this.httpClient.put(`${this.API_URL}/tools/${tool.id}`, tool);
+  }
 }

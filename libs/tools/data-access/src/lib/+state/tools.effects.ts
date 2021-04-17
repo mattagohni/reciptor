@@ -4,6 +4,7 @@ import {fetch} from '@nrwl/angular';
 import * as ToolsActions from './tools.actions';
 import {ToolsService} from '../tools.service';
 import {map} from 'rxjs/operators';
+import {Tool} from '@reciptor/tools/data-access';
 
 @Injectable()
 export class ToolsEffects {
@@ -13,7 +14,7 @@ export class ToolsEffects {
       fetch({
         // @todo remove this suppression when the variable is used
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        run: (action) => {
+        run: () => {
           return this.toolsService.getAll()
             .pipe(
               map(tools => ToolsActions.loadToolsSuccess({tools}))
@@ -55,6 +56,22 @@ export class ToolsEffects {
         },
         onError: (action, error) => {
           return ToolsActions.deleteToolByIdFailure({error})
+        }
+      })
+    )
+  );
+
+  updateTool$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ToolsActions.updateTool),
+      fetch({
+        run: (action) => {
+          return this.toolsService.updateTool(action.tool).pipe(
+            map((tool: Tool) => ToolsActions.updateToolSuccess({tool}))
+          )
+        },
+        onError: (action, error) => {
+          return ToolsActions.updateToolFailure({error});
         }
       })
     )

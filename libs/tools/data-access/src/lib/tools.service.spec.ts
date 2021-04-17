@@ -62,6 +62,17 @@ describe('ToolsService', () => {
     });
   });
 
+  describe('#updateTool', () => {
+    it('should save a given tool', () => {
+      const tool = {id: 1, name: 'spoon'};
+      service.updateTool(tool).subscribe();
+
+      const request = httpMock.expectOne(`${service.API_URL}/tools/1`);
+      expect(request.request.method).toBe('PUT');
+      expect(request.request.body).toEqual(tool);
+    });
+  });
+
   afterEach(() => {
     httpMock.verify();
   });

@@ -11,13 +11,17 @@ import {tap} from 'rxjs/operators';
   styleUrls: ['./tool-detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ToolDetailComponent implements OnInit{
+export class ToolDetailComponent implements OnInit {
   tool$: Observable<Tool> = this.toolsFacade.selectedTool$.pipe(
     tap(tool => this.toolForm.patchValue(tool))
   );
   toolForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private toolsFacade: ToolsFacade, private formBuilder: FormBuilder) {}
+  constructor(
+    private route: ActivatedRoute,
+    private toolsFacade: ToolsFacade,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.toolForm = this.formBuilder.group(
@@ -33,5 +37,9 @@ export class ToolDetailComponent implements OnInit{
 
   delete(tool: Tool) {
     this.toolsFacade.deleteTool(tool.id);
+  }
+
+  save(tool: Tool) {
+    this.toolsFacade.updateTool({...tool, name: this.toolForm.value.name})
   }
 }

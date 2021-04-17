@@ -4,6 +4,7 @@ import {select, Store} from '@ngrx/store';
 
 import * as ToolsActions from './tools.actions';
 import * as ToolsSelectors from './tools.selectors';
+import {Tool} from './tools.models';
 
 // @todo remove this suppression when the variable `selectedTools$` is used
 // noinspection JSUnusedGlobalSymbols
@@ -36,4 +37,7 @@ export class ToolsFacade {
     this.store.dispatch(ToolsActions.deleteToolById({id: id}));
   }
 
+  updateTool(tool: Tool) {
+    this.store.dispatch(ToolsActions.updateTool({tool: tool}))
+  }
 }

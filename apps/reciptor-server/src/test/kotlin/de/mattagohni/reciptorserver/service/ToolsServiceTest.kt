@@ -151,4 +151,22 @@ class ToolsServiceTest {
       .verifyComplete()
     verify(exactly = 1) { toolsRepository.deleteById(any<Int>()) }
   }
+
+  @Test
+  @DisplayName("it updates an existing Tool")
+  fun updateExisting() {
+    // arrange
+    val tool = Tool(id = 1, name = "theMasterTool")
+    every { toolsRepository.findById(1) }.returns(Mono.just(tool))
+    every { toolsRepository.save(any<Tool>()) }.returns(Mono.just(tool.copy(name = "theUltimateTool")))
+
+    // act
+    val resultingToolMono = toolsService.update(id = 1, tool.copy(name = "theUltimateTool"))
+
+    // assert
+    StepVerifier.create(resultingToolMono)
+      .assertNext { resultingTool -> assertThat(resultingTool.name).isEqualTo("theUltimateTool") }
+      .verifyComplete()
+    verify(exactly = 1) { toolsRepository.save(any<Tool>()) }
+  }
 }

@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {ToolDetailComponent, ToolListComponent, ToolsUiModule} from '@reciptor/tools/ui';
 import {ToolsDataAccessModule} from '@reciptor/tools/data-access';
+import {AddToolComponent} from '@reciptor/tools/ui';
 
 @NgModule({
   imports: [
@@ -11,6 +12,7 @@ import {ToolsDataAccessModule} from '@reciptor/tools/data-access';
     ToolsUiModule,
     RouterModule.forChild([
       {path: '', component: ToolListComponent },
+      {path: 'new', component: AddToolComponent},
       {path: ':id', component: ToolDetailComponent}
     ]),
   ],

@@ -26,7 +26,8 @@ describe('ToolsFacade', () => {
   const toolsServiceMock = {
     getAll: jest.fn(),
     getTool: jest.fn(),
-    deleteTool: jest.fn()
+    deleteTool: jest.fn(),
+    saveTool: jest.fn()
   }
 
   const createToolsEntity = (id: string, name = '') =>
@@ -167,6 +168,26 @@ describe('ToolsFacade', () => {
 
           expect(isLoaded).toBe(true);
           expect(toolsServiceMock.deleteTool).toHaveBeenNthCalledWith(1, 'PRODUCT-CCC')
+          done();
+        } catch (err) {
+          done.fail(err);
+        }
+      });
+    });
+
+    describe('create tool', () => {
+      it('it should create given tool', async (done) => {
+        try {
+          const tool = {id: undefined, name: 'knife'} as Tool
+          toolsServiceMock.saveTool.mockReturnValue(of({...tool, id: 4711}));
+
+          store.dispatch(
+            ToolsActions.saveTool({
+              tool
+            })
+          )
+
+          expect(toolsServiceMock.saveTool).toHaveBeenNthCalledWith(1, tool)
           done();
         } catch (err) {
           done.fail(err);

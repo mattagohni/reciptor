@@ -20,7 +20,8 @@ describe('ToolsEffects', () => {
     getAll: jest.fn(),
     getTool: jest.fn(),
     deleteTool: jest.fn(),
-    updateTool: jest.fn()
+    updateTool: jest.fn(),
+    saveTool: jest.fn()
   }
 
   beforeEach(() => {
@@ -118,5 +119,21 @@ describe('ToolsEffects', () => {
       expect(effects.updateTool$).toBeObservable(expected);
       expect(toolsService.updateTool).toHaveBeenNthCalledWith(1, tool)
     });
+  });
+
+  describe('saving a tool', () => {
+    it('should save a tool', () => {
+      const tool = {id: undefined, name: 'spoon'};
+      toolsService.saveTool.mockReturnValue(of({...tool, id: 4711}));
+
+      actions = hot('-a-|', {a: ToolsActions.saveTool({ tool: tool })});
+
+      const expected = hot('-a-|', {
+        a: ToolsActions.saveToolSuccess({tool: {...tool, id: 4711}})
+      });
+
+      expect(effects.saveTool$).toBeObservable(expected);
+      expect(toolsService.saveTool).toHaveBeenNthCalledWith(1, tool)
+    })
   });
 });

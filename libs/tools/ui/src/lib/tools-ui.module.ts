@@ -6,6 +6,7 @@ import {ToolsDataAccessModule} from '@reciptor/tools/data-access';
 import {SharedMaterialModule} from '@reciptor/shared/material';
 import { ToolDetailComponent } from './tool-detail/tool-detail.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AddToolComponent } from './add-tool/add-tool.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ToolsDataAccessModule,
     SharedMaterialModule
   ],
-  declarations: [ToolListComponent, ToolDetailComponent],
+  declarations: [ToolListComponent, ToolDetailComponent, AddToolComponent],
 })
 export class ToolsUiModule {}

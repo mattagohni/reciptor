@@ -58,3 +58,18 @@ export const updateToolFailure = createAction(
   '[Tools/API] Update Tool Failure',
   props<{ error: any }>()
 )
+
+export const saveTool = createAction(
+  '[Tools/API] Save Tool',
+  props<{ tool: Tool }>()
+)
+
+export const saveToolSuccess = createAction(
+  '[Tools/API] Save Tool Success',
+  props<{ tool: Tool }>()
+)
+
+export const saveToolFailure = createAction(
+  '[Tools/API] Save Tool Failure',
+  props<{ error: any }>()
+)

@@ -39,7 +39,7 @@ export class ToolDetailComponent implements OnInit {
     this.toolsFacade.deleteTool(tool.id);
   }
 
-  save(tool: Tool) {
+  updateTool(tool: Tool) {
     this.toolsFacade.updateTool({...tool, name: this.toolForm.value.name})
   }
 }

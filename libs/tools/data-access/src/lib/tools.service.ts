@@ -27,4 +27,8 @@ export class ToolsService {
   updateTool(tool: Tool) {
     return this.httpClient.put(`${this.API_URL}/tools/${tool.id}`, tool);
   }
+
+  saveTool(tool: Tool) {
+    return this.httpClient.post(`${this.API_URL}/tools`, tool);
+  }
 }

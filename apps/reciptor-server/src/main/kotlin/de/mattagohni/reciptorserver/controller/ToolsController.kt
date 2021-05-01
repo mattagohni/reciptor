@@ -30,9 +30,9 @@ class ToolsController(private val toolsService: ToolsService) {
   }
 
   @PostMapping("/api/v1/tools")
-  fun createTool(@RequestBody toolToSave: Tool): Mono<ResponseEntity<Void>> {
+  fun createTool(@RequestBody toolToSave: Tool): Mono<ResponseEntity<Tool>> {
     return toolsService.saveTool(toolToSave)
-      .map { ResponseEntity.status(HttpStatus.CREATED).build() }
+      .map { tool -> ResponseEntity.status(HttpStatus.CREATED).body(tool) }
   }
 
   @PutMapping("/api/v1/tools/{id}")

@@ -38,6 +38,10 @@ export class ToolsFacade {
   }
 
   updateTool(tool: Tool) {
-    this.store.dispatch(ToolsActions.updateTool({tool: tool}))
+    this.store.dispatch(ToolsActions.updateTool({tool: tool}));
+  }
+
+  saveTool(tool: Tool) {
+    this.store.dispatch(ToolsActions.saveTool({tool: tool}));
   }
 }

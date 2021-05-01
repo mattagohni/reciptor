@@ -53,7 +53,18 @@ const toolsReducer = createReducer(
     id: tool.id,
     changes: {...tool} as Partial<Tool>
   } as Update<Tool>, {...state, loaded: true, selectedId: tool.id}))),
-  on(ToolsActions.updateToolFailure, (state, {error}) => ({...state, error}))
+  on(ToolsActions.updateToolFailure, (state, {error}) => ({...state, error})),
+
+  on(ToolsActions.saveTool, (state) => ({...state, loaded: false, error: null})),
+  on(ToolsActions.saveToolSuccess, (state, {tool}) => (toolsAdapter.addOne(
+    tool,
+    {
+      ...state,
+      loaded: true,
+      selectedId: tool.id
+    }
+  ))),
+  on(ToolsActions.saveToolFailure, (state, {error}) => ({...state, error}))
 );
 
 export function reducer(state: State | undefined, action: Action) {

@@ -77,6 +77,22 @@ export class ToolsEffects {
     )
   );
 
+  saveTool$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ToolsActions.saveTool),
+      fetch({
+        run: (action) => {
+          return this.toolsService.saveTool(action.tool).pipe(
+            map((tool: Tool) => ToolsActions.saveToolSuccess({tool}))
+          )
+        },
+        onError: (action, error) => {
+          return ToolsActions.saveToolFailure({error});
+        }
+      })
+    )
+  );
+
   constructor(private actions$: Actions, private toolsService: ToolsService) {
   }
 }

@@ -1,6 +1,6 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {AddToolComponent} from '@reciptor/tools/ui';
+import {AddToolComponent} from './add-tool.component';
 import {SharedMaterialModule} from '@reciptor/shared/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {of} from 'rxjs';

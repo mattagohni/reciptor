@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Tool} from '@reciptor/tools/data-access';
+import {Tool} from './+state/tools.models';
 
 @Injectable({
   providedIn: 'root'

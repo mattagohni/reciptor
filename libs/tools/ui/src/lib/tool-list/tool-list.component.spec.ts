@@ -1,6 +1,6 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ToolListComponent} from '@reciptor/tools/ui';
+import {ToolListComponent} from './tool-list.component';
 import {ToolsFacade} from '@reciptor/tools/data-access';
 import {of} from 'rxjs';
 import {SharedMaterialModule} from '@reciptor/shared/material';

@@ -3,7 +3,7 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import * as ToolsActions from './tools.actions';
 import {ToolsService} from '../tools.service';
 import {map, mergeMap} from 'rxjs/operators';
-import {Tool} from '@reciptor/tools/data-access';
+import {Tool} from './tools.models';
 
 @Injectable()
 export class ToolsEffects {

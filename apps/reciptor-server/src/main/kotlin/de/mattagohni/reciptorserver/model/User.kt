@@ -5,16 +5,20 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import lombok.AllArgsConstructor
 import lombok.NoArgsConstructor
 import lombok.ToString
+import org.springframework.data.annotation.Id
+import org.springframework.data.relational.core.mapping.Table
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.util.stream.Collectors
 
-
+@Table
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 class User : UserDetails {
+  @Id
+  var id: Long? = null
 
   private var username: String? = null
   private var password: String? = null

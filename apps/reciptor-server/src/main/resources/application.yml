@@ -3,6 +3,7 @@ spring:
     user: reciptor
     password: reciptor
     locations: classpath:migrations
+    target: 5
   r2dbc:
     url: 'r2dbc:postgresql://localhost/postgres'
     username: reciptor

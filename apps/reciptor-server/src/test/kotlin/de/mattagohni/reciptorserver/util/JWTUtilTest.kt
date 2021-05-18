@@ -119,7 +119,7 @@ internal class JWTUtilTest {
     val token = jwtUtil.generateToken(user)
 
     // act
-    val isValid: Boolean = jwtUtil.validateToke(token)
+    val isValid: Boolean = jwtUtil.validateToken(token)
 
     // assert
     assertThat(isValid).isTrue
@@ -133,7 +133,7 @@ internal class JWTUtilTest {
       "XhwIjoxNjIxMzM4NDI5fQ.qMRMeF-Cj3QKK2eKrr-r0pQ8w7rsQOCVrVgA9NnkHIuabi_MsGwJFB4Qor-cfjCvTG90J_YhgWSuGWun1HMKGw"
 
     // act
-    val isValid: Boolean = jwtUtil.validateToke(token)
+    val isValid: Boolean = jwtUtil.validateToken(token)
 
     // assert
     assertThat(isValid).isFalse
@@ -146,7 +146,7 @@ internal class JWTUtilTest {
     val token = "someNoneSense"
 
     // act
-    val isValid: Boolean = jwtUtil.validateToke(token)
+    val isValid: Boolean = jwtUtil.validateToken(token)
 
     // assert
     assertThat(isValid).isFalse

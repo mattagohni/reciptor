@@ -57,7 +57,7 @@ class JWTUtil(private val jwtUtilConfiguration: JWTUtilConfiguration) {
     }
   }
 
-  fun validateToke(token: String): Boolean {
+  fun validateToken(token: String): Boolean {
     return try {
       !isTokenExpired(token)
     } catch (exception: MalformedJwtException) {

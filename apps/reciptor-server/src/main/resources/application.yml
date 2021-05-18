@@ -18,5 +18,8 @@ reciptor:
       secret: ${RECIPTOR_ENCODER_SECRET}
       iteration: ${RECIPTOR_ENCODER_ITERATION}
       keylength: ${RECIPTOR_ENCODER_KEYLENGTH}
+  jwt:
+    secret: ${RECIPTOR_JWT_SECRET}
+    expiration: ${RECIPTOR_JWT_EXPIRATION}
 
 

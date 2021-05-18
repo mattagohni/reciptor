@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest(
+  classes = [PasswordEncoderConfiguration::class],
   properties = [
     "reciptor.password.encoder.secret=superSecret",
     "reciptor.password.encoder.iteration=25",

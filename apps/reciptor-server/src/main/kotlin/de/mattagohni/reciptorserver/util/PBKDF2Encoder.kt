@@ -1,4 +1,4 @@
-package de.mattagohni.reciptorserver.service
+package de.mattagohni.reciptorserver.util
 
 import de.mattagohni.reciptorserver.configuration.PasswordEncoderConfiguration
 import org.springframework.security.crypto.password.PasswordEncoder

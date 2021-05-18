@@ -1,5 +1,6 @@
-package de.mattagohni.reciptorserver.service
+package de.mattagohni.reciptorserver.util
 
+import de.mattagohni.reciptorserver.configuration.PasswordEncoderConfiguration
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest(
+  classes = [PBKDF2Encoder::class, PasswordEncoderConfiguration::class],
   properties = [
     "reciptor.password.encoder.secret=superSecret",
     "reciptor.password.encoder.iteration=25",

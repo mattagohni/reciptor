@@ -9,7 +9,6 @@ import java.util.Base64
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.PBEKeySpec
 
-
 @Component
 class PBKDF2Encoder(private val configuration: PasswordEncoderConfiguration) : PasswordEncoder {
   override fun encode(input: CharSequence?): String {

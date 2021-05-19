@@ -1,6 +1,6 @@
-package de.mattagohni.reciptorserver.util
+package de.mattagohni.reciptorserver.authentication.util
 
-import de.mattagohni.reciptorserver.configuration.PasswordEncoderConfiguration
+import de.mattagohni.reciptorserver.authentication.configuration.PasswordEncoderConfiguration
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 import java.security.NoSuchAlgorithmException

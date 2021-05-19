@@ -1,7 +1,7 @@
 package de.mattagohni.reciptorserver.authentication
 
+import de.mattagohni.reciptorserver.authentication.util.JWTUtil
 import de.mattagohni.reciptorserver.model.Role
-import de.mattagohni.reciptorserver.util.JWTUtil
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.impl.DefaultClaims
 import io.mockk.every

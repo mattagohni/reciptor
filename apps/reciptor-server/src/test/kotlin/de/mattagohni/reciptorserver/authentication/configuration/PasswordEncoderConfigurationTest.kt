@@ -1,4 +1,4 @@
-package de.mattagohni.reciptorserver.configuration
+package de.mattagohni.reciptorserver.authentication.configuration
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName

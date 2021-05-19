@@ -1,6 +1,6 @@
 package de.mattagohni.reciptorserver.authentication
 
-import de.mattagohni.reciptorserver.util.JWTUtil
+import de.mattagohni.reciptorserver.authentication.util.JWTUtil
 import io.jsonwebtoken.Claims
 import org.springframework.security.authentication.ReactiveAuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken

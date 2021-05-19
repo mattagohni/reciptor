@@ -1,6 +1,6 @@
-package de.mattagohni.reciptorserver.util
+package de.mattagohni.reciptorserver.authentication.util
 
-import de.mattagohni.reciptorserver.configuration.JWTUtilConfiguration
+import de.mattagohni.reciptorserver.authentication.configuration.JWTUtilConfiguration
 import de.mattagohni.reciptorserver.model.User
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException

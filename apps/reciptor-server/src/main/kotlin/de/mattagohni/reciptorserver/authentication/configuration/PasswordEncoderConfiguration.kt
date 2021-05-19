@@ -1,4 +1,4 @@
-package de.mattagohni.reciptorserver.configuration
+package de.mattagohni.reciptorserver.authentication.configuration
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties

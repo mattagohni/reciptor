@@ -1,6 +1,6 @@
-package de.mattagohni.reciptorserver.util
+package de.mattagohni.reciptorserver.authentication.util
 
-import de.mattagohni.reciptorserver.configuration.PasswordEncoderConfiguration
+import de.mattagohni.reciptorserver.authentication.configuration.PasswordEncoderConfiguration
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test

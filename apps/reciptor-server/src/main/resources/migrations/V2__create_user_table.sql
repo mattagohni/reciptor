@@ -1,4 +1,4 @@
-create table if not exists "user"
+create table if not exists reciptor_user
 (
     id  bigserial
         primary key,

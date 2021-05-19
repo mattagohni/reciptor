@@ -1,7 +1,7 @@
 package de.mattagohni.reciptorserver.authentication.util
 
 import de.mattagohni.reciptorserver.authentication.configuration.JWTUtilConfiguration
-import de.mattagohni.reciptorserver.model.User
+import de.mattagohni.reciptorserver.model.ReciptorUser
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.Jwts
@@ -14,7 +14,7 @@ import java.util.Date
 class JWTUtil(private val jwtUtilConfiguration: JWTUtilConfiguration) {
   private val key = Keys.hmacShaKeyFor(jwtUtilConfiguration.secret!!.toByteArray())
 
-  fun generateToken(user: User): String {
+  fun generateToken(user: ReciptorUser): String {
     val claims: MutableMap<String, Any?> = HashMap()
     claims["role"] = user.roles
 

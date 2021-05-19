@@ -4,12 +4,12 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-internal class UserTest {
+internal class ReciptorUserTest {
 
   @Test
   @DisplayName("create User with username")
   fun user() {
-    val user = User(username = "mattagohni")
+    val user = ReciptorUser(username = "mattagohni")
 
     assertThat(user.username).isEqualTo("mattagohni")
   }
@@ -17,7 +17,7 @@ internal class UserTest {
   @Test
   @DisplayName("set username on fresh user")
   fun setUsername() {
-    val user = User()
+    val user = ReciptorUser()
     user.setUsername("mattagohni")
 
     assertThat(user.username).isEqualTo("mattagohni")
@@ -26,7 +26,7 @@ internal class UserTest {
   @Test
   @DisplayName("isAccountNonExpired returns false")
   fun isAccountNonExpired() {
-    val user = User()
+    val user = ReciptorUser()
 
     assertThat(user.isAccountNonExpired).isFalse
   }
@@ -34,7 +34,7 @@ internal class UserTest {
   @Test
   @DisplayName("isAccountNonLocked returns false")
   fun isAccountNonLocked() {
-    val user = User()
+    val user = ReciptorUser()
 
     assertThat(user.isAccountNonLocked).isFalse
   }
@@ -42,7 +42,7 @@ internal class UserTest {
   @Test
   @DisplayName("isCredentialsNonExpired returns false")
   fun isCredentialsNonExpired() {
-    val user = User()
+    val user = ReciptorUser()
 
     assertThat(user.isCredentialsNonExpired).isFalse
   }
@@ -50,7 +50,7 @@ internal class UserTest {
   @Test
   @DisplayName("enabled can be set to true")
   fun isEnabled() {
-    val user = User()
+    val user = ReciptorUser()
     user.enabled = true
 
     assertThat(user.isEnabled).isTrue
@@ -59,7 +59,7 @@ internal class UserTest {
   @Test
   @DisplayName("returns given Authorities")
   fun getAuthorities() {
-    val user = User()
+    val user = ReciptorUser()
     val listOfAuthorities = listOf(Role.ROLE_BASIC_USER, Role.ROLE_ADMIN)
     user.roles = listOfAuthorities
 
@@ -73,7 +73,7 @@ internal class UserTest {
   @Test
   @DisplayName("it can set and get a password")
   fun getPassword() {
-    val user = User()
+    val user = ReciptorUser()
     user.password = "ultraSavePassword"
 
     assertThat(user.password).isEqualTo("ultraSavePassword")

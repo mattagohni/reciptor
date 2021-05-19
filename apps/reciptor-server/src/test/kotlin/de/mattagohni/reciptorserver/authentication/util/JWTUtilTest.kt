@@ -1,8 +1,8 @@
 package de.mattagohni.reciptorserver.authentication.util
 
 import de.mattagohni.reciptorserver.authentication.configuration.JWTUtilConfiguration
+import de.mattagohni.reciptorserver.model.ReciptorUser
 import de.mattagohni.reciptorserver.model.Role
-import de.mattagohni.reciptorserver.model.User
 import io.jsonwebtoken.Claims
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
@@ -20,7 +20,7 @@ internal class JWTUtilTest {
   @Autowired
   private lateinit var jwtUtil: JWTUtil
 
-  val user = User("mattagohni")
+  val user = ReciptorUser("mattagohni")
 
   @BeforeEach
   fun setupUser() {

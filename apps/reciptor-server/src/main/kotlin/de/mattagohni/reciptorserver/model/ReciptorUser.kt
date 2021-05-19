@@ -16,7 +16,7 @@ import java.util.stream.Collectors
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-class User : UserDetails {
+class ReciptorUser : UserDetails {
   @Id
   var id: Long? = null
 
@@ -37,7 +37,7 @@ class User : UserDetails {
     return username
   }
 
-  open fun setUsername(username: String) {
+  fun setUsername(username: String) {
     this.username = username
   }
 
@@ -71,7 +71,7 @@ class User : UserDetails {
   }
 
   @JsonProperty
-  open fun setPassword(password: String?) {
+  fun setPassword(password: String?) {
     this.password = password
   }
 }

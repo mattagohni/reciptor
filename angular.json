@@ -254,6 +254,18 @@
             "jestConfig": "libs/shared/material/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/shared/material/tsconfig.lib.json",
+            "project": "libs/shared/material/ng-package.json"
+          },
+          "configurations": {
+            "": {
+              "tsConfig": "libs/shared/material/tsconfig.lib.prod.json"
+            }
+          }
         }
       }
     },

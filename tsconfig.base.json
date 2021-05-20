@@ -18,6 +18,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@reciptor/app-config": [
+        "libs/shared/app-config"
+      ],
       "@reciptor/shared/material": [
         "libs/shared/material/src/index.ts"
       ],

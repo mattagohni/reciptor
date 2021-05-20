@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Mono
+import java.util.Date
 
 @RestController
 class UserController(val jwtUtil: JWTUtil, val pbkdF2Encoder: PBKDF2Encoder, val userService: UserService) {
@@ -20,7 +21,8 @@ class UserController(val jwtUtil: JWTUtil, val pbkdF2Encoder: PBKDF2Encoder, val
     return userService.findByUsername(authRequest.username)
       .map {
         if (pbkdF2Encoder.encode(authRequest.password) == it.password) {
-          ResponseEntity.ok(AuthResponse(jwtUtil.generateToken(it)))
+          val token = jwtUtil.generateToken(it)
+          ResponseEntity.ok(AuthResponse(token, jwtUtil.getExpirationDateFromToken(token).toInstant().epochSecond))
         } else {
           ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()
         }

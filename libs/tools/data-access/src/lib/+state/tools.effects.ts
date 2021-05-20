@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import * as ToolsActions from './tools.actions';
 import {ToolsService} from '../tools.service';
-import {map, mergeMap} from 'rxjs/operators';
+import {catchError, map, mergeMap} from 'rxjs/operators';
 import {Tool} from './tools.models';
+import {of} from 'rxjs';
 
 @Injectable()
 export class ToolsEffects {
@@ -13,7 +14,8 @@ export class ToolsEffects {
       mergeMap(() => {
         return this.toolsService.getAll()
           .pipe(
-            map(tools => ToolsActions.loadToolsSuccess({tools}))
+            map(tools => ToolsActions.loadToolsSuccess({tools})),
+            catchError(err => of(ToolsActions.loadToolsFailure(err))),
           );
       }),
     ));
@@ -23,7 +25,8 @@ export class ToolsEffects {
       ofType(ToolsActions.loadToolById),
       mergeMap((action) => {
         return this.toolsService.getTool(action.id).pipe(
-          map(tool => ToolsActions.loadToolSuccess({tool}))
+          map(tool => ToolsActions.loadToolSuccess({tool})),
+          catchError(err => of(ToolsActions.loadToolFailure(err))),
         )
       })
     ));
@@ -33,7 +36,8 @@ export class ToolsEffects {
       ofType(ToolsActions.deleteToolById),
       mergeMap((action) => {
         return this.toolsService.deleteTool(action.id).pipe(
-          map(() => ToolsActions.deleteToolByIdSuccess({id: action.id}))
+          map(() => ToolsActions.deleteToolByIdSuccess({id: action.id})),
+          catchError(err => of(ToolsActions.deleteToolByIdFailure(err))),
         )
       })
     ));
@@ -43,7 +47,8 @@ export class ToolsEffects {
       ofType(ToolsActions.updateTool),
       mergeMap((action) => {
         return this.toolsService.updateTool(action.tool).pipe(
-          map((tool: Tool) => ToolsActions.updateToolSuccess({tool}))
+          map((tool: Tool) => ToolsActions.updateToolSuccess({tool})),
+          catchError(err => of(ToolsActions.updateToolFailure(err))),
         )
       })
     ));
@@ -53,7 +58,8 @@ export class ToolsEffects {
       ofType(ToolsActions.saveTool),
       mergeMap((action) => {
         return this.toolsService.saveTool(action.tool).pipe(
-          map((tool: Tool) => ToolsActions.saveToolSuccess({tool}))
+          map((tool: Tool) => ToolsActions.saveToolSuccess({tool})),
+          catchError(err => of(ToolsActions.saveToolFailure(err))),
         )
       })
     ));

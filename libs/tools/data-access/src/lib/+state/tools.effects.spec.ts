@@ -67,7 +67,7 @@ describe('ToolsEffects', () => {
     });
 
     it('should receive an error, when loading fails', function () {
-      toolsService.getTool.mockReturnValue(throwError({status: 404}));
+      toolsService.getTool.mockReturnValue(throwError({error:{status: 404}}));
       actions = hot('-a-|', {a: ToolsActions.loadToolById({id: 1})});
 
       const expected = hot('-a-|', {
@@ -93,7 +93,7 @@ describe('ToolsEffects', () => {
     });
 
     it('it fires failure action if tool cannot be deleted', () => {
-      toolsService.deleteTool.mockReturnValue(throwError({status: 404}));
+      toolsService.deleteTool.mockReturnValue(throwError({error: {status: 404}}));
       actions = hot('-a-|', {a: ToolsActions.deleteToolById({id: 1})});
 
       const expected = hot('-a-|', {
@@ -110,7 +110,7 @@ describe('ToolsEffects', () => {
       const tool = {id: 1, name: 'spoon'};
       toolsService.updateTool.mockReturnValue(of(tool));
 
-      actions = hot('-a-|', {a: ToolsActions.updateTool({ tool: tool })});
+      actions = hot('-a-|', {a: ToolsActions.updateTool({tool: tool})});
 
       const expected = hot('-a-|', {
         a: ToolsActions.updateToolSuccess({tool: tool})
@@ -126,7 +126,7 @@ describe('ToolsEffects', () => {
       const tool = {id: undefined, name: 'spoon'};
       toolsService.saveTool.mockReturnValue(of({...tool, id: 4711}));
 
-      actions = hot('-a-|', {a: ToolsActions.saveTool({ tool: tool })});
+      actions = hot('-a-|', {a: ToolsActions.saveTool({tool: tool})});
 
       const expected = hot('-a-|', {
         a: ToolsActions.saveToolSuccess({tool: {...tool, id: 4711}})

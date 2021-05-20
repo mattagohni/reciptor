@@ -25,7 +25,8 @@
     "@nrwl/angular:library": {
       "style": "scss",
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "strict": true
     },
     "@nrwl/angular:component": {
       "style": "scss"
@@ -56,7 +57,9 @@
                 "output": "./assets/i18n/ui-header/"
               }
             ],
-            "styles": ["apps/reciptor/src/styles.scss"],
+            "styles": [
+              "apps/reciptor/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -134,7 +137,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/reciptor"],
+          "outputs": [
+            "coverage/apps/reciptor"
+          ],
           "options": {
             "jestConfig": "apps/reciptor/jest.config.js",
             "passWithNoTests": true
@@ -163,7 +168,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/reciptor-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/reciptor-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -240,7 +247,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/material"],
+          "outputs": [
+            "coverage/libs/shared/material"
+          ],
           "options": {
             "jestConfig": "libs/shared/material/jest.config.js",
             "passWithNoTests": true
@@ -265,7 +274,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/ui-header"],
+          "outputs": [
+            "coverage/libs/shared/ui-header"
+          ],
           "options": {
             "jestConfig": "libs/shared/ui-header/jest.config.js",
             "passWithNoTests": true
@@ -290,7 +301,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/tools/data-access"],
+          "outputs": [
+            "coverage/libs/tools/data-access"
+          ],
           "options": {
             "jestConfig": "libs/tools/data-access/jest.config.js",
             "passWithNoTests": true
@@ -315,7 +328,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/tools/ui"],
+          "outputs": [
+            "coverage/libs/tools/ui"
+          ],
           "options": {
             "jestConfig": "libs/tools/ui/jest.config.js",
             "passWithNoTests": true
@@ -340,9 +355,50 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/tools/feature"],
+          "outputs": [
+            "coverage/libs/tools/feature"
+          ],
           "options": {
             "jestConfig": "libs/tools/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "authentication-feature": {
+      "projectType": "library",
+      "root": "libs/authentication/feature",
+      "sourceRoot": "libs/authentication/feature/src",
+      "prefix": "reciptor",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/authentication/feature/tsconfig.lib.json",
+            "project": "libs/authentication/feature/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/authentication/feature/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/authentication/feature/src/**/*.ts",
+              "libs/authentication/feature/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/authentication/feature"
+          ],
+          "options": {
+            "jestConfig": "libs/authentication/feature/jest.config.js",
             "passWithNoTests": true
           }
         }

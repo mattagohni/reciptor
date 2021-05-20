@@ -6,5 +6,6 @@ module.exports = {
     '<rootDir>/libs/tools/data-access',
     '<rootDir>/libs/tools/ui',
     '<rootDir>/libs/tools/feature',
+    '<rootDir>/libs/authentication/feature',
   ],
 };

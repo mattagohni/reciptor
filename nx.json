@@ -23,6 +23,7 @@
     "shared-ui-header": { "tags": ["type:ui", "scope:shared"] },
     "tools-data-access": { "tags": ["type:data-access", "scope:reciptor"] },
     "tools-ui": { "tags": ["type:ui", "scope:reciptor"] },
-    "tools-feature": { "tags": ["type:feature", "scope:reciptor"] }
+    "tools-feature": { "tags": ["type:feature", "scope:reciptor"] },
+    "authentication-feature": { "tags": ["type:feature", "scope:reciptor"] }
   }
 }

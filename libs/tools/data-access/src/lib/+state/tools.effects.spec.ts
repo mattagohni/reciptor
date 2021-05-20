@@ -19,7 +19,9 @@ describe('ToolsEffects', () => {
   const toolsService = {
     getAll: jest.fn(),
     getTool: jest.fn(),
-    deleteTool: jest.fn()
+    deleteTool: jest.fn(),
+    updateTool: jest.fn(),
+    saveTool: jest.fn()
   }
 
   beforeEach(() => {
@@ -65,7 +67,7 @@ describe('ToolsEffects', () => {
     });
 
     it('should receive an error, when loading fails', function () {
-      toolsService.getTool.mockReturnValue(throwError({status: 404}));
+      toolsService.getTool.mockReturnValue(throwError({error:{status: 404}}));
       actions = hot('-a-|', {a: ToolsActions.loadToolById({id: 1})});
 
       const expected = hot('-a-|', {
@@ -91,7 +93,7 @@ describe('ToolsEffects', () => {
     });
 
     it('it fires failure action if tool cannot be deleted', () => {
-      toolsService.deleteTool.mockReturnValue(throwError({status: 404}));
+      toolsService.deleteTool.mockReturnValue(throwError({error: {status: 404}}));
       actions = hot('-a-|', {a: ToolsActions.deleteToolById({id: 1})});
 
       const expected = hot('-a-|', {
@@ -101,5 +103,37 @@ describe('ToolsEffects', () => {
       expect(effects.deleteTool$).toBeObservable(expected);
       expect(toolsService.deleteTool).toHaveBeenNthCalledWith(1, 1)
     });
+  });
+
+  describe('updating a tool', () => {
+    it('should update a tool', () => {
+      const tool = {id: 1, name: 'spoon'};
+      toolsService.updateTool.mockReturnValue(of(tool));
+
+      actions = hot('-a-|', {a: ToolsActions.updateTool({tool: tool})});
+
+      const expected = hot('-a-|', {
+        a: ToolsActions.updateToolSuccess({tool: tool})
+      });
+
+      expect(effects.updateTool$).toBeObservable(expected);
+      expect(toolsService.updateTool).toHaveBeenNthCalledWith(1, tool)
+    });
+  });
+
+  describe('saving a tool', () => {
+    it('should save a tool', () => {
+      const tool = {id: undefined, name: 'spoon'};
+      toolsService.saveTool.mockReturnValue(of({...tool, id: 4711}));
+
+      actions = hot('-a-|', {a: ToolsActions.saveTool({tool: tool})});
+
+      const expected = hot('-a-|', {
+        a: ToolsActions.saveToolSuccess({tool: {...tool, id: 4711}})
+      });
+
+      expect(effects.saveTool$).toBeObservable(expected);
+      expect(toolsService.saveTool).toHaveBeenNthCalledWith(1, tool)
+    })
   });
 });

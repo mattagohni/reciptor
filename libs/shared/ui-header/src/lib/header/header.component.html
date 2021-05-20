@@ -1,5 +1,13 @@
-<div class="reciptor-header">
-  <mat-toolbar color="primary">
-    <span>{{ 'header.title' | translate }}</span>
+<div fxFlex="100" fxLayout="row" fxLayoutGap="2rem" class="reciptor-header">
+  <mat-toolbar fxFlex="100" color="primary">
+    <div [routerLink]="['']" class="reciptor-header-title" fxLayoutAlign="start">
+      <span>{{ 'header.title' | translate }}</span>
+    </div>
+    <div class="reciptor-header-menu" fxFlex="67">
+      <button mat-button [matMenuTriggerFor]="tools">{{'menu.tools.title' | translate}}</button>
+      <mat-menu #tools="matMenu">
+        <button mat-menu-item [routerLink]="['tools']">{{'menu.tools.overview' | translate}}</button>
+      </mat-menu>
+    </div>
   </mat-toolbar>
 </div>

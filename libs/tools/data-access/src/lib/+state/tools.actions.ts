@@ -36,10 +36,40 @@ export const deleteToolById = createAction(
 
 export const deleteToolByIdSuccess = createAction(
   '[Tools/API] Delete Tool Success',
-  props<{ id: number | string}>()
+  props<{ id: number | string }>()
 )
 
 export const deleteToolByIdFailure = createAction(
   '[Tools/API] Delete Tool Failure',
+  props<{ error: any }>()
+)
+
+export const updateTool = createAction(
+  '[Tools/API] Update Tool',
+  props<{ tool: Tool }>()
+)
+
+export const updateToolSuccess = createAction(
+  '[Tools/API] Update Tool Success',
+  props<{ tool: Tool }>()
+)
+
+export const updateToolFailure = createAction(
+  '[Tools/API] Update Tool Failure',
+  props<{ error: any }>()
+)
+
+export const saveTool = createAction(
+  '[Tools/API] Save Tool',
+  props<{ tool: Tool }>()
+)
+
+export const saveToolSuccess = createAction(
+  '[Tools/API] Save Tool Success',
+  props<{ tool: Tool }>()
+)
+
+export const saveToolFailure = createAction(
+  '[Tools/API] Save Tool Failure',
   props<{ error: any }>()
 )

@@ -26,7 +26,7 @@ describe('ToolsService', () => {
         {id: 2, name: 'spoon'}
       ]
 
-      service.getAll().subscribe( tools => {
+      service.getAll().subscribe(tools => {
           tools.every(tool => {
             expect(expectedTools).toContain(tool)
           })
@@ -59,6 +59,28 @@ describe('ToolsService', () => {
 
       const request = httpMock.expectOne(`${service.API_URL}/tools/1`);
       expect(request.request.method).toBe('DELETE');
+    });
+  });
+
+  describe('#updateTool', () => {
+    it('should save a given tool', () => {
+      const tool = {id: 1, name: 'spoon'};
+      service.updateTool(tool).subscribe();
+
+      const request = httpMock.expectOne(`${service.API_URL}/tools/1`);
+      expect(request.request.method).toBe('PUT');
+      expect(request.request.body).toEqual(tool);
+    });
+  });
+
+  describe('#createTool', () => {
+    it('should create a new tool', () => {
+      const tool = {id: undefined, name: 'slicer'};
+      service.saveTool(tool).subscribe();
+
+      const request = httpMock.expectOne(`${service.API_URL}/tools`);
+      expect(request.request.method).toBe('POST');
+      expect(request.request.body).toEqual(tool)
     });
   });
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Mono
@@ -29,9 +30,15 @@ class ToolsController(private val toolsService: ToolsService) {
   }
 
   @PostMapping("/api/v1/tools")
-  fun createTool(@RequestBody toolToSave: Tool): Mono<ResponseEntity<Void>> {
+  fun createTool(@RequestBody toolToSave: Tool): Mono<ResponseEntity<Tool>> {
     return toolsService.saveTool(toolToSave)
-      .map { ResponseEntity.status(HttpStatus.CREATED).build() }
+      .map { tool -> ResponseEntity.status(HttpStatus.CREATED).body(tool) }
+  }
+
+  @PutMapping("/api/v1/tools/{id}")
+  fun updateTool(@PathVariable id: Int, @RequestBody toolToUpdate: Tool): Mono<ResponseEntity<Tool>> {
+    return toolsService.update(id, toolToUpdate)
+      .map { tool -> ResponseEntity.status(HttpStatus.ACCEPTED).body(tool) }
   }
 
   @DeleteMapping("/api/v1/tools/{id}")

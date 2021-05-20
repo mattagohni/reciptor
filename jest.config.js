@@ -7,5 +7,6 @@ module.exports = {
     '<rootDir>/libs/tools/ui',
     '<rootDir>/libs/tools/feature',
     '<rootDir>/libs/authentication/feature',
+    '<rootDir>/libs/authentication/ui',
   ],
 };

@@ -403,6 +403,45 @@
           }
         }
       }
+    },
+    "authentication-ui": {
+      "projectType": "library",
+      "root": "libs/authentication/ui",
+      "sourceRoot": "libs/authentication/ui/src",
+      "prefix": "reciptor",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/authentication/ui/tsconfig.lib.json",
+            "project": "libs/authentication/ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/authentication/ui/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/authentication/ui/src/**/*.ts",
+              "libs/authentication/ui/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/authentication/ui"
+          ],
+          "options": {
+            "jestConfig": "libs/authentication/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

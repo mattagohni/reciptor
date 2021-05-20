@@ -35,6 +35,9 @@
       ],
       "@reciptor/authentication/feature": [
         "libs/authentication/feature/src/index.ts"
+      ],
+      "@reciptor/authentication/ui": [
+        "libs/authentication/ui/src/index.ts"
       ]
     }
   },

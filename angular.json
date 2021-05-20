@@ -442,6 +442,45 @@
           }
         }
       }
+    },
+    "authentication-data-access": {
+      "projectType": "library",
+      "root": "libs/authentication/data-access",
+      "sourceRoot": "libs/authentication/data-access/src",
+      "prefix": "reciptor",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/authentication/data-access/tsconfig.lib.json",
+            "project": "libs/authentication/data-access/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/authentication/data-access/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/authentication/data-access/src/**/*.ts",
+              "libs/authentication/data-access/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/authentication/data-access"
+          ],
+          "options": {
+            "jestConfig": "libs/authentication/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

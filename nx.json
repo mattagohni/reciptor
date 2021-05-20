@@ -1,30 +1,96 @@
 {
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "affected": { "defaultBase": "master" },
+  "affected": {
+    "defaultBase": "master"
+  },
   "npmScope": "reciptor",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
+      }
     }
   },
   "projects": {
-    "reciptor": { "tags": ["scope:reciptor"] },
-    "reciptor-e2e": { "tags": [], "implicitDependencies": ["reciptor"] },
-    "reciptor-server": { "tags": ["scope:reciptor-server"] },
-    "shared-material": { "tags": ["type:ui", "scope:shared"] },
-    "shared-ui-header": { "tags": ["type:ui", "scope:shared"] },
-    "tools-data-access": { "tags": ["type:data-access", "scope:reciptor"] },
-    "tools-ui": { "tags": ["type:ui", "scope:reciptor"] },
-    "tools-feature": { "tags": ["type:feature", "scope:reciptor"] },
-    "authentication-feature": { "tags": ["type:feature", "scope:reciptor"] },
-    "authentication-ui": { "tags": ["type:ui", "scope:reciptor"] }
+    "reciptor": {
+      "tags": [
+        "scope:reciptor"
+      ]
+    },
+    "reciptor-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "reciptor"
+      ]
+    },
+    "reciptor-server": {
+      "tags": [
+        "scope:reciptor-server"
+      ]
+    },
+    "shared-material": {
+      "tags": [
+        "type:ui",
+        "scope:shared"
+      ]
+    },
+    "shared-ui-header": {
+      "tags": [
+        "type:ui",
+        "scope:shared"
+      ]
+    },
+    "tools-data-access": {
+      "tags": [
+        "type:data-access",
+        "scope:reciptor"
+      ]
+    },
+    "tools-ui": {
+      "tags": [
+        "type:ui",
+        "scope:reciptor"
+      ]
+    },
+    "tools-feature": {
+      "tags": [
+        "type:feature",
+        "scope:reciptor"
+      ]
+    },
+    "authentication-feature": {
+      "tags": [
+        "type:feature",
+        "scope:reciptor"
+      ]
+    },
+    "authentication-ui": {
+      "tags": [
+        "type:ui",
+        "scope:reciptor"
+      ]
+    },
+    "authentication-data-access": {
+      "tags": [
+        "type:data-access",
+        "scope:reciptor"
+      ]
+    }
   }
 }

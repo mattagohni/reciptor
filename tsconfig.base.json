@@ -38,6 +38,9 @@
       ],
       "@reciptor/authentication/ui": [
         "libs/authentication/ui/src/index.ts"
+      ],
+      "@reciptor/authentication/data-access": [
+        "libs/authentication/data-access/src/index.ts"
       ]
     }
   },

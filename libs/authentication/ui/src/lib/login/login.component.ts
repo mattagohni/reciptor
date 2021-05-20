@@ -15,13 +15,11 @@ export class LoginComponent {
     username: '',
     password: '',
   }
-  constructor(private httpClient: HttpClient) { }
+  constructor() { }
 
 
 
   submit() {
-    this.httpClient.post(this.API_URL, {username: this.formData.username, password: this.formData.password }).subscribe(
-      value => console.log(value)
-    )
+    // use authentication-service
   }
 }

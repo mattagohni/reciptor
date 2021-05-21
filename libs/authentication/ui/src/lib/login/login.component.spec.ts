@@ -1,36 +1,23 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-
 import {LoginComponent} from './login.component';
-import {AuthenticationService} from '@reciptor/authentication/data-access';
-import {FormComponent} from './form/form.component';
-import {SharedMaterialModule} from '@reciptor/shared/material';
-import {FormsModule} from '@angular/forms';
-import {TranslateModule} from '@ngx-translate/core';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {ReciptorAuthenticationRequest} from '@reciptor/authentication/data-access';
+import {of} from 'rxjs';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
-  const authenticationService = {login: jest.fn}
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [SharedMaterialModule, FormsModule, TranslateModule.forRoot(), NoopAnimationsModule],
-      declarations: [LoginComponent, FormComponent],
-      providers: [
-        {provide: AuthenticationService, useValue: authenticationService}
-      ]
-    })
-      .compileComponents();
-  });
+  const authenticationService = {login: jest.fn(() => of({token: 'someToken', expires: Date.now() + 1000}))}
+  const router = {navigate: jest.fn()}
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    component = new LoginComponent(authenticationService as any, router as any)
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('navigates to root page after successful login', () => {
+    const authRequest: ReciptorAuthenticationRequest = {username: 'mattagohni', password: 'myPassword'}
+
+    component.handleAuthenticationEvent(authRequest);
+
+    expect(authenticationService.login).toHaveBeenCalledWith(authRequest);
+    expect(router.navigate).toHaveBeenCalledWith(['']);
   });
 });

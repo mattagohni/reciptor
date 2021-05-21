@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {AuthenticationService} from '@reciptor/authentication/data-access';
 import {ReciptorAuthenticationRequest} from '@reciptor/authentication/data-access';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'reciptor-login',
@@ -10,10 +11,10 @@ import {ReciptorAuthenticationRequest} from '@reciptor/authentication/data-acces
 })
 export class LoginComponent {
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService, private router: Router) {
   }
 
   handleAuthenticationEvent($event: ReciptorAuthenticationRequest) {
-    this.authenticationService.login($event).subscribe(value => console.log(value))
+    this.authenticationService.login($event).subscribe(() => this.router.navigate(['']))
   }
 }

@@ -72,7 +72,7 @@ internal class JWTUtilTest {
     // assert
 
     assertThat(expirationDate).isAfter(now)
-    assertThat(expirationDate).isCloseTo(expectedDate, 1000)
+    assertThat(expirationDate).isCloseTo(expectedDate, 60000)
   }
 
   @Test

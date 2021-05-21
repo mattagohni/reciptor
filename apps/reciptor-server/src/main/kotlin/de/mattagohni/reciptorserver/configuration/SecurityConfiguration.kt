@@ -39,7 +39,6 @@ class SecurityConfiguration(
       .authorizeExchange()
       .pathMatchers(HttpMethod.OPTIONS).permitAll()
       .pathMatchers("/api/v1/login").permitAll()
-      .pathMatchers("/api/v1/tools/**").permitAll() // @todo have to be removed when frontend can store and send token
       .anyExchange().authenticated()
       .and().build()
   }

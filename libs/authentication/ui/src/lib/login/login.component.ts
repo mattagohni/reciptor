@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {AuthenticationService} from '@reciptor/authentication/data-access';
+import {ReciptorAuthenticationRequest} from '@reciptor/authentication/data-access';
 
 @Component({
   selector: 'reciptor-login',
@@ -9,17 +10,10 @@ import {HttpClient} from '@angular/common/http';
 })
 export class LoginComponent {
 
-  API_URL =  'http://localhost:8080/api/v1/login'
-
-  formData = {
-    username: '',
-    password: '',
+  constructor(private authenticationService: AuthenticationService) {
   }
-  constructor() { }
 
-
-
-  submit() {
-    // use authentication-service
+  handleAuthenticationEvent($event: ReciptorAuthenticationRequest) {
+    this.authenticationService.login($event).subscribe(value => console.log(value))
   }
 }

@@ -1,15 +1,3 @@
 <ng-container>
-  <form #loginForm="ngForm" class="login-form">
-    <mat-form-field class="login-username">
-      <input matInput placeholder="username" value="" type="text"
-             [(ngModel)]="formData.username" name="username">
-    </mat-form-field>
-
-    <mat-form-field class="login-password">
-      <input type="password" matInput placeholder="password" value="*"
-             [(ngModel)]="formData.password" name="password">
-    </mat-form-field>
-
-    <button (click)="submit()" mat-raised-button color="primary">{{'login.submit' | translate}}</button>
-  </form>
+ <reciptor-form (authRequestEvent)="handleAuthenticationEvent($event)"></reciptor-form>
 </ng-container>

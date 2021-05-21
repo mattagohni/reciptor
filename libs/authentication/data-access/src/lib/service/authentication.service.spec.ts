@@ -4,7 +4,7 @@ import {AuthenticationService} from './authentication.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {ReciptorAuthenticationRequest} from '../types/authentication.request';
 import {ReciptorAuthenticationResponse} from '../types/authentication.response';
-import {RECIPTOR_API_CONFIG} from '../../../../feature/src/lib/tokens/injection-tokens';
+import {RECIPTOR_API_URL} from '@reciptor/app-config';
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService;
@@ -20,7 +20,7 @@ describe('AuthenticationService', () => {
       imports: [HttpClientTestingModule],
       providers: [
         AuthenticationService,
-        {provide: RECIPTOR_API_CONFIG, useValue: {baseUrl: 'http://reciptor.mattagohni.de'}}
+        {provide: RECIPTOR_API_URL, useValue: 'http://reciptor.mattagohni.de'}
       ]
     });
     service = TestBed.inject(AuthenticationService);
@@ -31,7 +31,7 @@ describe('AuthenticationService', () => {
     const authRequest: ReciptorAuthenticationRequest = {username: 'mattagohni', password: 'myPassword'};
     const expiresAt = Date.now() + 1000;
 
-    const authResponse: ReciptorAuthenticationResponse = {token: 'someToken', expiresAt: expiresAt};
+    const authResponse: ReciptorAuthenticationResponse = {token: 'someToken', expires: expiresAt};
 
     service.login(authRequest).subscribe(
       response => {

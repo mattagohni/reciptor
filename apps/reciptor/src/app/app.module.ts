@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedUiHeaderModule} from '@reciptor/shared/ui-header';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {MultiTranslateHttpLoader} from 'ngx-translate-multi-http-loader';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
@@ -13,7 +13,8 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
 import {FlexModule} from '@angular/flex-layout';
-import {RECIPTOR_CONFIG} from '@reciptor/app-config';
+import {RECIPTOR_API_URL} from '@reciptor/app-config';
+import {AuthInterceptor} from '@reciptor/authentication/data-access';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -56,7 +57,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FlexModule,
   ],
   providers: [
-    {provide: RECIPTOR_CONFIG, useValue: environment.reciptor}
+    {provide: RECIPTOR_API_URL, useValue: environment.reciptor.baseUrl},
+    {provide: HTTP_INTERCEPTORS, multi: true, useClass: AuthInterceptor}
   ],
   bootstrap: [AppComponent],
 })

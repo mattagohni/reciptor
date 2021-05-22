@@ -1,34 +1,34 @@
-import {TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
-import {SharedUiHeaderModule} from '@reciptor/shared/ui-header';
-import {TranslateModule} from '@ngx-translate/core';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {RouterTestingModule} from '@angular/router/testing';
+import {TranslateService} from '@ngx-translate/core';
+import * as moment from 'moment';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [AppComponent],
-      imports: [
-        SharedUiHeaderModule,
-        TranslateModule.forRoot(),
-        RouterTestingModule
-      ],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
-    }).compileComponents();
+  let app;
+  const translationService = {setDefaultLang: jest.fn(), use: jest.fn()} as unknown as TranslateService
+
+  beforeEach(() => {
+    app = new AppComponent(translationService);
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'reciptor'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
     expect(app.title).toEqual('reciptor');
+  });
+
+  it('should be able to determine a logged in user', () => {
+    jest.spyOn(window.localStorage.__proto__, 'getItem');
+    window.localStorage.__proto__.getItem = jest.fn((key) => key == 'id_token'? 'someToken': `${moment.now() + 3600}`);
+
+    expect(app.isLoggedIn()).toBeTruthy();
+  });
+
+  it('should be able to determine a not logged in user, when expired', () => {
+    jest.spyOn(window.localStorage.__proto__, 'getItem');
+    window.localStorage.__proto__.getItem = jest.fn((key) => key == 'id_token'? 'someToken': `${moment.now() - 3600}`);
+
+    expect(app.isLoggedIn()).toBeFalsy();
   });
 });

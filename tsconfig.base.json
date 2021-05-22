@@ -10,45 +10,28 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@reciptor/app-config": [
-        "libs/shared/app-config"
-      ],
-      "@reciptor/shared/material": [
-        "libs/shared/material/src/index.ts"
-      ],
-      "@reciptor/shared/ui-header": [
-        "libs/shared/ui-header/src/index.ts"
-      ],
-      "@reciptor/tools/data-access": [
-        "libs/tools/data-access/src/index.ts"
-      ],
-      "@reciptor/tools/ui": [
-        "libs/tools/ui/src/index.ts"
-      ],
-      "@reciptor/tools/feature": [
-        "libs/tools/feature/src/index.ts"
-      ],
+      "@reciptor/app-config": ["libs/shared/app-config"],
+      "@reciptor/shared/material": ["libs/shared/material/src/index.ts"],
+      "@reciptor/shared/ui-header": ["libs/shared/ui-header/src/index.ts"],
+      "@reciptor/tools/data-access": ["libs/tools/data-access/src/index.ts"],
+      "@reciptor/tools/ui": ["libs/tools/ui/src/index.ts"],
+      "@reciptor/tools/feature": ["libs/tools/feature/src/index.ts"],
       "@reciptor/authentication/feature": [
         "libs/authentication/feature/src/index.ts"
       ],
-      "@reciptor/authentication/ui": [
-        "libs/authentication/ui/src/index.ts"
-      ],
+      "@reciptor/authentication/ui": ["libs/authentication/ui/src/index.ts"],
       "@reciptor/authentication/data-access": [
         "libs/authentication/data-access/src/index.ts"
+      ],
+      "@reciptor/authentication/shared": [
+        "libs/authentication/shared/src/index.ts"
       ]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

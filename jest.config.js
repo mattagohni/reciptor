@@ -9,6 +9,5 @@ module.exports = {
     '<rootDir>/libs/authentication/feature',
     '<rootDir>/libs/authentication/ui',
     '<rootDir>/libs/authentication/data-access',
-    '<rootDir>/libs/authentication/shared',
   ],
 };

@@ -58,7 +58,7 @@
       "tags": ["type:data-access", "scope:reciptor"]
     },
     "authentication-shared": {
-      "tags": ["type:shared", "sope:reciptor"]
+      "tags": ["type:shared", "scope:reciptor"]
     }
   }
 }

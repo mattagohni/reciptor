@@ -22,11 +22,11 @@
       "@reciptor/tools/ui": ["libs/tools/ui/src/index.ts"],
       "@reciptor/tools/feature": ["libs/tools/feature/src/index.ts"],
       "@reciptor/authentication/feature": [
-        "libs/authentication/feature/src/index.ts"
+        "libs/reciptor/authentication/feature/src/index.ts"
       ],
-      "@reciptor/authentication/ui": ["libs/authentication/ui/src/index.ts"],
+      "@reciptor/authentication/ui": ["libs/reciptor/authentication/ui/src/index.ts"],
       "@reciptor/authentication/data-access": [
-        "libs/authentication/data-access/src/index.ts"
+        "libs/reciptor/authentication/data-access/src/index.ts"
       ],
       "@reciptor/authentication/shared": [
         "libs/authentication/shared/src/index.ts"

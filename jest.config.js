@@ -6,8 +6,8 @@ module.exports = {
     '<rootDir>/libs/tools/data-access',
     '<rootDir>/libs/tools/ui',
     '<rootDir>/libs/tools/feature',
-    '<rootDir>/libs/authentication/feature',
-    '<rootDir>/libs/authentication/ui',
-    '<rootDir>/libs/authentication/data-access',
+    '<rootDir>/libs/reciptor/authentication/feature',
+    '<rootDir>/libs/reciptor/authentication/ui',
+    '<rootDir>/libs/reciptor/authentication/data-access',
   ],
 };

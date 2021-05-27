@@ -48,17 +48,17 @@
     "tools-feature": {
       "tags": ["type:feature", "scope:reciptor"]
     },
-    "authentication-feature": {
-      "tags": ["type:feature", "scope:reciptor"]
-    },
-    "authentication-ui": {
-      "tags": ["type:ui", "scope:reciptor"]
-    },
-    "authentication-data-access": {
-      "tags": ["type:data-access", "scope:reciptor"]
-    },
     "authentication-shared": {
       "tags": ["type:shared", "scope:reciptor"]
+    },
+    "reciptor-authentication-feature": {
+      "tags": ["type:feature", "scope:reciptor"]
+    },
+    "reciptor-authentication-ui": {
+      "tags": ["type:ui", "scope:reciptor"]
+    },
+    "reciptor-authentication-data-access": {
+      "tags": ["type:data-access", "scope:reciptor"]
     }
   }
 }

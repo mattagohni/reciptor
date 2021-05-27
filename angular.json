@@ -361,117 +361,6 @@
         }
       }
     },
-    "authentication-feature": {
-      "projectType": "library",
-      "root": "libs/authentication/feature",
-      "sourceRoot": "libs/authentication/feature/src",
-      "prefix": "reciptor",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "options": {
-            "tsConfig": "libs/authentication/feature/tsconfig.lib.json",
-            "project": "libs/authentication/feature/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/authentication/feature/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/authentication/feature/src/**/*.ts",
-              "libs/authentication/feature/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/authentication/feature"],
-          "options": {
-            "jestConfig": "libs/authentication/feature/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "authentication-ui": {
-      "projectType": "library",
-      "root": "libs/authentication/ui",
-      "sourceRoot": "libs/authentication/ui/src",
-      "prefix": "reciptor",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "options": {
-            "tsConfig": "libs/authentication/ui/tsconfig.lib.json",
-            "project": "libs/authentication/ui/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/authentication/ui/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/authentication/ui/src/**/*.ts",
-              "libs/authentication/ui/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/authentication/ui"],
-          "options": {
-            "jestConfig": "libs/authentication/ui/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "authentication-data-access": {
-      "projectType": "library",
-      "root": "libs/authentication/data-access",
-      "sourceRoot": "libs/authentication/data-access/src",
-      "prefix": "reciptor",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "options": {
-            "tsConfig": "libs/authentication/data-access/tsconfig.lib.json",
-            "project": "libs/authentication/data-access/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/authentication/data-access/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/authentication/data-access/src/**/*.ts",
-              "libs/authentication/data-access/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/authentication/data-access"],
-          "options": {
-            "jestConfig": "libs/authentication/data-access/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "authentication-shared": {
       "projectType": "library",
       "root": "libs/authentication/shared",
@@ -504,6 +393,117 @@
           "outputs": ["coverage/libs/authentication/shared"],
           "options": {
             "jestConfig": "libs/authentication/shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "reciptor-authentication-feature": {
+      "projectType": "library",
+      "root": "libs/reciptor/authentication/feature",
+      "sourceRoot": "libs/reciptor/authentication/feature/src",
+      "prefix": "reciptor",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/reciptor/authentication/feature/tsconfig.lib.json",
+            "project": "libs/reciptor/authentication/feature/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/reciptor/authentication/feature/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/reciptor/authentication/feature/src/**/*.ts",
+              "libs/reciptor/authentication/feature/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/reciptor/authentication/feature"],
+          "options": {
+            "jestConfig": "libs/reciptor/authentication/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "reciptor-authentication-ui": {
+      "projectType": "library",
+      "root": "libs/reciptor/authentication/ui",
+      "sourceRoot": "libs/reciptor/authentication/ui/src",
+      "prefix": "reciptor",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/reciptor/authentication/ui/tsconfig.lib.json",
+            "project": "libs/reciptor/authentication/ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/reciptor/authentication/ui/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/reciptor/authentication/ui/src/**/*.ts",
+              "libs/reciptor/authentication/ui/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/reciptor/authentication/ui"],
+          "options": {
+            "jestConfig": "libs/reciptor/authentication/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "reciptor-authentication-data-access": {
+      "projectType": "library",
+      "root": "libs/reciptor/authentication/data-access",
+      "sourceRoot": "libs/reciptor/authentication/data-access/src",
+      "prefix": "reciptor",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/reciptor/authentication/data-access/tsconfig.lib.json",
+            "project": "libs/reciptor/authentication/data-access/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/reciptor/authentication/data-access/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/reciptor/authentication/data-access/src/**/*.ts",
+              "libs/reciptor/authentication/data-access/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/reciptor/authentication/data-access"],
+          "options": {
+            "jestConfig": "libs/reciptor/authentication/data-access/jest.config.js",
             "passWithNoTests": true
           }
         }

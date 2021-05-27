@@ -336,43 +336,6 @@
         }
       }
     },
-    "authentication-shared": {
-      "projectType": "library",
-      "root": "libs/authentication/shared",
-      "sourceRoot": "libs/authentication/shared/src",
-      "prefix": "reciptor",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "options": {
-            "tsConfig": "libs/authentication/shared/tsconfig.lib.json",
-            "project": "libs/authentication/shared/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/authentication/shared/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/authentication/shared/src/**/*.ts",
-              "libs/authentication/shared/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/authentication/shared"],
-          "options": {
-            "jestConfig": "libs/authentication/shared/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "reciptor-authentication-feature": {
       "projectType": "library",
       "root": "libs/reciptor/authentication/feature",

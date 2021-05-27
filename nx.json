@@ -45,9 +45,6 @@
     "tools-feature": {
       "tags": ["type:feature", "scope:reciptor"]
     },
-    "authentication-shared": {
-      "tags": ["type:shared", "scope:reciptor"]
-    },
     "reciptor-authentication-feature": {
       "tags": ["type:feature", "scope:reciptor"]
     },

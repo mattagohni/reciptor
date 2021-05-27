@@ -9,8 +9,11 @@
         <button mat-menu-item [routerLink]="['tools']">{{'menu.tools.overview' | translate}}</button>
       </mat-menu>
     </div>
-    <div class="reciptor-header-login">
+    <div class="reciptor-header-login" *ngIf="(isLoggedIn$ | async) === false">
       <button mat-button [routerLink]="['login']">{{'menu.login' | translate}}</button>
+    </div>
+    <div class="reciptor-header-login" *ngIf="isLoggedIn$ | async">
+      <button mat-button (click)="logout()">{{'menu.logout' | translate}}</button>
     </div>
   </mat-toolbar>
 </div>

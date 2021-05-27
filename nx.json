@@ -36,9 +36,6 @@
     "shared-material": {
       "tags": ["type:ui", "scope:shared"]
     },
-    "shared-ui-header": {
-      "tags": ["type:ui", "scope:shared"]
-    },
     "tools-data-access": {
       "tags": ["type:data-access", "scope:reciptor"]
     },
@@ -59,6 +56,9 @@
     },
     "reciptor-authentication-data-access": {
       "tags": ["type:data-access", "scope:reciptor"]
+    },
+    "reciptor-header-ui": {
+      "tags": ["type:ui", "scope:reciptor"]
     }
   }
 }

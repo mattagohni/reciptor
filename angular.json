@@ -53,7 +53,7 @@
               "apps/reciptor/src/assets",
               {
                 "glob": "**/*",
-                "input": "./libs/shared/ui-header/src/assets/i18n",
+                "input": "./libs/reciptor/header/ui/src/assets/i18n",
                 "output": "./assets/i18n/ui-header/"
               }
             ],
@@ -257,31 +257,6 @@
             "": {
               "tsConfig": "libs/shared/material/tsconfig.lib.prod.json"
             }
-          }
-        }
-      }
-    },
-    "shared-ui-header": {
-      "projectType": "library",
-      "root": "libs/shared/ui-header",
-      "sourceRoot": "libs/shared/ui-header/src",
-      "prefix": "reciptor",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/shared/ui-header/src/**/*.ts",
-              "libs/shared/ui-header/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/ui-header"],
-          "options": {
-            "jestConfig": "libs/shared/ui-header/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -504,6 +479,31 @@
           "outputs": ["coverage/libs/reciptor/authentication/data-access"],
           "options": {
             "jestConfig": "libs/reciptor/authentication/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "reciptor-header-ui": {
+      "projectType": "library",
+      "root": "libs/reciptor/header/ui",
+      "sourceRoot": "libs/reciptor/header/ui/src",
+      "prefix": "reciptor",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/reciptor/header/ui/src/**/*.ts",
+              "libs/reciptor/header/ui/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/reciptor/header/ui"],
+          "options": {
+            "jestConfig": "libs/reciptor/header/ui/jest.config.js",
             "passWithNoTests": true
           }
         }

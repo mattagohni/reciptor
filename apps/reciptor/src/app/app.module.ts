@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedUiHeaderModule } from '@reciptor/shared/ui-header';
+import { ReciptorHeaderUiModule } from '@reciptor/header/ui';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import {
   HTTP_INTERCEPTORS,
@@ -34,7 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    SharedUiHeaderModule,
+    ReciptorHeaderUiModule,
     TranslateModule.forRoot({
       defaultLanguage: 'de',
       loader: {

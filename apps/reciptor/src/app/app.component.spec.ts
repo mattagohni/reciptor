@@ -17,18 +17,4 @@ describe('AppComponent', () => {
   it(`should have as title 'reciptor'`, () => {
     expect(app.title).toEqual('reciptor');
   });
-
-  it('should be able to determine a logged in user', () => {
-    jest.spyOn(window.localStorage.__proto__, 'getItem');
-    window.localStorage.__proto__.getItem = jest.fn((key) => key == 'id_token'? 'someToken': `${moment.now() + 3600}`);
-
-    expect(app.isLoggedIn()).toBeTruthy();
-  });
-
-  it('should be able to determine a not logged in user, when expired', () => {
-    jest.spyOn(window.localStorage.__proto__, 'getItem');
-    window.localStorage.__proto__.getItem = jest.fn((key) => key == 'id_token'? 'someToken': `${moment.now() - 3600}`);
-
-    expect(app.isLoggedIn()).toBeFalsy();
-  });
 });

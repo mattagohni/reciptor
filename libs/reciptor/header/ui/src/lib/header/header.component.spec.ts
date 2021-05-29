@@ -9,7 +9,7 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { RECIPTOR_API_URL } from '@reciptor/app-config';
+import { RECIPTOR_API_URL } from '@reciptor/configuration';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;

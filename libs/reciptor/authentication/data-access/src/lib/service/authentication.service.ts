@@ -4,7 +4,7 @@ import { ReciptorAuthenticationRequest } from '../types/authentication.request';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ReciptorAuthenticationResponse } from '../types/authentication.response';
 import { shareReplay, tap } from 'rxjs/operators';
-import { RECIPTOR_API_URL } from '@reciptor/app-config';
+import { RECIPTOR_API_URL } from '@reciptor/configuration';
 import * as moment from 'moment';
 
 @Injectable({

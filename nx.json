@@ -56,6 +56,9 @@
     },
     "reciptor-header-ui": {
       "tags": ["type:ui", "scope:reciptor"]
+    },
+    "reciptor-configuration": {
+      "tags": ["type:config", "scope:reciptor"]
     }
   }
 }

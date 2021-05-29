@@ -17,7 +17,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { FlexModule } from '@angular/flex-layout';
-import { RECIPTOR_API_URL } from '@reciptor/app-config';
+import { RECIPTOR_API_URL } from '@reciptor/configuration';
 import { AuthInterceptor } from '@reciptor/authentication/data-access';
 
 // AoT requires an exported function for factories

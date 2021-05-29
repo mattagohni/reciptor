@@ -32,7 +32,8 @@
       "@reciptor/authentication/shared": [
         "libs/authentication/shared/src/index.ts"
       ],
-      "@reciptor/header/ui": ["libs/reciptor/header/ui/src/index.ts"]
+      "@reciptor/header/ui": ["libs/reciptor/header/ui/src/index.ts"],
+      "@reciptor/configuration": ["libs/reciptor/configuration/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

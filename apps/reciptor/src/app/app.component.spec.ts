@@ -1,6 +1,5 @@
 import {AppComponent} from './app.component';
 import {TranslateService} from '@ngx-translate/core';
-import * as moment from 'moment';
 
 describe('AppComponent', () => {
   let app;

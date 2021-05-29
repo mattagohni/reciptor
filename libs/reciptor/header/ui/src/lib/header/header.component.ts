@@ -1,12 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-  ViewEncapsulation,
-} from '@angular/core';
-import { AuthenticationService } from '@reciptor/authentication/data-access';
-import { BehaviorSubject, of, Subscription } from 'rxjs';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation,} from '@angular/core';
+import {AuthenticationService} from '@reciptor/authentication/data-access';
+import {BehaviorSubject, Subscription} from 'rxjs';
 
 @Component({
   selector: 'reciptor-header',
@@ -24,7 +18,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isLoggedInSubscription = this.authenticationService.loggedIn$.subscribe(
       (isLoggedInValue) => {
-        console.log('in header on init: ' + isLoggedInValue);
         return this.isLoggedIn$.next(isLoggedInValue);
       }
     );

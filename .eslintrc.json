@@ -36,20 +36,29 @@
                 "onlyDependOnLibsWithTags": [
                   "type:ui",
                   "type:data-access",
-                  "type:util"
+                  "type:util",
+                  "type:config"
                 ]
               },
               {
                 "sourceTag": "type:data-access",
                 "onlyDependOnLibsWithTags": [
                   "type:data-access",
-                  "type:util"
+                  "type:util",
+                  "type:config"
                 ]
               },
               {
                 "sourceTag": "type:util",
                 "onlyDependOnLibsWithTags": [
-                  "type:util"
+                  "type:util",
+                  "type:config"
+                ]
+              },
+              {
+                "sourceTag": "type:config",
+                "onlyDependOnLibsWithTags": [
+                  "type:config"
                 ]
               },
               {

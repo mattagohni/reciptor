@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http/testing';
 import { ReciptorAuthenticationRequest } from '../types/authentication.request';
 import { ReciptorAuthenticationResponse } from '../types/authentication.response';
-import { RECIPTOR_API_URL } from '@reciptor/app-config';
+import { RECIPTOR_API_URL } from '@reciptor/configuration';
 import { cold } from '@nrwl/angular/testing';
 import * as moment from 'moment';
 

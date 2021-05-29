@@ -3,7 +3,6 @@ spring:
     user: reciptor
     password: reciptor
     locations: classpath:migrations
-    target: 5
   r2dbc:
     url: 'r2dbc:postgresql://localhost/postgres'
     username: reciptor
@@ -21,5 +20,3 @@ reciptor:
   jwt:
     secret: ${RECIPTOR_JWT_SECRET}
     expiration: ${RECIPTOR_JWT_EXPIRATION}
-
-

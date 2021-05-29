@@ -4,10 +4,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
-  imports: [FlexLayoutModule, MatInputModule, MatCardModule, MatTableModule, MatToolbarModule, MatMenuModule],
-  exports: [FlexLayoutModule, MatInputModule, MatCardModule, MatTableModule, MatToolbarModule, MatMenuModule],
+  imports: [FlexLayoutModule, MatInputModule, MatButtonModule, MatCardModule, MatTableModule, MatToolbarModule, MatMenuModule],
+  exports: [FlexLayoutModule, MatInputModule, MatButtonModule, MatCardModule, MatTableModule, MatToolbarModule, MatMenuModule],
 })
 export class SharedMaterialModule {}

@@ -18,7 +18,7 @@ import reactor.test.StepVerifier
 
 // suppressed because mockk produces a false-positive when returning a mono
 @Suppress("ReactiveStreamsUnusedPublisher")
-@SpringBootTest
+@SpringBootTest(classes = [ToolsService::class, ReactiveToolsRepository::class])
 class ToolsServiceTest {
 
   @Autowired
@@ -139,7 +139,6 @@ class ToolsServiceTest {
   @DisplayName("it can delete an existing tool")
   fun deleteExisting() {
     // arrange
-    val tool = Tool(id = 1, name = "theMasterTool")
     every { toolsRepository.deleteById(any<Int>()) }.returns(Mono.empty())
 
     // act

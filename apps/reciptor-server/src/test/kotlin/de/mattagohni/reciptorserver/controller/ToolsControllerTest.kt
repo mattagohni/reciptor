@@ -1,6 +1,10 @@
 package de.mattagohni.reciptorserver.controller
 
 import com.ninjasquad.springmockk.MockkBean
+import de.mattagohni.reciptorserver.authentication.AuthenticationManager
+import de.mattagohni.reciptorserver.authentication.SecurityContextRepository
+import de.mattagohni.reciptorserver.authentication.configuration.JWTUtilConfiguration
+import de.mattagohni.reciptorserver.authentication.util.JWTUtil
 import de.mattagohni.reciptorserver.configuration.CorsConfiguration
 import de.mattagohni.reciptorserver.configuration.CustomWebfluxConfigurer
 import de.mattagohni.reciptorserver.configuration.DatabaseConfiguration
@@ -26,8 +30,27 @@ import reactor.core.publisher.Mono
 
 // suppressed because mockk produces a false-positive when returning a mono
 @Suppress("ReactiveStreamsUnusedPublisher")
-@WebFluxTest(controllers = [ToolsController::class])
-@Import(SecurityConfiguration::class, DatabaseConfiguration::class, CorsConfiguration::class, CustomWebfluxConfigurer::class)
+@WebFluxTest(
+  controllers = [ToolsController::class],
+  properties = [
+    "reciptor.password.encoder.secret=superSecret",
+    "reciptor.password.encoder.iteration=25",
+    "reciptor.password.encoder.keylength=512",
+    "reciptor.jwt.secret=ThisIsSecretForJWTHS512SignatureAlgorithmThatMUSTHave64ByteLength",
+    "reciptor.jwt.expiration=3600"
+  ]
+)
+@Import(
+  SecurityConfiguration::class,
+  DatabaseConfiguration::class,
+  CorsConfiguration::class,
+  CustomWebfluxConfigurer::class,
+  AuthenticationManager::class,
+  JWTUtil::class,
+  JWTUtilConfiguration::class,
+  SecurityContextRepository::class
+)
+
 @AutoConfigureWebTestClient
 class ToolsControllerTest {
   @Autowired

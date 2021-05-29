@@ -3,5 +3,5 @@
  */
 export interface Tool {
   id: string | number; // Primary ID
-  name: string
+  name: string;
 }

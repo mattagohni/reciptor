@@ -24,6 +24,6 @@ stages:
 jobs:
   include:
     - stage: lint
-      script: nx run-many --target lint --all
+      script: npm run affected:lint
     - stage: test
-      script: nx run-many --target test --all
+      script: npm run affected:test

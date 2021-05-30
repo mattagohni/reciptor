@@ -2,6 +2,8 @@ language: java
 jdk:
   - openjdk11
 env: NODE_VERSION="15"
+git:
+  depth: false
 
 addons:
   apt:
@@ -24,6 +26,10 @@ stages:
 jobs:
   include:
     - stage: lint
-      script: nx run-many --target lint --all
+      before_script:
+        - git checkout develop
+      script: npm run affected:lint -- --plain --base=develop
     - stage: test
-      script: nx run-many --target test --all
+      before_script:
+        - git checkout develop
+      script: npm run affected:test -- --plain --base=develop

@@ -1,12 +1,9 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { AuthInterceptor } from './auth-interceptor.service';
-import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
+import {AuthInterceptor} from './auth-interceptor.service';
+import {HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClientTestingModule, HttpTestingController,} from '@angular/common/http/testing';
 
 describe('AuthInterceptorInterceptor', () => {
   let service: ExampleService;
@@ -18,7 +15,7 @@ describe('AuthInterceptorInterceptor', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
-        { provide: HTTP_INTERCEPTORS, multi: true, useClass: AuthInterceptor },
+        {provide: HTTP_INTERCEPTORS, multi: true, useClass: AuthInterceptor},
         ExampleService,
       ],
     });
@@ -42,7 +39,8 @@ describe('AuthInterceptorInterceptor', () => {
 
 @Injectable()
 class ExampleService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   exampleAction() {
     return this.httpClient.get('http://example.com');

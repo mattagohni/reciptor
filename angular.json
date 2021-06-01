@@ -47,7 +47,6 @@
             "main": "apps/reciptor/src/main.ts",
             "polyfills": "apps/reciptor/src/polyfills.ts",
             "tsConfig": "apps/reciptor/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "apps/reciptor/src/favicon.ico",
               "apps/reciptor/src/assets",
@@ -57,8 +56,16 @@
                 "output": "./assets/i18n/ui-header/"
               }
             ],
-            "styles": ["apps/reciptor/src/styles.scss"],
-            "scripts": []
+            "styles": [
+              "apps/reciptor/src/styles.scss"
+            ],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -135,7 +142,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/reciptor"],
+          "outputs": [
+            "coverage/apps/reciptor"
+          ],
           "options": {
             "jestConfig": "apps/reciptor/jest.config.js",
             "passWithNoTests": true
@@ -164,7 +173,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/reciptor-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/reciptor-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -241,7 +252,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/material"],
+          "outputs": [
+            "coverage/libs/shared/material"
+          ],
           "options": {
             "jestConfig": "libs/shared/material/jest.config.js",
             "passWithNoTests": true
@@ -278,7 +291,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/tools/data-access"],
+          "outputs": [
+            "coverage/libs/tools/data-access"
+          ],
           "options": {
             "jestConfig": "libs/tools/data-access/jest.config.js",
             "passWithNoTests": true
@@ -303,7 +318,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/tools/ui"],
+          "outputs": [
+            "coverage/libs/tools/ui"
+          ],
           "options": {
             "jestConfig": "libs/tools/ui/jest.config.js",
             "passWithNoTests": true
@@ -328,7 +345,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/tools/feature"],
+          "outputs": [
+            "coverage/libs/tools/feature"
+          ],
           "options": {
             "jestConfig": "libs/tools/feature/jest.config.js",
             "passWithNoTests": true
@@ -365,7 +384,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/reciptor/authentication/feature"],
+          "outputs": [
+            "coverage/libs/reciptor/authentication/feature"
+          ],
           "options": {
             "jestConfig": "libs/reciptor/authentication/feature/jest.config.js",
             "passWithNoTests": true
@@ -402,7 +423,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/reciptor/authentication/ui"],
+          "outputs": [
+            "coverage/libs/reciptor/authentication/ui"
+          ],
           "options": {
             "jestConfig": "libs/reciptor/authentication/ui/jest.config.js",
             "passWithNoTests": true
@@ -439,7 +462,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/reciptor/authentication/data-access"],
+          "outputs": [
+            "coverage/libs/reciptor/authentication/data-access"
+          ],
           "options": {
             "jestConfig": "libs/reciptor/authentication/data-access/jest.config.js",
             "passWithNoTests": true
@@ -464,7 +489,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/reciptor/header/ui"],
+          "outputs": [
+            "coverage/libs/reciptor/header/ui"
+          ],
           "options": {
             "jestConfig": "libs/reciptor/header/ui/jest.config.js",
             "passWithNoTests": true
@@ -501,7 +528,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/reciptor/configuration"],
+          "outputs": [
+            "coverage/libs/reciptor/configuration"
+          ],
           "options": {
             "jestConfig": "libs/reciptor/configuration/jest.config.js",
             "passWithNoTests": true

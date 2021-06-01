@@ -1,14 +1,11 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { AuthenticationService } from './authentication.service';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
-import { ReciptorAuthenticationRequest } from '../types/authentication.request';
-import { ReciptorAuthenticationResponse } from '../types/authentication.response';
-import { RECIPTOR_API_URL } from '@reciptor/configuration';
-import { cold } from '@nrwl/angular/testing';
+import {AuthenticationService} from './authentication.service';
+import {HttpClientTestingModule, HttpTestingController,} from '@angular/common/http/testing';
+import {ReciptorAuthenticationRequest} from '../types/authentication.request';
+import {ReciptorAuthenticationResponse} from '../types/authentication.response';
+import {RECIPTOR_API_URL} from '@reciptor/configuration';
+import {cold} from '@nrwl/angular/testing';
 import * as moment from 'moment';
 
 describe('AuthenticationService', () => {
@@ -42,7 +39,7 @@ describe('AuthenticationService', () => {
     };
 
     // verify the observable is initialized with false
-    expect(service.loggedIn$).toBeObservable(cold('a', { a: false }));
+    expect(service.loggedIn$).toBeObservable(cold('a', {a: false}));
 
     // do login
     service.login(authRequest).subscribe((response) => {
@@ -61,7 +58,7 @@ describe('AuthenticationService', () => {
       expiresAt.toString().valueOf()
     );
     // verify the observable is set to the correct value after succesful login
-    expect(service.loggedIn$).toBeObservable(cold('b', { b: true }));
+    expect(service.loggedIn$).toBeObservable(cold('b', {b: true}));
   });
 
   it('should clear localStorage on logout', () => {
@@ -76,7 +73,7 @@ describe('AuthenticationService', () => {
 
   describe('isLoggedIn$', () => {
     it('should have a value of false when initialized with no token in store', () => {
-      const expected = cold('a', { a: false });
+      const expected = cold('a', {a: false});
 
       expect(service.loggedIn$).toBeObservable(expected);
     });
@@ -89,7 +86,7 @@ describe('AuthenticationService', () => {
           .unix()
           .toString()
       );
-      const expected = cold('a', { a: false });
+      const expected = cold('a', {a: false});
 
       expect(service.loggedIn$).toBeObservable(expected);
     });
@@ -102,7 +99,7 @@ describe('AuthenticationService', () => {
           .unix()
           .toString()
       );
-      const expected = cold('a', { a: true });
+      const expected = cold('a', {a: true});
 
       expect(service.loggedIn$).toBeObservable(expected);
     });

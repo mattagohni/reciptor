@@ -67,7 +67,7 @@ describe('ToolsEffects', () => {
     });
 
     it('should receive an error, when loading fails', function () {
-      toolsService.getTool.mockReturnValue(throwError({error:{status: 404}}));
+      toolsService.getTool.mockReturnValue(throwError({error: {status: 404}}));
       actions = hot('-a-|', {a: ToolsActions.loadToolById({id: 1})});
 
       const expected = hot('-a-|', {

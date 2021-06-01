@@ -15,7 +15,8 @@ export class ToolListComponent implements OnInit {
   );
   displayedColumns: string[] = ['id', 'name', 'link'];
 
-  constructor(private toolsFacade: ToolsFacade) {}
+  constructor(private toolsFacade: ToolsFacade) {
+  }
 
   ngOnInit(): void {
     this.toolsFacade.init()

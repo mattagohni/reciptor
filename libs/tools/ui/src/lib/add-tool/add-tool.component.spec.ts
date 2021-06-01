@@ -20,7 +20,7 @@ describe('AddToolComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, SharedMaterialModule, ReactiveFormsModule, FormsModule],
-      declarations: [ AddToolComponent ],
+      declarations: [AddToolComponent],
       providers: [
         {
           provide: ToolsFacade,
@@ -28,7 +28,7 @@ describe('AddToolComponent', () => {
         }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

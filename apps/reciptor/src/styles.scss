@@ -162,11 +162,11 @@ $mat-primary: (
   200: #4c4c5e,
   // For slide toggle,
   contrast:
-    (
-      main: $light-primary-text,
-      lighter: $dark-primary-text,
-      darker: $light-primary-text,
-    ),
+  (
+    main: $light-primary-text,
+    lighter: $dark-primary-text,
+    darker: $light-primary-text,
+  ),
 );
 $theme-primary: mat-palette($mat-primary, main, lighter, darker);
 
@@ -186,11 +186,11 @@ $mat-accent: (
   200: #83728f,
   // For slide toggle,
   contrast:
-    (
-      main: $light-primary-text,
-      lighter: $dark-primary-text,
-      darker: $light-primary-text,
-    ),
+  (
+    main: $light-primary-text,
+    lighter: $dark-primary-text,
+    darker: $light-primary-text,
+  ),
 );
 $theme-accent: mat-palette($mat-accent, main, lighter, darker);
 
@@ -210,11 +210,11 @@ $mat-warn: (
   200: #a9316f,
   // For slide toggle,
   contrast:
-    (
-      main: $light-primary-text,
-      lighter: $dark-primary-text,
-      darker: $light-primary-text,
-    ),
+  (
+    main: $light-primary-text,
+    lighter: $dark-primary-text,
+    darker: $light-primary-text,
+  ),
 );
 $theme-warn: mat-palette($mat-warn, main, lighter, darker);
 
@@ -248,6 +248,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 .material-icons {
   font-size: 24px;
   font-family: 'Material Icons Round', 'Material Icons';
+
   .mat-badge-content {
     font-family: 'Carme';
   }

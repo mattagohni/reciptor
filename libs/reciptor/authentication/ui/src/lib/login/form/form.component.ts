@@ -1,10 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Output,
-} from '@angular/core';
-import { ReciptorAuthenticationRequest } from '@reciptor/authentication/data-access';
+import {ChangeDetectionStrategy, Component, EventEmitter, Output,} from '@angular/core';
+import {ReciptorAuthenticationRequest} from '@reciptor/authentication/data-access';
 
 @Component({
   selector: 'reciptor-form',

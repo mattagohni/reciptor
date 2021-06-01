@@ -14,22 +14,15 @@
             "depConstraints": [
               {
                 "sourceTag": "scope:shared",
-                "onlyDependOnLibsWithTags": [
-                  "scope:shared"
-                ]
+                "onlyDependOnLibsWithTags": ["scope:shared"]
               },
               {
                 "sourceTag": "scope:reciptor",
-                "onlyDependOnLibsWithTags": [
-                  "scope:reciptor",
-                  "scope:shared"
-                ]
+                "onlyDependOnLibsWithTags": ["scope:reciptor", "scope:shared"]
               },
               {
                 "sourceTag": "type:feature",
-                "onlyDependOnLibsWithTags": [
-                  "*"
-                ]
+                "onlyDependOnLibsWithTags": ["*"]
               },
               {
                 "sourceTag": "type:ui",
@@ -50,16 +43,11 @@
               },
               {
                 "sourceTag": "type:util",
-                "onlyDependOnLibsWithTags": [
-                  "type:util",
-                  "type:config"
-                ]
+                "onlyDependOnLibsWithTags": ["type:util", "type:config"]
               },
               {
                 "sourceTag": "type:config",
-                "onlyDependOnLibsWithTags": [
-                  "type:config"
-                ]
+                "onlyDependOnLibsWithTags": ["type:config"]
               },
               {
                 "sourceTag": "*",

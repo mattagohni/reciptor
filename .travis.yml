@@ -26,10 +26,6 @@ stages:
 jobs:
   include:
     - stage: lint
-      before_script:
-        - git checkout develop
       script: npm run affected:lint -- --plain --base=develop
     - stage: test
-      before_script:
-        - git checkout develop
       script: npm run affected:test -- --plain --base=develop

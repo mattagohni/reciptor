@@ -13,7 +13,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isLoggedInSubscription: Subscription;
 
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService) {
+  }
 
   ngOnInit(): void {
     this.isLoggedInSubscription = this.authenticationService.loggedIn$.subscribe(

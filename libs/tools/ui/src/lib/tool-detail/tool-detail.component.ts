@@ -21,7 +21,8 @@ export class ToolDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private toolsFacade: ToolsFacade,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.toolForm = this.formBuilder.group(

@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AuthenticationService } from '@reciptor/authentication/data-access';
-import { ReciptorAuthenticationRequest } from '@reciptor/authentication/data-access';
-import { Router } from '@angular/router';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {AuthenticationService, ReciptorAuthenticationRequest} from '@reciptor/authentication/data-access';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'reciptor-login',
@@ -13,7 +12,8 @@ export class LoginComponent {
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   handleAuthenticationEvent($event: ReciptorAuthenticationRequest) {
     this.authenticationService

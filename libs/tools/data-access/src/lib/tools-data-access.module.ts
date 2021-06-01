@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
 import * as fromTools from './+state/tools.reducer';
-import { ToolsEffects } from './+state/tools.effects';
-import { ToolsFacade } from './+state/tools.facade';
+import {ToolsEffects} from './+state/tools.effects';
+import {ToolsFacade} from './+state/tools.facade';
 
 @NgModule({
   imports: [
@@ -14,4 +14,5 @@ import { ToolsFacade } from './+state/tools.facade';
   ],
   providers: [ToolsFacade],
 })
-export class ToolsDataAccessModule {}
+export class ToolsDataAccessModule {
+}

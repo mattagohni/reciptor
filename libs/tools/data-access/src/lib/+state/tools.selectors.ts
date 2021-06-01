@@ -1,17 +1,12 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  TOOLS_FEATURE_KEY,
-  State,
-  ToolsPartialState,
-  toolsAdapter,
-} from './tools.reducer';
+import {createFeatureSelector, createSelector} from '@ngrx/store';
+import {State, TOOLS_FEATURE_KEY, toolsAdapter, ToolsPartialState,} from './tools.reducer';
 
 // Lookup the 'Tools' feature state managed by NgRx
 export const getToolsState = createFeatureSelector<ToolsPartialState, State>(
   TOOLS_FEATURE_KEY
 );
 
-const { selectAll, selectEntities } = toolsAdapter.getSelectors();
+const {selectAll, selectEntities} = toolsAdapter.getSelectors();
 
 export const getToolsLoaded = createSelector(
   getToolsState,

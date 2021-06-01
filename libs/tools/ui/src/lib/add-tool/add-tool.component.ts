@@ -13,7 +13,8 @@ export class AddToolComponent implements OnInit {
   tool$: Observable<Tool> = of({} as Tool);
   toolForm: FormGroup;
 
-  constructor(private toolsFacade: ToolsFacade, private formBuilder: FormBuilder) { }
+  constructor(private toolsFacade: ToolsFacade, private formBuilder: FormBuilder) {
+  }
 
   save() {
     this.toolsFacade.saveTool({...this.toolForm.value})

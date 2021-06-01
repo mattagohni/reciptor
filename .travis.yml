@@ -26,6 +26,6 @@ stages:
 jobs:
   include:
     - stage: lint
-      script: npm run affected:lint -- --plain --base=develop
+      script: npm run affected:lint
     - stage: test
-      script: npm run affected:test -- --plain --base=develop
+      script: npm run affected:test

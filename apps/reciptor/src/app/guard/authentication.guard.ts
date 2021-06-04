@@ -3,7 +3,7 @@ import {
   ActivatedRouteSnapshot,
   CanActivate,
   CanLoad,
-  Route,
+  Route, Router,
   RouterStateSnapshot,
   UrlSegment,
   UrlTree
@@ -19,7 +19,7 @@ export class AuthenticationGuard implements CanActivate, CanLoad, OnDestroy {
   private loggedInSubscription: Subscription;
   private isAllowed = false;
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService, private router: Router) {
     this.loggedInSubscription = this.authenticationService.loggedIn$.subscribe(
       isLoggedIn => this.isAllowed = isLoggedIn
     )
@@ -28,16 +28,14 @@ export class AuthenticationGuard implements CanActivate, CanLoad, OnDestroy {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.isAllowed === true ? true : this.router.parseUrl('/login');
+  }
 
-    return this.isAllowed;
+  canLoad(route: Route, segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.isAllowed === true ? true : this.router.parseUrl('/login');
   }
 
   ngOnDestroy(): void {
     this.loggedInSubscription.unsubscribe();
   }
-
-  canLoad(route: Route, segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.isAllowed;
-  }
-
 }

@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
+import {AuthenticationGuard} from './guard/authentication.guard';
 
 const routes: Routes = [
   {
@@ -9,6 +10,7 @@ const routes: Routes = [
       import('@reciptor/tools/feature').then(
         (module) => module.ToolsFeatureModule
       ),
+    canLoad: [AuthenticationGuard]
   },
   {
     path: 'login',

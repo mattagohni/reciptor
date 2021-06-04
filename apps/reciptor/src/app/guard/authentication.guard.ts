@@ -1,12 +1,20 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  CanLoad,
+  Route,
+  RouterStateSnapshot,
+  UrlSegment,
+  UrlTree
+} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {AuthenticationService} from '@reciptor/authentication/data-access';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationGuard implements CanActivate, OnDestroy {
+export class AuthenticationGuard implements CanActivate, CanLoad, OnDestroy {
 
   private loggedInSubscription: Subscription;
   private isAllowed = false;
@@ -26,6 +34,10 @@ export class AuthenticationGuard implements CanActivate, OnDestroy {
 
   ngOnDestroy(): void {
     this.loggedInSubscription.unsubscribe();
+  }
+
+  canLoad(route: Route, segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.isAllowed;
   }
 
 }

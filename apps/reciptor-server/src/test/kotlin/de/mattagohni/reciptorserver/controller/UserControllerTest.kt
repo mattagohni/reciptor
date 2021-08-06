@@ -29,7 +29,7 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.web.reactive.function.BodyInserters
 import reactor.core.publisher.Mono.just
-import java.util.*
+import java.util.Date
 
 @AutoConfigureWebTestClient
 @WebFluxTest(

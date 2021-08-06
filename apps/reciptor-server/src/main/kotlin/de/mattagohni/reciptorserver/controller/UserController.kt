@@ -4,8 +4,10 @@ import de.mattagohni.reciptorserver.authentication.util.JWTUtil
 import de.mattagohni.reciptorserver.authentication.util.PBKDF2Encoder
 import de.mattagohni.reciptorserver.model.AuthRequest
 import de.mattagohni.reciptorserver.model.AuthResponse
+import de.mattagohni.reciptorserver.model.RegisterRequest
 import de.mattagohni.reciptorserver.service.UserService
 import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -15,7 +17,7 @@ import reactor.core.publisher.Mono
 @RestController
 class UserController(val jwtUtil: JWTUtil, val pbkdF2Encoder: PBKDF2Encoder, val userService: UserService) {
 
-  @PostMapping("api/v1/login")
+  @PostMapping("api/v1/login", consumes = [MediaType.APPLICATION_JSON_VALUE])
   fun login(@RequestBody authRequest: AuthRequest): Mono<ResponseEntity<AuthResponse>> {
     return userService.findByUsername(authRequest.username)
       .map {
@@ -27,5 +29,14 @@ class UserController(val jwtUtil: JWTUtil, val pbkdF2Encoder: PBKDF2Encoder, val
         }
       }
       .defaultIfEmpty(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build())
+  }
+
+  @PostMapping("api/v1/register", consumes = [MediaType.APPLICATION_JSON_VALUE])
+  fun register(@RequestBody registerRequest: RegisterRequest): Mono<ResponseEntity<AuthResponse>> {
+    return userService.createUser(registerRequest.username, pbkdF2Encoder.encode(registerRequest.password))
+      .map {
+        val token = jwtUtil.generateToken(it)
+        ResponseEntity.ok(AuthResponse(token, jwtUtil.getExpirationDateFromToken(token).toInstant().epochSecond))
+      }.onErrorMap { error -> error }
   }
 }

@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Output,} from '@angula
 import {ReciptorAuthenticationRequest} from '@reciptor/authentication/data-access';
 
 @Component({
-  selector: 'reciptor-form',
+  selector: 'reciptor-login-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

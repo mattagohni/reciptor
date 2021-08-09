@@ -10,5 +10,7 @@ module.exports = {
     '<rootDir>/libs/reciptor/authentication/data-access',
     '<rootDir>/libs/reciptor/configuration',
     '<rootDir>/libs/reciptor/header/ui',
+    '<rootDir>/libs/reciptor/registration/feature',
+    '<rootDir>/libs/reciptor/registration/ui',
   ],
 };

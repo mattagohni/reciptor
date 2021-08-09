@@ -18,85 +18,53 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
   "projects": {
     "reciptor": {
-      "tags": [
-        "scope:reciptor"
-      ]
+      "tags": ["scope:reciptor"]
     },
     "reciptor-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "reciptor"
-      ]
+      "implicitDependencies": ["reciptor"]
     },
     "reciptor-server": {
-      "tags": [
-        "scope:reciptor-server"
-      ]
+      "tags": ["scope:reciptor-server"]
     },
     "shared-material": {
-      "tags": [
-        "type:ui",
-        "scope:shared"
-      ]
+      "tags": ["type:ui", "scope:shared"]
     },
     "tools-data-access": {
-      "tags": [
-        "type:data-access",
-        "scope:reciptor"
-      ]
+      "tags": ["type:data-access", "scope:reciptor"]
     },
     "tools-ui": {
-      "tags": [
-        "type:ui",
-        "scope:reciptor"
-      ]
+      "tags": ["type:ui", "scope:reciptor"]
     },
     "tools-feature": {
-      "tags": [
-        "type:feature",
-        "scope:reciptor"
-      ]
+      "tags": ["type:feature", "scope:reciptor"]
     },
     "reciptor-authentication-feature": {
-      "tags": [
-        "type:feature",
-        "scope:reciptor"
-      ]
+      "tags": ["type:feature", "scope:reciptor"]
     },
     "reciptor-authentication-ui": {
-      "tags": [
-        "type:ui",
-        "scope:reciptor"
-      ]
+      "tags": ["type:ui", "scope:reciptor"]
     },
     "reciptor-authentication-data-access": {
-      "tags": [
-        "type:data-access",
-        "scope:reciptor"
-      ]
+      "tags": ["type:data-access", "scope:reciptor"]
     },
     "reciptor-header-ui": {
-      "tags": [
-        "type:ui",
-        "scope:reciptor"
-      ]
+      "tags": ["type:ui", "scope:reciptor"]
     },
     "reciptor-configuration": {
-      "tags": [
-        "type:config",
-        "scope:reciptor"
-      ]
+      "tags": ["type:config", "scope:reciptor"]
+    },
+    "reciptor-registration-feature": {
+      "tags": ["type:feature", "scope:reciptor"]
+    },
+    "reciptor-registration-ui": {
+      "tags": ["type:ui", "scope:reciptor"]
     }
   }
 }

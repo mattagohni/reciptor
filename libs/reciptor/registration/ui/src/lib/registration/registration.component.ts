@@ -7,4 +7,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegistrationComponent {
+  handleRegistrationEvent($event: any) {
+    return null
+  }
 }

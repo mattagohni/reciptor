@@ -55,7 +55,7 @@
     "fix": "^0.0.6",
     "moment": "^2.29.1",
     "ngx-translate-multi-http-loader": "^3.0.0",
-    "npm": "^7.15.1",
+    "npm": "^7.20.3",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"

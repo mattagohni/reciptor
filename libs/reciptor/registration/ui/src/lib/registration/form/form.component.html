@@ -1,1 +1,37 @@
-<p>form works!</p>
+<form #registerForm="ngForm" class="register-form">
+    <mat-form-field class="register-username">
+        <input
+                matInput
+                placeholder="username"
+                value=""
+                type="text"
+                [(ngModel)]="formData.username"
+                name="username"
+        />
+    </mat-form-field>
+
+    <mat-form-field class="register-password">
+        <input
+                type="password"
+                matInput
+                placeholder="password"
+                value="*"
+                [(ngModel)]="formData.password"
+                name="password"
+        />
+    </mat-form-field>
+    <mat-form-field class="confirm-password">
+        <input
+                type="password"
+                matInput
+                placeholder="confirm password"
+                value="*"
+                [(ngModel)]="formData.confirmPassword"
+                name="confirmPassword"
+        />
+    </mat-form-field>
+
+    <button (click)="submit()" mat-raised-button color="primary">
+        {{ 'register.submit' | translate }}
+    </button>
+</form>

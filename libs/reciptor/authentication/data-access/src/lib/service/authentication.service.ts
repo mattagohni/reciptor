@@ -6,6 +6,8 @@ import {ReciptorAuthenticationResponse} from '../types/authentication.response';
 import {shareReplay, tap} from 'rxjs/operators';
 import {RECIPTOR_API_URL} from '@reciptor/configuration';
 import * as moment from 'moment';
+import {ReciptorRegistrationResponse} from "../types/registration.response";
+import {ReciptorRegistrationRequest} from "../types/registration.request";
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +36,7 @@ export class AuthenticationService {
     return hasToken && !isExpired;
   }
 
-  private saveToSession = (authResponse: ReciptorAuthenticationResponse) => {
+  private saveToSession = (authResponse: ReciptorAuthenticationResponse|ReciptorRegistrationResponse) => {
     localStorage.setItem('id_token', authResponse.token);
     localStorage.setItem('expires_at', JSON.stringify(authResponse.expires));
   };
@@ -55,5 +57,15 @@ export class AuthenticationService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     this.loggedIn$.next(false);
+  }
+
+  register(registrationRequest: ReciptorRegistrationRequest): Observable<ReciptorRegistrationResponse> {
+    return this.httpClient
+        .post<ReciptorRegistrationResponse>(this.apiUrl + '/register', registrationRequest)
+        .pipe(
+            tap(this.saveToSession),
+            tap(() => this.loggedIn$.next(true)),
+            shareReplay()
+        );
   }
 }

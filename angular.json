@@ -593,6 +593,46 @@
           }
         }
       }
+    },
+    "reciptor-registration-data-access": {
+      "projectType": "library",
+      "root": "libs/reciptor/registration/data-access",
+      "sourceRoot": "libs/reciptor/registration/data-access/src",
+      "prefix": "reciptor",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "project": "libs/reciptor/registration/data-access/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/reciptor/registration/data-access/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/reciptor/registration/data-access/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/reciptor/registration/data-access"],
+          "options": {
+            "jestConfig": "libs/reciptor/registration/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/reciptor/registration/data-access/src/**/*.ts",
+              "libs/reciptor/registration/data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

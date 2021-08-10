@@ -1,4 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {AuthenticationService, ReciptorRegistrationRequest} from "@reciptor/authentication/data-access";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'reciptor-registration',
@@ -7,7 +9,11 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegistrationComponent {
-  handleRegistrationEvent($event: any) {
-    return null
+  constructor(private authenticationService: AuthenticationService, private router: Router) {}
+
+  handleRegistrationEvent($event: ReciptorRegistrationRequest) {
+    return this.authenticationService
+        .register($event)
+        .subscribe(() => this.router.navigate(['']))
   }
 }

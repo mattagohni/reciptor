@@ -12,5 +12,6 @@ module.exports = {
     '<rootDir>/libs/reciptor/header/ui',
     '<rootDir>/libs/reciptor/registration/feature',
     '<rootDir>/libs/reciptor/registration/ui',
+    '<rootDir>/libs/reciptor/registration/data-access',
   ],
 };

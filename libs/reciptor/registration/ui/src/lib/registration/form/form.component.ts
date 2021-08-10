@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
+import {ReciptorRegistrationRequest} from "@reciptor/authentication/data-access";
 
 @Component({
   selector: 'reciptor-registration-form',
@@ -6,11 +7,21 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormComponent implements OnInit {
+export class FormComponent {
 
-  constructor() { }
+  @Output()
+  registerRequestEvent: EventEmitter<ReciptorRegistrationRequest> = new EventEmitter<ReciptorRegistrationRequest>();
 
-  ngOnInit(): void {
+  formData = {
+    username: '',
+    password: '',
+    confirmPassword: ''
+  };
+
+  submit() {
+    this.registerRequestEvent.emit({
+      username: this.formData.username,
+      password: this.formData.password,
+    });
   }
-
 }

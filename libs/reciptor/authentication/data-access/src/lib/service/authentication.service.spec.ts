@@ -7,6 +7,8 @@ import {ReciptorAuthenticationResponse} from '../types/authentication.response';
 import {RECIPTOR_API_URL} from '@reciptor/configuration';
 import {cold} from '@nrwl/angular/testing';
 import * as moment from 'moment';
+import {ReciptorRegistrationRequest} from "../types/registration.request";
+import {ReciptorRegistrationResponse} from "../types/registration.response";
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService;
@@ -107,5 +109,42 @@ describe('AuthenticationService', () => {
       expect(localStorage.getItem('id_token')).toBeNull();
       expect(localStorage.getItem('expires_at')).toBeNull();
     });
-  })
+  });
+
+  describe('registration', () => {
+    it('should send a registration request', (done) => {
+      const registrationRequest: ReciptorRegistrationRequest = {
+        username: 'mattagohni',
+        password: 'myPassword',
+      };
+      const expiresAt = Date.now() + 1000;
+
+      const registrationResponse: ReciptorRegistrationResponse = {
+        token: 'someToken',
+        expires: expiresAt,
+      };
+
+      // verify the observable is initialized with false
+      expect(service.loggedIn$).toBeObservable(cold('a', {a: false}));
+
+      // do registration
+      service.register(registrationRequest).subscribe((response) => {
+        expect(response.token).toEqual('someToken');
+        done();
+      });
+
+      const request = httpClient.expectOne('http://reciptor.mattagohni.de/register');
+
+      request.flush(registrationResponse);
+      expect(request.request.method).toEqual('POST');
+      httpClient.verify();
+
+      expect(localStorage.getItem('id_token')).toEqual('someToken');
+      expect(localStorage.getItem('expires_at')).toEqual(
+          expiresAt.toString().valueOf()
+      );
+      // verify the observable is set to the correct value after succesful login
+      expect(service.loggedIn$).toBeObservable(cold('b', {b: true}));
+    })
+  });
 });

@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
+import {Component, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
 import {ReciptorRegistrationRequest} from "@reciptor/authentication/data-access";
 
 @Component({

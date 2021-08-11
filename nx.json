@@ -65,9 +65,6 @@
     },
     "reciptor-registration-ui": {
       "tags": ["type:ui", "scope:reciptor"]
-    },
-    "reciptor-registration-data-access": {
-      "tags": ["type:data-access", "scope:reciptor"]
     }
   }
 }

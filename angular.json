@@ -415,43 +415,6 @@
         }
       }
     },
-    "reciptor-authentication-data-access": {
-      "projectType": "library",
-      "root": "libs/reciptor/authentication/data-access",
-      "sourceRoot": "libs/reciptor/authentication/data-access/src",
-      "prefix": "reciptor",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "options": {
-            "tsConfig": "libs/reciptor/authentication/data-access/tsconfig.lib.json",
-            "project": "libs/reciptor/authentication/data-access/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/reciptor/authentication/data-access/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/reciptor/authentication/data-access/src/**/*.ts",
-              "libs/reciptor/authentication/data-access/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/reciptor/authentication/data-access"],
-          "options": {
-            "jestConfig": "libs/reciptor/authentication/data-access/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "reciptor-header-ui": {
       "projectType": "library",
       "root": "libs/reciptor/header/ui",
@@ -590,6 +553,43 @@
               "libs/reciptor/registration/ui/src/**/*.ts",
               "libs/reciptor/registration/ui/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "reciptor-shared-data-access": {
+      "projectType": "library",
+      "root": "libs/reciptor/shared/data-access",
+      "sourceRoot": "libs/reciptor/shared/data-access/src",
+      "prefix": "reciptor",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/reciptor/shared/data-access/tsconfig.lib.json",
+            "project": "libs/reciptor/shared/data-access/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/reciptor/shared/data-access/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/reciptor/shared/data-access/src/**/*.ts",
+              "libs/reciptor/shared/data-access/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/reciptor/shared/data-access"],
+          "options": {
+            "jestConfig": "libs/reciptor/shared/data-access/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

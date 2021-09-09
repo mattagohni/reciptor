@@ -10,30 +10,44 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@reciptor/app-config": ["libs/shared/app-config"],
-      "@reciptor/shared/material": ["libs/shared/material/src/index.ts"],
-      "@reciptor/tools/data-access": ["libs/tools/data-access/src/index.ts"],
-      "@reciptor/tools/ui": ["libs/tools/ui/src/index.ts"],
-      "@reciptor/tools/feature": ["libs/tools/feature/src/index.ts"],
+      "@reciptor/app-config": [
+        "libs/shared/app-config"
+      ],
+      "@reciptor/shared/material": [
+        "libs/shared/material/src/index.ts"
+      ],
+      "@reciptor/tools/data-access": [
+        "libs/tools/data-access/src/index.ts"
+      ],
+      "@reciptor/tools/ui": [
+        "libs/tools/ui/src/index.ts"
+      ],
+      "@reciptor/tools/feature": [
+        "libs/tools/feature/src/index.ts"
+      ],
       "@reciptor/authentication/feature": [
         "libs/reciptor/authentication/feature/src/index.ts"
       ],
       "@reciptor/authentication/ui": [
         "libs/reciptor/authentication/ui/src/index.ts"
       ],
-      "@reciptor/authentication/data-access": [
-        "libs/reciptor/authentication/data-access/src/index.ts"
-      ],
       "@reciptor/authentication/shared": [
         "libs/authentication/shared/src/index.ts"
       ],
-      "@reciptor/header/ui": ["libs/reciptor/header/ui/src/index.ts"],
-      "@reciptor/configuration": ["libs/reciptor/configuration/src/index.ts"],
+      "@reciptor/header/ui": [
+        "libs/reciptor/header/ui/src/index.ts"
+      ],
+      "@reciptor/configuration": [
+        "libs/reciptor/configuration/src/index.ts"
+      ],
       "@reciptor/registration/feature": [
         "libs/reciptor/registration/feature/src/index.ts"
       ],
@@ -42,8 +56,14 @@
       ],
       "@reciptor/registration/data-access": [
         "libs/reciptor/registration/data-access/src/index.ts"
+      ],
+      "@reciptor/shared/data-access": [
+        "libs/reciptor/shared/data-access/src/index.ts"
       ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

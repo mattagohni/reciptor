@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'reciptor-authentication-data-access',
+  displayName: 'reciptor-shared-data-access',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -14,8 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory:
-    '../../../../coverage/libs/reciptor/authentication/data-access',
+  coverageDirectory: '../../../../coverage/libs/reciptor/shared/data-access',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

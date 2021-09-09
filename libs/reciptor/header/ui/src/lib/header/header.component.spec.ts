@@ -1,12 +1,15 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {HeaderComponent} from './header.component';
-import {SharedMaterialModule} from '@reciptor/shared/material';
-import {TranslateModule} from '@ngx-translate/core';
-import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {AuthenticationService} from '@reciptor/authentication/data-access';
-import {HttpClientTestingModule, HttpTestingController,} from '@angular/common/http/testing';
-import {RECIPTOR_API_URL} from '@reciptor/configuration';
+import { HeaderComponent } from './header.component';
+import { SharedMaterialModule } from '@reciptor/shared/material';
+import { TranslateModule } from '@ngx-translate/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { AuthenticationService } from '@reciptor/shared/data-access';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
+import { RECIPTOR_API_URL } from '@reciptor/configuration';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -23,7 +26,7 @@ describe('HeaderComponent', () => {
       providers: [
         AuthenticationService,
         HttpTestingController,
-        {provide: RECIPTOR_API_URL, useValue: 'http://testing.test'},
+        { provide: RECIPTOR_API_URL, useValue: 'http://testing.test' },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

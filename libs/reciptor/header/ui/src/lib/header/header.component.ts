@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation,} from '@angular/core';
-import {AuthenticationService} from '@reciptor/authentication/data-access';
+import {AuthenticationService} from '@reciptor/shared/data-access';
 import {BehaviorSubject, Subscription} from 'rxjs';
 
 @Component({

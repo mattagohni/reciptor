@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {AuthenticationService, ReciptorRegistrationRequest} from "@reciptor/authentication/data-access";
+import {AuthenticationService, ReciptorRegistrationRequest} from "@reciptor/shared/data-access";
 import {Router} from "@angular/router";
 
 @Component({

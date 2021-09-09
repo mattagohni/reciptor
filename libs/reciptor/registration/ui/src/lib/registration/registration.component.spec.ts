@@ -1,18 +1,21 @@
-import {RegistrationComponent} from './registration.component';
-import {ReciptorRegistrationRequest} from "@reciptor/authentication/data-access";
-import {of} from "rxjs";
+import { RegistrationComponent } from './registration.component';
+import { ReciptorRegistrationRequest } from '@reciptor/shared/data-access';
+import { of } from 'rxjs';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
   const authenticationService = {
     register: jest.fn(() =>
-        of({token: 'someToken', expires: Date.now() + 1000})
+      of({ token: 'someToken', expires: Date.now() + 1000 })
     ),
   };
-  const router = {navigate: jest.fn()};
+  const router = { navigate: jest.fn() };
 
   beforeEach(async () => {
-    component = new RegistrationComponent(authenticationService as any, router as any);
+    component = new RegistrationComponent(
+      authenticationService as any,
+      router as any
+    );
   });
 
   it('navigates to root page after successful login', () => {
@@ -23,7 +26,9 @@ describe('RegistrationComponent', () => {
 
     component.handleRegistrationEvent(registrationRequest);
 
-    expect(authenticationService.register).toHaveBeenCalledWith(registrationRequest);
+    expect(authenticationService.register).toHaveBeenCalledWith(
+      registrationRequest
+    );
     expect(router.navigate).toHaveBeenCalledWith(['']);
   });
 });

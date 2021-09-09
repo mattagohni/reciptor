@@ -51,9 +51,6 @@
     "reciptor-authentication-ui": {
       "tags": ["type:ui", "scope:reciptor"]
     },
-    "reciptor-authentication-data-access": {
-      "tags": ["type:data-access", "scope:reciptor"]
-    },
     "reciptor-header-ui": {
       "tags": ["type:ui", "scope:reciptor"]
     },
@@ -65,6 +62,9 @@
     },
     "reciptor-registration-ui": {
       "tags": ["type:ui", "scope:reciptor"]
+    },
+    "reciptor-shared-data-access": {
+      "tags": ["type:data-access", "scope:reciptor"]
     }
   }
 }

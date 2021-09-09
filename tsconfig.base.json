@@ -59,6 +59,9 @@
       ],
       "@reciptor/shared/data-access": [
         "libs/reciptor/shared/data-access/src/index.ts"
+      ],
+      "@reciptor/landingpage/feature": [
+        "libs/reciptor/landingpage/feature/src/index.ts"
       ]
     }
   },

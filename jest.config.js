@@ -13,5 +13,6 @@ module.exports = {
     '<rootDir>/libs/reciptor/registration/feature',
     '<rootDir>/libs/reciptor/registration/ui',
     '<rootDir>/libs/reciptor/registration/data-access',
+    '<rootDir>/libs/reciptor/landingpage/reciptor-landingpage-feature',
   ],
 };

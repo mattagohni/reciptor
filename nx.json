@@ -65,6 +65,9 @@
     },
     "reciptor-shared-data-access": {
       "tags": ["type:data-access", "scope:reciptor"]
+    },
+    "reciptor-landingpage-reciptor-landingpage-feature": {
+      "tags": ["type:feature", "scope:reciptor"]
     }
   }
 }

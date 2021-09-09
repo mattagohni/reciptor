@@ -593,6 +593,48 @@
           }
         }
       }
+    },
+    "reciptor-landingpage-reciptor-landingpage-feature": {
+      "projectType": "library",
+      "root": "libs/reciptor/landingpage/reciptor-landingpage-feature",
+      "sourceRoot": "libs/reciptor/landingpage/reciptor-landingpage-feature/src",
+      "prefix": "reciptor",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "project": "libs/reciptor/landingpage/reciptor-landingpage-feature/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/reciptor/landingpage/reciptor-landingpage-feature/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/reciptor/landingpage/reciptor-landingpage-feature/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/reciptor/landingpage/reciptor-landingpage-feature"
+          ],
+          "options": {
+            "jestConfig": "libs/reciptor/landingpage/reciptor-landingpage-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/reciptor/landingpage/reciptor-landingpage-feature/src/**/*.ts",
+              "libs/reciptor/landingpage/reciptor-landingpage-feature/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

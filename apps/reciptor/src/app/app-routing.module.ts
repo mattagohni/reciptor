@@ -5,6 +5,13 @@ import {AuthenticationGuard} from './guard/authentication.guard';
 
 const routes: Routes = [
     {
+      path: '',
+      loadChildren: () =>
+          import('@reciptor/landingpage/feature').then(
+              (module) => module.ReciptorLandingpageFeatureModule
+          )
+    },
+    {
         path: 'tools',
         loadChildren: () =>
             import('@reciptor/tools/feature').then(

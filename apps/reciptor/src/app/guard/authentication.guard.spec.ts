@@ -1,5 +1,5 @@
 import {AuthenticationGuard} from './authentication.guard';
-import {AuthenticationService} from '@reciptor/authentication/data-access';
+import {AuthenticationService} from '@reciptor/shared/data-access';
 import {BehaviorSubject} from 'rxjs';
 import {ActivatedRouteSnapshot, Route, Router, RouterStateSnapshot, UrlSegment} from '@angular/router';
 

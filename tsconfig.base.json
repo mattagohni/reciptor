@@ -39,9 +39,6 @@
       "@reciptor/authentication/ui": [
         "libs/reciptor/authentication/ui/src/index.ts"
       ],
-      "@reciptor/authentication/data-access": [
-        "libs/reciptor/authentication/data-access/src/index.ts"
-      ],
       "@reciptor/authentication/shared": [
         "libs/authentication/shared/src/index.ts"
       ],
@@ -50,6 +47,18 @@
       ],
       "@reciptor/configuration": [
         "libs/reciptor/configuration/src/index.ts"
+      ],
+      "@reciptor/registration/feature": [
+        "libs/reciptor/registration/feature/src/index.ts"
+      ],
+      "@reciptor/registration/ui": [
+        "libs/reciptor/registration/ui/src/index.ts"
+      ],
+      "@reciptor/registration/data-access": [
+        "libs/reciptor/registration/data-access/src/index.ts"
+      ],
+      "@reciptor/shared/data-access": [
+        "libs/reciptor/shared/data-access/src/index.ts"
       ]
     }
   },

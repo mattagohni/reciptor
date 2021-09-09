@@ -1,28 +1,29 @@
 import {
-  ChangeDetectionStrategy,
   Component,
-  EventEmitter,
+  ChangeDetectionStrategy,
   Output,
+  EventEmitter,
 } from '@angular/core';
-import { ReciptorAuthenticationRequest } from '@reciptor/shared/data-access';
+import {ReciptorRegistrationRequest} from "@reciptor/shared/data-access";
 
 @Component({
-  selector: 'reciptor-login-form',
+  selector: 'reciptor-registration-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent {
   @Output()
-  authRequestEvent: EventEmitter<ReciptorAuthenticationRequest> = new EventEmitter<ReciptorAuthenticationRequest>();
+  registerRequestEvent: EventEmitter<ReciptorRegistrationRequest> = new EventEmitter<ReciptorRegistrationRequest>();
 
   formData = {
     username: '',
     password: '',
+    confirmPassword: '',
   };
 
   submit() {
-    this.authRequestEvent.emit({
+    this.registerRequestEvent.emit({
       username: this.formData.username,
       password: this.formData.password,
     });

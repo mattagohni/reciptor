@@ -6,11 +6,4 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./landingpage.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LandingpageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class LandingpageComponent {}
